@@ -1,0 +1,8 @@
+Credentials cache: API:13407
+        Principal: angagnie@42.FR
+
+  Issued                Expires               Principal
+Jul  7 11:42:54 2015  Jul  7 21:42:54 2015  krbtgt/42.FR@42.FR
+Jul  7 11:43:02 2015  Jul  7 21:42:54 2015  nfs/zfs-student-1.42.fr@42.FR
+Jul  7 11:43:02 2015  Jul  7 21:42:54 2015  nfs/zfs-student-4.42.fr@42.FR
+Jul  7 12:34:24 2015  Jul  7 21:42:54 2015  host/vogsphere-frontend-normal-1.42.fr@42.FR

@@ -1,0 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/07/17 07:08:44 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/17 07:08:45 by angagnie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_perso.h"
+
+int main(void)
+{
+	t_perso donnie;
+	donnie.name = strdup("Donnie");
+	donnie.life = 100.0;
+	donnie.age = 24;
+	donnie.profession = SAVE_AUSTIN_POWERS;
+	(void)donnie;
+	return (0);
+}
