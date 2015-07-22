@@ -1,49 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_wordtab.c                                  :+:      :+:    :+:   */
+/*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/21 22:39:01 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/21 23:17:11 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/21 20:55:09 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/22 09:43:23 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		my_strcmp(char *s1, char *s2)
+#include "super.h"
+
+t_string		ft_add(t_myint a, t_myint b)
 {
-	while (*s1 == *s2 && *s1)
-	{
-		++s1;
-		++s2;
-	}
-	return (*s1 - *s2);
+	return (ft_itoa(a + b));
 }
 
-void	my_swap(char **a, char **b)
+t_string		ft_sub(t_myint a, t_myint b)
 {
-	char *tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	return (ft_itoa(a - b));
 }
 
-void	ft_sort_wordtab(char **tab)
+t_string		ft_mul(t_myint a, t_myint b)
 {
-	int		done;
-	int		i;
+	return (ft_itoa(a * b));
+}
 
-	done = 0;
-	while (!done)
-	{
-		done = 1;
-		i = 0;
-		while (tab[++i])
-			if (my_strcmp(tab[i - 1], tab[i]) > 0)
-			{
-				my_swap(tab + i - 1, tab + i);
-				done = 0;
-			}
-	}
+t_string		ft_div(t_myint a, t_myint b)
+{
+	if (b == 0)
+		return ("Stop : division by zero");
+	return (ft_itoa(a / b));
 }

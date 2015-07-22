@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_wordtab.c                                  :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/21 22:39:01 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/22 01:19:35 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/21 15:47:42 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/21 21:11:59 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	my_swap(char **a, char **b)
+#include "super.h"
+
+t_myint		ft_atoi(char *str)
 {
-	char *tmp;
+	t_uint	i;
+	int		sign;
+	t_myint	ans;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	ft_advanced_sort_wordtab(char **tab, int (*cmp)(char *, char *))
-{
-	int		done;
-	int		i;
-
-	done = 0;
-	while (!done)
-	{
-		done = 1;
-		i = 0;
-		while (tab[++i])
-			if (cmp(tab[i - 1], tab[i]) > 0)
-			{
-				my_swap(tab + i - 1, tab + i);
-				done = 0;
-			}
-	}
+	i = 0;
+	while (str[i] == ' ')
+		++i;
+	sign = (str[i] == '-' ? -1 : 1);
+	i += (str[i] == '-' || str[i] == '+' ? 1 : 0);
+	ans = 0;
+	while (47 < str[i] && str[i] < 58)
+		ans = 10 * ans + str[i++] - 48;
+	return (ans * sign);
 }

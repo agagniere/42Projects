@@ -1,39 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_wordtab.c                                  :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/21 22:39:01 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/22 01:19:35 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/21 16:44:31 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/22 10:28:03 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	my_swap(char **a, char **b)
+#include "super.h"
+
+int		main(int ac, char **av)
 {
-	char *tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	ft_advanced_sort_wordtab(char **tab, int (*cmp)(char *, char *))
-{
-	int		done;
-	int		i;
-
-	done = 0;
-	while (!done)
-	{
-		done = 1;
-		i = 0;
-		while (tab[++i])
-			if (cmp(tab[i - 1], tab[i]) > 0)
-			{
-				my_swap(tab + i - 1, tab + i);
-				done = 0;
-			}
-	}
+	if (ac == 4)
+		compute(ft_atoi(av[1]), ft_atoi(av[3]), av[2]);
+	return (0);
 }

@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_wordtab.c                                  :+:      :+:    :+:   */
+/*   super.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/21 22:39:01 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/22 01:19:35 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/21 16:10:58 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/22 10:46:28 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	my_swap(char **a, char **b)
-{
-	char *tmp;
+#ifndef SUPER_H
+# define SUPER_H
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
+# include <unistd.h>
+# include <stdlib.h>
+# include "core.h"
+//# include "ft_opp.h"
 
-void	ft_advanced_sort_wordtab(char **tab, int (*cmp)(char *, char *))
-{
-	int		done;
-	int		i;
-
-	done = 0;
-	while (!done)
-	{
-		done = 1;
-		i = 0;
-		while (tab[++i])
-			if (cmp(tab[i - 1], tab[i]) > 0)
-			{
-				my_swap(tab + i - 1, tab + i);
-				done = 0;
-			}
-	}
-}
+#endif

@@ -1,49 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_wordtab.c                                  :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/21 22:39:01 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/21 23:17:11 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/21 17:47:27 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/21 21:34:59 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		my_strcmp(char *s1, char *s2)
+#include "super.h"
+
+void	ft_putnbr(t_myint n)
 {
-	while (*s1 == *s2 && *s1)
+	if (n < 0)
 	{
-		++s1;
-		++s2;
+		ft_putchar('-');
+		n = -n;
 	}
-	return (*s1 - *s2);
-}
-
-void	my_swap(char **a, char **b)
-{
-	char *tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	ft_sort_wordtab(char **tab)
-{
-	int		done;
-	int		i;
-
-	done = 0;
-	while (!done)
-	{
-		done = 1;
-		i = 0;
-		while (tab[++i])
-			if (my_strcmp(tab[i - 1], tab[i]) > 0)
-			{
-				my_swap(tab + i - 1, tab + i);
-				done = 0;
-			}
-	}
+	if (n > 9)
+		ft_putnbr(n / 10);
+	ft_putchar(48 + n % 10);
 }
