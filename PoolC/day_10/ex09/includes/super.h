@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/21 16:10:58 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/22 10:46:28 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/07/22 13:58:46 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,5 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "core.h"
-//# include "ft_opp.h"
 
 #endif

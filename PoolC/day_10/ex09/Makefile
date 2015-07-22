@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/21 17:24:39 by angagnie          #+#    #+#              #
-#    Updated: 2015/07/22 10:45:02 by angagnie         ###   ########.fr        #
+#    Updated: 2015/07/22 14:02:27 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -74,7 +74,7 @@ $(HDRPATH)%.h:
 # == Rule that compile header files ==
 $(CCHPATH)%.h.gch: $(HDRPATH)%.h $(CCHPATH)
 	@echo "\033[0;36m - Compiling $< into $@\033[1;31m"
-	@$(CC) $(CFLAGS) -o $@ -c $<
+#@$(CC) $(CFLAGS) -o $@ -c $<
 
 # == Rule called if the cache folder doesn't exist yet ==
 $(CCHPATH):

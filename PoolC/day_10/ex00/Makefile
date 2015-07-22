@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/21 17:25:04 by angagnie          #+#    #+#              #
-#    Updated: 2015/07/21 17:36:50 by angagnie         ###   ########.fr        #
+#    Updated: 2015/07/22 16:28:48 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -85,8 +85,6 @@ $(CCHPATH):
 # == Rule deleting compiled files : The cache folder ==
 clean:
 	@echo "\033[1;33m - Cleaning...\n\t{"
-#@rm -vf $(OBJ)
-#@rm -vf $(CDR)
 	@rm -vrf $(CCHPATH)
 	@echo "\t} Done"
 

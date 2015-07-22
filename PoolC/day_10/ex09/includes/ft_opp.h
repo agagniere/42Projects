@@ -6,14 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/22 01:54:55 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/22 13:11:39 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/07/22 13:49:29 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_OPP_H
 # define FT_OPP_H
-
-# include "core.h"
 
 t_opp gl_opptab[] =
 {
