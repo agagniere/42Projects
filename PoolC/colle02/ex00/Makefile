@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/21 17:24:39 by angagnie          #+#    #+#              #
-#    Updated: 2015/07/26 23:41:13 by angagnie         ###   ########.fr        #
+#    Updated: 2015/07/27 18:50:47 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,8 +14,8 @@
 DBPATH=debug_
 REPATH=ft_
 # == Just (Un)comment =
-#CURPATH=$(DBPATH)
-CURPATH=$(REPATH)
+CURPATH=$(DBPATH)
+#CURPATH=$(REPATH)
 # =====================
 
 # === Editable ===
@@ -25,7 +25,8 @@ SRCLIST=]main.c ]ft_putstr.c ]ft_read_stdin.c [print.c ]ft_check_form.c \
 	]ft_strdup.c ]gooo.c \
 	]forms/colle_00_0.c ]forms/colle_00_1.c ]forms/colle_00_2.c \
 	]forms/colle_00_3.c ]forms/colle_00_4.c ]forms/rectangle.c \
-	]forms/triangle_a.c \
+	]forms/triangle_a.c ]forms/triangle_b.c ]forms/triangle_c.c \
+	]forms/triangle_d.c \
 	]lists/ft_create_elem.c ]lists/ft_list_clear.c ]lists/ft_list_push_back.c \
 	]lists/ft_list_push_front.c ]lists/ft_list_merge.c ]lists/ft_list_size.c \
 	]lists/ft_list_reverse.c

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_btree.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/11 10:11:02 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/12 10:32:26 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/25 17:58:24 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/25 18:00:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
+#ifndef FT_BTREE_H
+# define FT_BTREE_H
 
-void	sastantua(int size);
-
-void	ft_putchar(char c)
+typedef struct		s_btree
 {
-	write(1, &c, 1);
-}
+	struct s_btree	*left;
+	struct s_btree	*right;
+	void			*item;
+}					t_btree;
 
-int		main(int ac, char **av)
-{
-	if (ac == 2)
-		sastantua(atoi(av[1]), " /*|$\\");
-	return (0);
-}
+#endif

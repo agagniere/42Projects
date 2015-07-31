@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print.c                                         :+:      :+:    :+:   */
+/*   ft_btree.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/23 15:53:48 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/23 17:03:25 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/25 17:58:24 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/25 18:00:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "super.h"
+#ifndef FT_BTREE_H
+# define FT_BTREE_H
 
-void	db_printint(char *name, int value)
+typedef struct		s_btree
 {
-	(void)name;
-	(void)value;
-}
+	struct s_btree	*left;
+	struct s_btree	*right;
+	void			*item;
+}					t_btree;
+
+#endif

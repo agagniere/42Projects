@@ -1,22 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rectangle.c                                        :+:      :+:    :+:   */
+/*   btree_level_count.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/26 22:40:13 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/26 23:17:17 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/25 22:41:50 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/25 23:25:37 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "super.h"
+#include "ft_btree.h"
 
-char	rectangle(t_coord *point, t_coord *total)
+int		ft_max(int a, int b)
 {
-	if (point->x == 0 || point->y == 0 || point->x == total->x - 1
-		|| point->y == total->y - 1)
-		return (NOT_A_SPACE);
+	if (a > b)
+		return (a);
 	else
-		return (' ');
+		return (b);
+}
+
+int		btree_level_count(t_btree *root)
+{
+	int		l;
+	int		r;
+
+	l = 0;
+	r = 0;
+	if (root->left)
+		l = btree_level_count(root->left);
+	if (root->right)
+		r = btree_level_count(root->right);
+	return (ft_max(l, r));
 }

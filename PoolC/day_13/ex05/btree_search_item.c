@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rectangle.c                                        :+:      :+:    :+:   */
+/*   btree_search_item.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/26 22:40:13 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/26 23:43:11 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/25 18:35:29 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/31 22:04:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "super.h"
+#include "ft_btree.h"
 
-char	triangle_b(t_coord *point, t_coord *total)
+void	*btree_search_item(t_btree *root,
+	void *data_ref, int (*cmpf)(void *, void *))
 {
-	if (point->x == total->x - 1 || point->y == 0 || point->x  == point->y)
-		return (NOT_A_SPACE);
+	void *potential;
+
+	potential = 0;
+	if (root->left)
+		potential = btree_search_item(root->left, data_ref, cmpf);
+	if (potential)
+		return (potential);
+	else if (!cmpf(root->item, data_ref))
+		return (root->item);
+	else if (root->right)
+		return (btree_search_item(root->right, data_ref, cmpf));
 	else
-		return (' ');
+		return (0);
 }

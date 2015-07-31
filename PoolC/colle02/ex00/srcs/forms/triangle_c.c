@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   formtab.h                                          :+:      :+:    :+:   */
+/*   rectangle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/26 13:22:21 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/27 00:29:06 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/26 22:40:13 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/27 00:22:02 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORMTAB_H
-# define FORMTAB_H
+#include "super.h"
 
-# include "form.h"
-
-t_form	g_formtab[] =
+char	triangle_c(t_coord *point, t_coord *total)
 {
-	{"colle-00", &colle_00_0},
-	{"colle-01", &colle_00_1},
-	{"colle-02", &colle_00_2},
-	{"colle-03", &colle_00_3},
-	{"colle-04", &colle_00_4},
-	{"rectangle", &rectangle},
-	{"triangle", &triangle_a},
-	{"triangle", &triangle_b},
-	{"triangle", &triangle_c},
-	{"triangle", &triangle_d},
-	{"aucune", 0}
-};
-
-#endif
+	if (point->x == 0 || point->y == total->y - 1 || point->x == point->y)
+		return (NOT_A_SPACE);
+	else
+		return (' ');
+}

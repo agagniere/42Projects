@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/25 15:00:29 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/26 23:38:40 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/27 10:44:53 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/27 10:44:54 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ char			colle_00_3(t_coord *point, t_coord *total);
 char			colle_00_4(t_coord *point, t_coord *total);
 char			rectangle(t_coord *point, t_coord *total);
 char			triangle_a(t_coord *point, t_coord *total);
+char			triangle_b(t_coord *point, t_coord *total);
+char			triangle_c(t_coord *point, t_coord *total);
+char			triangle_d(t_coord *point, t_coord *total);
 
 #endif

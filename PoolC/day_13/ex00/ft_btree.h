@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_btree.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/23 15:04:20 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/24 23:38:37 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/25 17:58:24 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/25 18:02:45 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "super.h"
+#ifndef FT_BTREE_H
+# define FT_BTREE_H
 
-int		main(int ac, char **av)
+# include <stdlib.h>
+
+typedef struct		s_btree
 {
-	int k;
-	int c;
+	struct s_btree	*left;
+	struct s_btree	*right;
+	void			*item;
+}					t_btree;
 
-	k = 0;
-	c = -27315;
-	if (ac == 1)
-		ft_display_stdin();
-	else if (av[1][0] == '-' && av[1][1] == 'c')
-	{
-		if (av[1][2])
-			c = ft_atoi(av[1] + 2);
-		else
-			c = ft_atoi(av[2]);
-	}
-	else
-	{
-		while (++k < ac)
-		{
-			if (av[k][0] == '-')
-				ft_display_stdin();
-			else
-				ft_display_file(av[k], av[0], c);
-		}
-	}
-	return (0);
-}
+#endif

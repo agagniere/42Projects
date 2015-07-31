@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_print.c                                      :+:      :+:    :+:   */
+/*   btree_apply_suffix.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/23 15:47:36 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/23 17:01:35 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/25 18:09:15 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/31 22:03:04 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "super.h"
-#include <stdio.h>
+#include "ft_btree.h"
 
-void	db_printint(char *name, int value)
+void	btree_apply_suffix(t_btree *root, void (*applyf)(void *))
 {
-	printf("La variable %s %s %s a pour valeur :\t%s %i %s\n", BOLD, name, END, BOLD, value, END);
+	if (root->left)
+		btree_apply_suffix(root->left, applyf);
+	if (root->right)
+		btree_apply_suffix(root->right, applyf);
+	applyf(root->item);
 }

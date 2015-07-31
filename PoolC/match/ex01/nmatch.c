@@ -30,17 +30,3 @@ int		aux(char *s1, char *s2)
 	}
 	return (0);
 }
-
-int		nmatch(char *s1, char *s2)
-{
-	if (s1 == NULL || s2 == NULL)
-		return (0);
-	return (aux(s1, s2));
-}
-
-int		main(int ac, char **av)
-{
-	if (ac == 3)
-		printf("%i\n", nmatch(av[1], av[2]));
-	return (0);
-}

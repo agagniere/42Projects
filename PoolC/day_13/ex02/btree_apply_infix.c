@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   formtab.h                                          :+:      :+:    :+:   */
+/*   btree_apply_infix.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/26 13:22:21 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/27 00:29:06 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/25 18:09:15 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/31 22:02:34 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORMTAB_H
-# define FORMTAB_H
+#include "ft_btree.h"
 
-# include "form.h"
-
-t_form	g_formtab[] =
+void	btree_apply_infix(t_btree *root, void (*applyf)(void *))
 {
-	{"colle-00", &colle_00_0},
-	{"colle-01", &colle_00_1},
-	{"colle-02", &colle_00_2},
-	{"colle-03", &colle_00_3},
-	{"colle-04", &colle_00_4},
-	{"rectangle", &rectangle},
-	{"triangle", &triangle_a},
-	{"triangle", &triangle_b},
-	{"triangle", &triangle_c},
-	{"triangle", &triangle_d},
-	{"aucune", 0}
-};
-
-#endif
+	if (root->left)
+		btree_apply_infix(root->left, applyf);
+	applyf(root->item);
+	if (root->right)
+		btree_apply_infix(root->right, applyf);
+}

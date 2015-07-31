@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   super.h                                            :+:      :+:    :+:   */
+/*   rectangle.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/26 23:09:03 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/26 23:28:23 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/26 22:40:13 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/27 00:19:38 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define NOT_A_SPACE 'O'
-typedef struct	s_coord
+#include "super.h"
+
+char	triangle_b(t_coord *point, t_coord *total)
 {
-	int x;
-	int y;
-}				t_coord;
+	if (point->x == total->x - 1 || point->y == 0 || point->x == point->y)
+		return (NOT_A_SPACE);
+	else
+		return (' ');
+}

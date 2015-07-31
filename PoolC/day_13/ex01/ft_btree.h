@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_btree.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/07/23 15:28:56 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/23 16:50:53 by angagnie         ###   ########.fr       */
+/*   Created: 2015/07/25 17:58:24 by angagnie          #+#    #+#             */
+/*   Updated: 2015/07/25 18:00:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "super.h"
+#ifndef FT_BTREE_H
+# define FT_BTREE_H
 
-void	ft_putstr_fd(int fd, char *str)
+typedef struct		s_btree
 {
-	char *ptr;
+	struct s_btree	*left;
+	struct s_btree	*right;
+	void			*item;
+}					t_btree;
 
-	ptr = str;
-	while (*ptr != '\0')
-		++ptr;
-	write(fd, str, ptr - str);
-}
+#endif
