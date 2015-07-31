@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/28 15:24:28 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/30 17:23:49 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/07/31 17:21:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ int		ft_bsq(char *file_name)
 	all->to_be_skipped = ptr - buffer + 1;
 	while (read(fd, buffer, 1) > 0 && *buffer != '\n')
 		all->map->width++;
+	if (all->map->width == 0)
+		return (EXIT_KO);
 	all->map->width++;
 	close(fd);
 	free(buffer);
