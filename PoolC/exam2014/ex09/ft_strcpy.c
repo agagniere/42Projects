@@ -17,9 +17,11 @@ char	*ft_strcpy(char *s1, char *s2)
 
 	ptr = s2;
 	p = s1;
-	while (*s2)
+	while (*ptr)
 	{
-		
+		*p = *ptr;
+		p++;
+		ptr++;
 	}
 	return (s1);
 }
