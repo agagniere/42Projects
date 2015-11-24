@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 09:40:34 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/24 12:59:18 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/24 13:04:48 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/24 13:10:24 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_toupper(int c)
+#include <stddef.h>
+
+void	*ft_memset(void *b, int c, size_t len)
 {
-	if ('a' <= c && c <= 'z')
-		return (c - 'a' + 'A');
-	else
-		return (c);
+	while (len-- > 0)
+		*((unsigned char *)b + len) = (unsigned char)c;
+	return (b);
 }
