@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/24 15:52:07 by angagnie         ###   ########.fr        #
+#    Updated: 2015/11/24 17:15:32 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,11 +20,12 @@ CURPATH=$(REPATH)
 
 # === Editable ===
 NAME=libft.a
-# Just put a ']' and the file's name or [ for debug/release.
-SRCLIST=]ft_isalnum.c ]ft_isascii.c ]ft_isdigit.c ]ft_memset.c  ]ft_strlen.c  ]ft_toupper.c ]main.c \
-	]ft_bzero.c ]ft_isalpha.c ]ft_iscntrl.c ]ft_isprint.c ]ft_strcpy.c  ]ft_tolower.c
-# Headers' names, again with a ']' This may actually be useless.
-HDRLIST=]libft.h
+# Just put the filename without the ".c".
+SRCLIST=ft_isalnum ft_isascii ft_isdigit ft_memcpy ft_memset  ft_strlen \
+	ft_toupper ft_bzero ft_isalpha ft_iscntrl ft_isprint ft_strcpy \
+	ft_tolower ft_strcmp
+# Headers' names. This may actually be useless.
+HDRLIST=libft
 # === Standard ===
 # source's directory
 SRCPATH=./
@@ -35,14 +36,11 @@ CCHPATH=cache/
 # ================
 
 # === Better not to touch ===
-OBJLIST=$(SRCLIST:.c=.o)
-CDRLIST=$(HDRLIST:.h=.h.gch)
-SRC=$(subst [,$(SRCPATH)$(CURPATH),$(subst ],$(SRCPATH),$(SRCLIST)))
-OBJ=$(subst [,$(CCHPATH)$(CURPATH),$(subst ],$(CCHPATH),$(OBJLIST)))
-HDR=$(subst ],$(HDRPATH),$(HDRLIST))
-CDR=$(subst ],$(CCHPATH),$(CDRLIST))
+SRC=$(addprefix $(SRCPATH),$(addsuffix .c,$(SRCLIST)))
+OBJ=$(addprefix $(CCHPATH),$(addsuffix .o,$(SRCLIST)))
+HDR=$(addprefix $(HDRPATH),$(addsuffix .h,$(HDRLIST)))
 CC=clang
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra
 FULCFLAGS=$(CFLAGS) -I $(HDRPATH)
 # ===========================
 
