@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 17:06:43 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/24 15:48:55 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/24 15:36:55 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/24 15:40:35 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-void	 ft_bzero(void *s, size_t n)
+void	*memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
+	unsigned char *from;
+	unsigned char *to;
+
+	from = (unsigned char *)src;
+	to = (unsigned char *)dst;
 	while (n-- > 0)
-		*(char*)s++ = 0;
+		*to++ = *from++;
+	return (dst);
 }

@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/23 17:06:43 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/24 15:48:55 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/24 15:10:04 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/24 15:11:34 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-void	 ft_bzero(void *s, size_t n)
+int		main(int ac, char **av)
 {
-	while (n-- > 0)
-		*(char*)s++ = 0;
+	(void)ac;
+	(void)av;
+	return (0);
 }
