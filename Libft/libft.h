@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 21:21:05 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/25 21:43:51 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		ft_isascii(int c);
 int		ft_isblank(int c);
 int		ft_iscntrl(int c);
 int		ft_isdigit(int c);
+int		ft_isupper(int c);
+int		ft_islower(int c);
 int		ft_isprint(int c);
 int		ft_isspace(int c);
 
