@@ -1,73 +1,67 @@
 /* ************************************************************************** */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_memory.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/11/24 11:33:33 by exam              #+#    #+#             */
+/*   Updated: 2015/11/24 11:59:57 by exam             ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-typedef unsigned char	t_uc;
-
-int	is_printable(char c)
+void	ft_putnbr_hex(int octet, int rem)
 {
-  return (' ' <= c && c <= '~');
+	char const *base = "0123456789abcdef";
+
+	if (rem > 1)
+		ft_putnbr_hex(octet / 16, rem - 1);
+	write(1, base + (octet % 16), 1);
 }
 
-void	aux(t_uc n, t_uc rem)
+void	sp_putchar(unsigned char const *ptr)
 {
-  char* base = "0123456789abcdef";
+	char const c = *ptr;
 
-  if (rem > 0)
-    {
-      aux(n >> 4, rem - 1);
-      write(1, base + n % 16, 1);
-    }
-}
-
-void	print_memory(void* addr, ssize_t size)
-{
-  int	i;
-  t_uc	*ptr;
-
-  ptr = (t_uc*)addr;
-  while (size > 0)
-    {
-      i = 0;
-      while (i < 16 && size - i > 0)
-	{
-	  aux(ptr[i], 2);
-	  if (i % 2)
-	    write(1, " ", 1);
-	  i++;
-	}
-      while (++i < 17)
-	{
-	  write(1, "  ", 2);
-	  if (i % 2)
-	    write(1, " ", 1);
-	}
-      i = -1;
-      while (++i < 16 && size - i > 0)
-	if (is_printable(ptr[i]))
-	  write(1, ptr + i, 1);
+	if (' ' <= c && c <= '~')
+		write(1, ptr, 1);
 	else
-	  write(1, ".", 1);
-      write(1, "\n", 1);
-      size -= 16;
-      ptr += 16;
-    }
+		write(1, ".", 1);
 }
 
-int	main(void)
+void	print_memory(const void *addr, size_t size)
 {
-  int	tab[10] = {0, 23, 150, 255,
-		12, 16, 21, 42};
+	size_t i;
+	size_t a;
+	unsigned char const *ptr = addr;
 
-  print_memory(tab, sizeof(tab));
-  return (0);
+	i = 0;
+	while (i < size)
+	{
+		a = 0;
+		while (a < 16 && a + i < size)
+		{
+			ft_putnbr_hex(*(ptr + i + a), 2);
+			if (a % 2)
+				write(1, " ", 1);
+			a++;
+		}
+		while (a < 16)
+		{
+			write(1, "  ", 2);
+			if (a % 2)
+				write(1, " ", 1);
+			a++;
+		}
+		a = 0;
+		while (a < 16 && a + i < size)
+		{
+			sp_putchar(ptr + a + i);
+			a++;
+		}
+		write(1, "\n", 1);
+		i += 16;
+	}
 }
