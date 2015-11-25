@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/24 17:15:32 by angagnie         ###   ########.fr        #
+#    Updated: 2015/11/25 11:46:38 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,16 +14,17 @@
 DBPATH=db_
 REPATH=ft_
 # == Just (Un)comment =
-#CURPATH=$(DBPATH)
-CURPATH=$(REPATH)
+CURPATH=$(DBPATH)
+#CURPATH=$(REPATH)
 # =====================
 
 # === Editable ===
 NAME=libft.a
 # Just put the filename without the ".c".
-SRCLIST=ft_isalnum ft_isascii ft_isdigit ft_memcpy ft_memset  ft_strlen \
-	ft_toupper ft_bzero ft_isalpha ft_iscntrl ft_isprint ft_strcpy \
-	ft_tolower ft_strcmp
+SRCLIST=ft_bzero ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl \
+	ft_isdigit ft_isprint ft_isspace ft_memccpy ft_memcpy ft_memmove \
+	ft_memset ft_strcmp ft_strcpy ft_strdup ft_strlen ft_tolower \
+	ft_toupper
 # Headers' names. This may actually be useless.
 HDRLIST=libft
 # === Standard ===

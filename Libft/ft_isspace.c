@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 15:36:55 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 11:47:40 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 11:21:06 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/25 11:22:38 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+int		ft_isspace(int c)
 {
-	unsigned char *from;
-	unsigned char *to;
-
-	from = (unsigned char *)src;
-	to = (unsigned char *)dst;
-	while (n-- > 0)
-		*to++ = *from++;
-	return (dst);
+	return (('\t' <= c && c <= '\r') || (c == ' '));
 }
