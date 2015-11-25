@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 20:46:10 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 17:40:09 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/25 17:41:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "testlibft.h"
+#include <unistd.h>
 
-#define TEST(FUN) printf("%s", #FUN);			\
-	test_##FUN(&ft_##FUN);						\
-	printf("\n")
-
-int		main(void)
+void	ft_putchar(char c)
 {
-	TEST(atoi);
-	TEST(strlen);
-	TEST(tolower);
-	TEST(toupper);
-	TEST(putnbr);
-	return (0);
+	write(1, &c, 1);
 }

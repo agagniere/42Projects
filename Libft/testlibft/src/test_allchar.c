@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_tolower.c										:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 20:46:10 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 16:46:07 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/25 20:51:38 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
-#define TEST(FUN) printf("%s", #FUN);			\
-	test_##FUN(&ft_##FUN);						\
-	printf("\n")
-
-int		main(void)
+void	test_allchar(int (*ft)(int c), int (*ref)(int c))
 {
-	TEST(atoi);
-	TEST(strlen);
-	TEST(tolower);
-	TEST(toupper);
-	TEST(putnbr);
-	return (0);
+	for (char i = -128; i < 127 ; i++)
+	{
+		MARK(ref(i) == ft(i));
+	}
 }

@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test_putnbr.c										:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 20:46:10 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 18:59:46 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/25 19:53:40 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
-#define TEST(FUN) printf("%s", #FUN);			\
-	test_##FUN(&ft_##FUN);						\
-	printf("\n")
-
-int		main(void)
+void	test_putnbr(void (*ft)(int n))
 {
-	TEST(atoi);
-	TEST(strlen);
-	TEST(tolower);
-	TEST(toupper);
-	TEST(putnbr);
-	return (0);
+	int const tests[] = {
+		0,
+		99,
+		-999,
+		2147483647,
+		-2147483648
+	};
+
+	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
+	{
+		printf("%i", tests[i]);
+		fflush(stdout);
+
+		ft(tests[i]);
+	}
 }

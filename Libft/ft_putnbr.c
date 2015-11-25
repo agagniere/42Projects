@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 20:46:10 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 17:54:23 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/25 19:10:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "testlibft.h"
+#include "libft.h"
 
-#define TEST(FUN) printf("%s", #FUN);			\
-	test_##FUN(&ft_##FUN);						\
-	printf("\n")
-
-int		main(void)
+void	ft_putnbr_aux(int n)
 {
-	TEST(atoi);
-	TEST(strlen);
-	TEST(tolower);
-	TEST(toupper);
-	TEST(putnbr);
-	return (0);
+	if (n < -9 || 9 < n)
+		ft_putnbr_aux(n / 10);
+	ft_putchar('0' + ABS(n % 10));
+}
+
+void	ft_putnbr(int n)
+{
+	if (n < 0)
+		ft_putchar('-');
+	ft_putnbr_aux(n);
 }

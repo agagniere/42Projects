@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 20:46:10 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 17:26:03 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/25 17:33:47 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "testlibft.h"
+#include <string.h>
+#include <stdlib.h>
 
-#define TEST(FUN) printf("%s", #FUN);			\
-	test_##FUN(&ft_##FUN);						\
-	printf("\n")
-
-int		main(void)
+void	*ft_memalloc(size_t size)
 {
-	TEST(atoi);
-	TEST(strlen);
-	TEST(tolower);
-	TEST(toupper);
-	TEST(putnbr);
-	return (0);
+	void	*ans;
+
+	if (!(ans = malloc(size)))
+		return (NULL);
+	while (size-- > 0)
+		*((unsigned char *)(ans + size)) = 0;
+	return (ans);
 }
