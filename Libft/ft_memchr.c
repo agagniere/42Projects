@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testlibft.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 14:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 16:31:37 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 12:19:42 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/25 12:27:30 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TESTLIBFT_H
-# define TESTLIBFT_H
+#include <string.h>
 
-# include <stdlib.h>
-# include <stdio.h>
-# include "libft.h"
-# include "colors.h"
-# include "macroes.h"
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char const		*p = (unsigned char *)s;
 
-void	test_atoi(int (*ft)(const char *str));
-void	test_strlen(size_t (*ft)(const char *str));
-
-#endif
+	while (n-- > 0 && *p != '\0' && *p != (unsigned char)c)
+		++p;
+	return (*p == '\0' ? NULL : (void *)p);
+}
