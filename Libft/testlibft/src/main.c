@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 21:46:03 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/25 22:12:28 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ int		main(void)
 	TESTAC(isspace);
 	TESTAC(isupper);
 	TESTAC(islower);
+	TESTAC(isxdigit);
+	TESTAC(ispunct);
+	TESTAC(isgraph);
 	TEST(putnbr);
 	return (0);
 }
