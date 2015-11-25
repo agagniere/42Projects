@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 15:10:04 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/24 19:01:10 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 14:38:53 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/25 14:41:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#ifndef COLORS_H
+# define COLORS_H
 
-int		main(int ac, char **av)
-{
-	if (ac > 1)
-		printf("%s\n", ft_strdup(av[1]));
-	return (0);
-}
+# define WHITE "\033[1;37m"
+# define RED "\033[1;31m"
+# define GREEN "\033[1;32m"
+# define BLACK "\033[1;30m"
+# define END "\033[0;0m"
+
+#endif
