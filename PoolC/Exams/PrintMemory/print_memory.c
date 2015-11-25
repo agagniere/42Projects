@@ -17,7 +17,7 @@ void	ft_putnbr_hex(int octet, int rem)
 	char const *base = "0123456789abcdef";
 
 	if (rem > 1)
-		ft_putnbr_hex(octet / 16, rem - 1);
+		ft_putnbr_hex(octet >> 4, rem - 1);
 	write(1, base + (octet % 16), 1);
 }
 
