@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 17:23:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 19:10:23 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,13 @@ void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 
 void	ft_putchar(char c);
+void	ft_putchar_fd(char c, int fd);
 void	ft_putendl(char const *s);
+void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr(int n);
+void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr(char const *s);
+void	ft_putstr_fd(char const *s, int fd);
 
 char	*ft_strcat(char *s1, const char *s2);
 int		ft_strcmp(const char *s1, const char *s2);

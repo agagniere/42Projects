@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 12:39:02 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 19:08:27 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 21:18:17 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/27 18:11:29 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_atoi(const char *str)
+void	ft_putendl_fd(char const *s, int fd)
 {
-	int ans;
-	int sign;
-
-	if (str == NULL)
-		return (0);
-	while (ft_isspace(*str))
-		++str;
-	sign = *str == '-' ? -1 : 1;
-	if (*str == '+' || *str == '-')
-		++str;
-	ans = 0;
-	while (ft_isdigit(*str))
-		ans = 10 * ans + sign * (*str++ - '0');
-	return (ans);
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
