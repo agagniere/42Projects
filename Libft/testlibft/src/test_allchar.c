@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 16:46:07 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 20:51:38 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 11:46:52 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	test_allchar(int (*ft)(int c), int (*ref)(int c))
 {
-	for (char i = -128; i < 127 ; i++)
+	for (int i = -130 ; i < 130 ; i++)
 	{
-		MARK(ref(i) == ft(i));
+		YDNHI(ref(i) == ft(i), i);
 	}
 }

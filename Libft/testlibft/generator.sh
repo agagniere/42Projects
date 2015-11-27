@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 15:25:08 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/25 20:39:41 by angagnie         ###   ########.fr        #
+#    Updated: 2015/11/27 09:13:38 by angagnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,8 @@ void\ttest_$2($1 (*ft)($3 $4))
 
 \tfor (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
 \t{
-\t\tif ($1(tests[i]) == ft(tests[i]))
-\t\t\tprintf(GREEN);
-\t\telse
-\t\t\tprintf(RED);
-\t\tprintf(\".\");
+\t\tMARK($2(tests[i]) == ft(tests[i]));
 \t}
 \tprintf(END);
 }" >> $file
-echo "void\ttest_$1((*ft)());" >> hdr/testlibft.h
+echo "void\ttest_$2((*ft)());" >> hdr/testlibft.h
