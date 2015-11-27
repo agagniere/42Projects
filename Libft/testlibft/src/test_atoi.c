@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 13:58:58 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 19:17:24 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 19:34:38 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ void	test_atoi(int (*ft)(const char *str))
 	};
 
 	if (!fork())
+	{
 		for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
 			YDNHS(atoi(tests[i]) == ft(tests[i]), strcln(tests[i]));
+		exit(1);
+	}
 	else
 	{
 		wait(&status);
