@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:14:10 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 11:44:53 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 12:15:44 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define YDNHI(success, entree) if (success)						\
 		OK;															\
 	else															\
-		printf("%s[You do not handle : %i]", RED, (entree))
+		printf("%s[%i]", RED, (entree))
 
 # define YDNHS(success, entree) if (success)						\
 		OK;															\

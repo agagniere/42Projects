@@ -6,11 +6,11 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 16:54:54 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/24 16:48:05 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 11:47:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_stpcpy(char *dst, const char *src)
+char	*ft_strcpy(char *dst, const char *src)
 {
 	char *const save = dst;
 
