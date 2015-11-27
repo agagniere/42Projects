@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 15:25:08 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/27 09:13:38 by angagnie         ###   ########.fr        #
+#    Updated: 2015/11/27 17:00:48 by angagnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,4 +38,4 @@ void\ttest_$2($1 (*ft)($3 $4))
 \t}
 \tprintf(END);
 }" >> $file
-echo "void\ttest_$2((*ft)());" >> hdr/testlibft.h
+echo "void\ttest_$2($1 (*ft)($3 $4));" >> hdr/testlibft.h

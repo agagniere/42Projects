@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 16:06:48 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/24 18:59:35 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 15:13:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ char	*ft_strdup(const char *s1)
 	char const	*ptr = s1;
 	char		*ans;
 
-	while (ptr[-1] != '\0')
+	while (ptr != '\0')
 		++ptr;
-	ans = (char *)malloc(sizeof(char) * (ptr - s1));
+	ans = (char *)malloc(sizeof(char) * (ptr - s1 + 1));
 	ptr = s1;
 	while (*ptr != '\0')
 	{

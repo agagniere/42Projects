@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 08:51:41 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 17:23:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,20 @@ void	ft_putendl(char const *s);
 void	ft_putnbr(int n);
 void	ft_putstr(char const *s);
 
+char	*ft_strcat(char *s1, const char *s2);
 int		ft_strcmp(const char *s1, const char *s2);
-char	*ft_stpcpy(char *dst, const char *src);
+char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlen(char const *str);
+char	*ft_strncpy(char *dst, const char *src, size_t n);
 char	*ft_strnew(size_t size);
 
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 # define ABS(v) ((v) < 0 ? -(v) : (v))
+
+# define CHECK_NULL(w) if (w == NULL)			\
+		return
 
 #endif

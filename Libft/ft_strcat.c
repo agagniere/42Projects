@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 19:04:35 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 17:22:34 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/27 15:48:00 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/27 16:16:05 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+char	*strcat(char *s1, const char *s2)
 {
-	unsigned char const		*from = (unsigned char *)src;
-	unsigned char			*to;
+	char *const		ans =
+		(char *)malloc(sizeof(char) * (ft_strlen(l1) + ft_strlen(l2) + 1));
+	int				i;
 
-	CHECK_NULL(dst) (NULL);
-	CHECK_NULL(src) (NULL);
-	to = (unsigned char *)dst;
-	while (n-- > 0)
-	{
-		*to = *from;
-		if (*to == (unsigned char)c)
-			return (to + 1);
-		++to;
-		++from;
-	}
-	return (NULL);
+	i = 0;
+	while (*s1 != '\0')
+		ans[i++] = *s1++;
+	while (*s2 != '\0')
+		ans[i++] = *s2++;
+	ans[i] = '\0';
 }

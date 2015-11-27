@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 10:32:35 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 17:29:04 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,9 @@ void	test_strlen(size_t (*ft)(const char *str));
 void	test_allchar(int (*ft)(int c), int (*ref)(int c));
 void	test_putnbr(void (*ft)(int n));
 void	test_memset(void *(*ft)(void *b, int c, size_t length));
+void	test_putstr(void (*ft)(char const *s));
+void	test_memcpy(void *(*ft)(void *dst, const void *src, size_t n));
+
+# define BUSZ 100
 
 #endif

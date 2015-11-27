@@ -6,14 +6,15 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 16:54:54 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 11:47:39 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 15:46:52 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strcpy(char *dst, const char *src)
 {
-	char *const save = dst;
+	char *save;
 
+	save = dst;
 	while (*src != '\0')
 		*(dst++) = *(src++);
 	*dst = '\0';

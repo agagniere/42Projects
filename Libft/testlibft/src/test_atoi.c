@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 13:58:58 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 11:18:46 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 17:18:53 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ void	test_atoi(int (*ft)(const char *str))
 		"++3",
 		" \v -000000789",
 		"-2147483648",
-		"2147483647"
+		"2147483647",
+		NULL
 	};
 
 	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)

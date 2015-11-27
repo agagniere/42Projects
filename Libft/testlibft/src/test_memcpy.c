@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memccpy.c                                       :+:      :+:    :+:   */
+/*   test_memcpy.c										:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 19:04:35 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 17:22:34 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/27 17:24:33 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/27 17:25:56 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "testlibft.h"
 
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void	test_memcpy(void * (*ft)(void *dst, const void *src, size_t n))
 {
-	unsigned char const		*from = (unsigned char *)src;
-	unsigned char			*to;
+	 const tests[] = {
+		// some  values
+	};
 
-	CHECK_NULL(dst) (NULL);
-	CHECK_NULL(src) (NULL);
-	to = (unsigned char *)dst;
-	while (n-- > 0)
+	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
 	{
-		*to = *from;
-		if (*to == (unsigned char)c)
-			return (to + 1);
-		++to;
-		++from;
+		MARK(memcpy(tests[i]) == ft(tests[i]));
 	}
-	return (NULL);
+	printf(END);
 }

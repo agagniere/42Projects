@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 08:53:14 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 10:56:40 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 16:21:22 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ void	test_memset(void *(*ft)(void *b, int c, size_t len))
 				   memset(strdup(bees[i]), cees[i], lengths[i]),
 				   lengths[i])));
 	}
-	MARK(memset(bees[0], cees[1], 0) == memset(bees[0], cees[1], 0));
+	ONFAIL(memset(bees[0], cees[1], 0) == memset(bees[0], cees[1], 0), "dst not returned");
 }

@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/27 10:35:37 by angagnie         ###   ########.fr        #
+#    Updated: 2015/11/27 17:09:11 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,7 +21,8 @@ CURPATH=$(REPATH)
 # === Editable ===
 NAME=libft_tester
 # Just put the filename without the ".c".
-SRCLIST=main test_atoi test_strlen test_putnbr test_allchar test_memset strcln
+SRCLIST=main test_atoi test_strlen test_putnbr test_allchar test_memset strcln \
+	test_putstr
 # Headers' names. This may actually be useless.
 HDRLIST=testlibft macroes ../../libft
 # === Standard ===

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 12:39:02 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 10:43:48 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/27 17:18:24 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int		ft_atoi(const char *str)
 	int ans;
 	int sign;
 
+	CHECK_NULL(str) (0);
 	while (ft_isspace(*str))
 		++str;
 	sign = *str == '-' ? -1 : 1;
