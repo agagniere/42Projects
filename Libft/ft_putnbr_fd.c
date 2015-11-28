@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 12:19:42 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 09:26:05 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 17:54:23 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/28 09:36:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_putnbrfd_aux(int n, int fd)
 {
-	const unsigned char		*p;
+	if (n < -9 || 9 < n)
+		ft_putnbrfd_aux(n / 10, fd);
+	ft_putchar_fd('0' + ABS(n % 10), fd);
+}
 
-	p = s;
-	while (n-- > 0 && *p != '\0' && *p != (unsigned char)c)
-		++p;
-	return (*p == '\0' ? NULL : (void *)p);
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n < 0)
+		ft_putchar_fd('-', fd);
+	ft_putnbrfd_aux(n);
 }

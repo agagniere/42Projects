@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 19:04:35 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 17:22:34 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/28 09:24:32 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	unsigned char const		*from = (unsigned char *)src;
+	unsigned char const		*from;
 	unsigned char			*to;
 
-	CHECK_NULL(dst) (NULL);
-	CHECK_NULL(src) (NULL);
-	to = (unsigned char *)dst;
+	from = src;
+	to = dst;
 	while (n-- > 0)
 	{
 		*to = *from;

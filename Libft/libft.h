@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 19:10:23 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/28 09:21:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,5 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 # define ABS(v) ((v) < 0 ? -(v) : (v))
-
-# define CHECK_NULL(w) if (w == NULL)			\
-		return
 
 #endif
