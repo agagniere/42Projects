@@ -15,8 +15,9 @@
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	unsigned char		*to;
-	unsigned char const	*from = src;
+	unsigned char const	*from;
 
+	from = src;
 	to = dst;
 	while (n-- > 0)
 		*to++ = *from++;
