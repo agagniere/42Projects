@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 10:28:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/28 15:42:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 char	*strcln(char *str);
 
 void	test_atoi(int (*ft)(const char *str));
+void	test_bzero(void (*ft)(void * s, size_t n));
+
 void	test_strlen(size_t (*ft)(const char *str));
 void	test_allchar(int (*ft)(int c), int (*ref)(int c));
 void	test_putnbr(void (*ft)(int n));

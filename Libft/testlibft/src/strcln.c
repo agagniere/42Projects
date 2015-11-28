@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 09:44:18 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 10:39:46 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/28 15:12:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*strcln(char *str)
 	int		len;
 	int		offset;
 
+	if (str == NULL)
+		return ("NULL");
 	len = -1;
 	offset = 0;
 	while (str[++len] != '\0')

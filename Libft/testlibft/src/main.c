@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 10:27:16 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/28 16:22:35 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 int		main(void)
 {
-//	TEST(atoi);
+	int status;
+
+	status = 0;
+
+	FORK(atoi);
+	FORK(bzero);
 
 /*	TESTAC(isalnum);
 	TESTAC(isalpha);
@@ -33,11 +38,11 @@ int		main(void)
 	TESTAC(toupper);
 */
 
-	TEST(putchar_fd);
+//	TEST(putchar_fd);
 //	TEST(putnbr);
 //	TEST(putstr);
 
 //	TEST(strlen);
 //	TEST(memset);
-	return (0);
+	return (status);
 }

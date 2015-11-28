@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/27 18:49:18 by angagnie         ###   ########.fr        #
+#    Updated: 2015/11/28 16:08:34 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,12 +21,13 @@ CURPATH=$(DBPATH)
 # === Editable ===
 NAME=libft.a
 # Just put the filename without the ".c".
-SRCLIST=ft_bzero ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl \
-	ft_isdigit ft_isprint ft_isspace ft_memccpy ft_memcpy ft_memmove \
-	ft_memset ft_strcmp ft_strcpy ft_strdup ft_strlen ft_tolower \
-	ft_toupper ft_memchr ft_atoi ft_memalloc ft_strnew ft_putchar \
-	ft_putstr ft_putnbr ft_putendl ft_islower ft_isupper ft_isxdigit \
-	ft_ispunct ft_isgraph ft_strncpy ft_putchar_fd ft_putstr_fd ft_putendl_fd
+SRCLIST=ft_atoi ft_bzero ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl \
+	ft_isdigit ft_isgraph ft_islower ft_isprint ft_ispunct ft_isspace ft_isupper \
+	ft_isxdigit ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr \
+	ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl \
+	ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_strcat ft_strcmp \
+	ft_strcpy ft_strdup ft_strjoin ft_strlen ft_strncat ft_strncpy ft_strnew ft_tolower \
+	ft_toupper
 # Headers' names. This may actually be useless.
 HDRLIST=libft
 # === Standard ===
@@ -61,7 +62,7 @@ END="\033[0;0m"
 all:
 ifeq ($(CURPATH),$(DBPATH))
 	@echo "\033[0;31m" "\t\t/!\\ Debug Mode /!\\"
-	@norminette $(SRC) $(HDR) | grep -v  Norme -B 1 || true
+	@norminette $(SRC) $(HDR) | grep -v Norme -B 1 || true
 	@echo $(END)
 endif
 	@echo $(GREEN) "\t - Make All -" $(END)

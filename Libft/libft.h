@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 09:21:33 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/28 14:24:51 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ int		ft_isspace(int c);
 int		ft_isupper(int c);
 int		ft_isxdigit(int c);
 
+char	*ft_itoa_base(int n, int base);
+char	*ft_itoa(int n);
+
 void	*ft_memalloc(size_t size);
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void	*ft_memchr(const void *s, int c, size_t n);
@@ -54,6 +57,7 @@ char	*ft_strcat(char *s1, const char *s2);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strdup(const char *s1);
+char	*ft_strjoin(char const *s1, const char *s2);
 size_t	ft_strlen(char const *str);
 char	*ft_strncpy(char *dst, const char *src, size_t n);
 char	*ft_strnew(size_t size);

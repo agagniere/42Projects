@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   test_bzero.c										:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 17:54:23 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 14:38:15 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/28 15:19:40 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/28 16:38:30 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "testlibft.h"
 
-void	ft_putnbrfd_aux(int n, int fd)
-{
-	if (n < -9 || 9 < n)
-		ft_putnbrfd_aux(n / 10, fd);
-	ft_putchar_fd('0' + ABS(n % 10), fd);
-}
+#define TOTAL 15
 
-void	ft_putnbr_fd(int n, int fd)
+void	test_bzero(void (*ft)(void * s, size_t n))
 {
-	if (n < 0)
-		ft_putchar_fd('-', fd);
-	ft_putnbrfd_aux(n, fd);
+	char	*buf1;
+	char	*buf2;
+
+	for (int i = 0 ; i <= TOTAL ; i++)
+	{
+		buf1 = memset(malloc(TOTAL + 1), '0' + i, TOTAL);
+		buf2 = memset(malloc(TOTAL + 1), '0' + i, TOTAL);
+		buf1[TOTAL] = '\0';
+		buf2[TOTAL] = '\0';
+		bzero(buf1, i);
+		printf("bzero{%s}\n", buf1);
+		ft(buf2, i);
+		printf("ft_bzero{%s}\n", buf2);
+		MARK(!memcmp(buf1, buf2, i));
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 13:58:58 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 19:34:38 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/28 15:08:42 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,6 @@ void	test_atoi(int (*ft)(const char *str))
 		NULL
 	};
 
-	if (!fork())
-	{
-		for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
-			YDNHS(atoi(tests[i]) == ft(tests[i]), strcln(tests[i]));
-		exit(1);
-	}
-	else
-	{
-		wait(&status);
-		if (status == 11)
-			printf("%s[SegFault]", "\033[0;31m");
-		else if (status)
-			printf("%s[Error %i]", "\033[0;31m", status);
-	}
+	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
+		YDNHS(atoi(tests[i]) == ft(tests[i]), strcln(tests[i]));
 }
