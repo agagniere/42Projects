@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 15:36:55 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 17:35:07 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/28 18:10:16 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/28 19:42:12 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strstr(const char *s1, const char *s2)
 {
-	unsigned char		*to;
-	unsigned char const	*from;
+	char const	*save;
 
-	from = src;
-	to = dst;
-	while (n-- > 0)
-		*to++ = *from++;
-	return (dst);
+	save = s2;
+	while ()
+		;
 }

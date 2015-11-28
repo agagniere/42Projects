@@ -15,19 +15,20 @@
 
 char*	next(char* str, int way)
 {
-  int i;
+	int i;
 
-  i = 0;
-  while (*str)
-    {
-      if (*str == '[')
-	i++;
-      else if (*str == ']')
-	i--;
-      if (i == 0)
-	return (str);
-      str += way;
+	i = 0;
+	while (*str)
+	{
+		if (*str == '[')
+			i++;
+		else if (*str == ']')
+			i--;
+		if (i == 0)
+			return (str);
+		str += way;
     }
+	return (NULL);
 }
 
 void	brainfuck(char* str, unsigned char* buf)

@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/24 15:36:55 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 17:35:07 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/28 17:24:47 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/28 17:59:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strchr(const char *s, int c)
 {
-	unsigned char		*to;
-	unsigned char const	*from;
-
-	from = src;
-	to = dst;
-	while (n-- > 0)
-		*to++ = *from++;
-	return (dst);
+	while (*s != c && *s != '\0')
+		s++;
+	return (*s == c ? (char *)s : NULL);
 }
