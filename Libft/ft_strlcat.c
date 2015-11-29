@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 17:54:23 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/29 09:47:52 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/28 14:12:37 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/29 10:16:59 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-/*
-** |void	ft_putnbr_aux(int n)
-** |{
-** |	if (n < -9 || 9 < n)
-** |		ft_putnbr_aux(n / 10);
-** |	ft_putchar('0' + ABS(n % 10));
-** |}
-** |
-** |void	ft_putnbr(int n)
-** |{
-** |	if (n < 0)
-** |		ft_putchar('-');
-** |	ft_putnbr_aux(n);
-** |}
-*/
-
-void	ft_putnbr(int n)
+size_t	ft_strncat(char *s1, const char *s2, size_t n)
 {
-	ft_putstr(ft_itoa_base(n, 10));
+	char	*const save = s1;
+
+	while (*s1 != '\0' && n-- > 0)
+		s1++;
+	while (*s2 != '\0' && n-- > 0)
+		*s1++ = *s2++;
+	*s1 = '\0';
+	return (s1 - save);
 }

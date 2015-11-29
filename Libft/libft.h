@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 17:52:20 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/29 10:17:25 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,14 @@ int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, const char *s2);
+size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlen(char const *str);
+char	*ft_strncat(char *s1, const char *s2, size_t n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strncpy(char *dst, const char *src, size_t n);
 char	*ft_strnew(size_t size);
+char	*ft_strnstr(const char *s1, const char *s2, size_t n);
+char	*ft_strstr(const char *s1, const char *s2);
 
 int		ft_tolower(int c);
 int		ft_toupper(int c);

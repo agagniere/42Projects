@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 17:54:23 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/29 09:47:52 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/24 17:09:41 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/29 10:14:56 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <string.h>
 
-/*
-** |void	ft_putnbr_aux(int n)
-** |{
-** |	if (n < -9 || 9 < n)
-** |		ft_putnbr_aux(n / 10);
-** |	ft_putchar('0' + ABS(n % 10));
-** |}
-** |
-** |void	ft_putnbr(int n)
-** |{
-** |	if (n < 0)
-** |		ft_putchar('-');
-** |	ft_putnbr_aux(n);
-** |}
-*/
-
-void	ft_putnbr(int n)
+int		ft_strcmp(const char *s1, const char *s2, size_t n)
 {
-	ft_putstr(ft_itoa_base(n, 10));
+	while (*s1 == *s2 && *s1 != '\0' && n-- > 0)
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
