@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/28 15:42:33 by angagnie         ###   ########.fr        #
+#    Updated: 2015/11/29 12:17:28 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -39,7 +39,7 @@ CCHPATH=cache/
 SRC=$(addprefix $(SRCPATH),$(addsuffix .c,$(SRCLIST)))
 OBJ=$(addprefix $(CCHPATH),$(addsuffix .o,$(SRCLIST)))
 HDR=$(addprefix $(HDRPATH),$(addsuffix .h,$(HDRLIST)))
-CC=clang
+CC=clang++
 CFLAGS=-Wall -Wextra
 FULCFLAGS=$(CFLAGS) -I $(HDRPATH) -I ../
 # ===========================
@@ -77,7 +77,7 @@ $(NAME): $(OBJ)
 # == Rule that compile source files into object files ==
 $(CCHPATH)%.o: $(SRCPATH)%.c $(CCHPATH)
 	@echo "\033[1;36m - Compiling $< into $@" $(RED)
-	@$(CC) $(FULCFLAGS) -c $< -o $@
+	@$(CC) $(FULCFLAGS) -c -x c $< -o $@
 
 # == Rule called only if a source file is missing ==
 $(SRCPATH)%.c:

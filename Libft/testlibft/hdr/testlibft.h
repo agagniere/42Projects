@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 15:42:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/29 12:10:20 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "colors.h"
 # include "macroes.h"
 
-char	*strcln(char *str);
+char	*strcln(char const *str);
 
 void	test_atoi(int (*ft)(const char *str));
 void	test_bzero(void (*ft)(void * s, size_t n));

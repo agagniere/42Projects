@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 16:22:35 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/29 12:07:29 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,27 @@ int		main(void)
 	FORK(atoi);
 	FORK(bzero);
 
-/*	TESTAC(isalnum);
+	TESTAC(isalnum);
 	TESTAC(isalpha);
 	TESTAC(isascii);
-	TESTAC(isblank);
-	TESTAC(iscntrl);
+//	TESTAC(isblank);
+//	TESTAC(iscntrl);
 	TESTAC(isdigit);
-	TESTAC(isgraph);
-	TESTAC(islower);
+//	TESTAC(isgraph);
+//	TESTAC(islower);
 	TESTAC(isprint);
-	TESTAC(ispunct);
-	TESTAC(isspace);
-	TESTAC(isupper);
-	TESTAC(isxdigit);
+//	TESTAC(ispunct);
+//	TESTAC(isspace);
+//	TESTAC(isupper);
+//	TESTAC(isxdigit);
 	TESTAC(tolower);
 	TESTAC(toupper);
-*/
 
-//	TEST(putchar_fd);
-//	TEST(putnbr);
-//	TEST(putstr);
+	FORK(putchar_fd);
+	FORK(putnbr);
+	FORK(putstr);
 
-//	TEST(strlen);
-//	TEST(memset);
+	FORK(strlen);
+	FORK(memset);
 	return (status);
 }

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 12:29:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 09:28:56 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/29 10:22:36 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n)
 
 	if (n == 0)
 		return (0);
-	while (n-- > 0 && *one == *two)
+	while (n-- > 1 && *one == *two)
 	{
 		++one;
 		++two;

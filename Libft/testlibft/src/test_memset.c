@@ -6,22 +6,22 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 08:53:14 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 16:21:22 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/29 12:13:47 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
-void	*mm()
+static char	*mm()
 {
-	void * const ans = strdup("1234567");
+	char *const ans = strdup("1234567");
 	bzero(ans, 7);
 	return (ans);
 }
 
 void	test_memset(void *(*ft)(void *b, int c, size_t len))
 {
-	void *const bees[] = {
+	char *bees[] = {
 		strdup("Hello World"),
 		mm(),
 		"0123456789ABCDEF Wow now that makes 16 digits OMG",
@@ -40,7 +40,7 @@ void	test_memset(void *(*ft)(void *b, int c, size_t len))
 		0
 	};
 
-	for (unsigned int i = 0 ; i < SIZE_ARRAY(bees) ; i++)
+	for (unsigned int i = 0 ; i < SIZE_ARRAY(cees) ; i++)
 	{
 		MARK(!(memcmp(
 				   ft(strdup(bees[i]), cees[i], lengths[i]),

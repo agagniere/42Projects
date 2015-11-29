@@ -6,13 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 09:44:18 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 15:12:39 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/29 12:10:02 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
-char	*strcln(char *str)
+char	*strcln(char const *str)
 {
 	char	*ans;
 	int		len;

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 14:12:37 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/29 10:16:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/29 10:19:58 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-size_t	ft_strncat(char *s1, const char *s2, size_t n)
+size_t	ft_strlcat(char *s1, const char *s2, size_t n)
 {
 	char	*const save = s1;
 
