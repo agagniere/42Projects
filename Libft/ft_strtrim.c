@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/29 14:14:32 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/29 15:43:30 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/29 15:37:55 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/29 16:11:36 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+#include <string.h>
 
-void	ft_memdel(void **ap)
+static int	ismerde(int c)
 {
-	if (*ap != NULL)
+	return (c == ' '
+		|| c == '\n'
+		|| c == '\t');
+}
+
+char		*ft_strtrim(char const *s)
+{
+	int			start;
+	int			len;
+	int			flen;
+
+	start = 0;
+	while (ismerde(s[start]))
+		start++;
+	len = 0;
+	flen = 0;
+	while (s[start + len] != '\0')
 	{
-		free(*ap);
-		*ap = NULL;
+		if (!ismerde(s[start + len]))
+			flen = len;
+		len++;
 	}
+	return (ft_strsub(s, start, flen));
 }
