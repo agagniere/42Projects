@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/29 16:10:46 by angagnie         ###   ########.fr        #
+#    Updated: 2015/11/29 16:47:55 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -28,7 +28,8 @@ SRCLIST=ft_atoi ft_bzero ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl 
 	ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_strcat ft_strchr \
 	ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin ft_strlcat ft_strlen ft_strncat \
 	ft_strncmp ft_strncpy ft_strnew ft_strnstr ft_strstr ft_tolower ft_toupper \
-	ft_strdel ft_strtrim
+	ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ ft_striter \
+	ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ
 # Headers' names. This may actually be useless.
 HDRLIST=libft
 # === Standard ===
