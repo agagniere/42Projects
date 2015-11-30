@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   test_strcpy.c										:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 18:10:16 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 16:58:48 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/30 16:37:13 by angagnie          #+#    #+#             */
+//   Updated: 2015/11/30 17:28:00 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "testlibft.h"
 
-char	*ft_strstr(const char *s1, const char *s2)
+void	test_strcpy(char *(*ft)(char *dst, char const *src))
 {
-	char const	*save1;
-	char const	*save2;
+	char buf[BUFSIZE];
 
-	save2 = s2;
-	while (*s1 != '\0')
-	{
-		save1 = s1;
-		while (*s2 != '\0' && *s1 == *s2)
-		{
-			++s1;
-			++s2;
-		}
-		if (*s2 == '\0')
-			return ((char *)save1);
-		s1 = save1 + 1;
-		s2 = save2;
-	}
-	return (*s2 == '\0' ? (char *)s1 : NULL);
+	fun_tester_na(strcpy, ft, clear_buf(buf), "to be copied");
 }

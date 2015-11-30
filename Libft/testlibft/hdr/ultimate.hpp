@@ -1,25 +1,29 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   test.cpp                                           :+:      :+:    :+:   //
+//   ultimate.cpp                                       :+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/11/30 15:29:18 by angagnie          #+#    #+#             //
-//   Updated: 2015/11/30 16:28:00 by angagnie         ###   ########.fr       //
+//   Created: 2015/11/30 16:55:54 by angagnie          #+#    #+#             //
+//   Updated: 2015/11/30 17:29:21 by angagnie         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
-#include "testlibft.h"
-#define ASSERT(PRED) printf("%d\n", PRED)
+#ifndef ULTIMATE_HPP
+# define ULTIMATE_HPP
 
-#define BUFSIZE 32
+# include <string.h>
+# include <stdio.h>
+
+# define BUFSIZE 32
+
+char    *strcln(char const *str, size_t size = 0);
 
 template <
 	class FRet
 	, class ...FParams
 	, class ...Args
-	, class Fun = FRet (*)(FParams...)
 	>
 void			fun_tester_na(
 	FRet (*fref)(FParams...)
@@ -41,32 +45,14 @@ void			fun_tester_na(
 		printf("%s[Wrong return value]", RED);
 	if (memcmp(savebuff2, buf, BUFSIZE) != 0)
 	{
-		printf("%s >-----------/ Error \\-----------<\n", RED);
-		fflush(stdout);
-		printf("\t\tYour function %p failed\n", fft);
+		printf("%s>-----------/ Error \\-----------<%s\n", RED, END);
+		printf("\tOriginal memory state : [%s]\n", strcln(savebuff, BUFSIZE));
+		printf("\tAfter your function   : [%s]\n", strcln(savebuff2, BUFSIZE));
+		printf("\tWhereas it should be  : [%s]\n", strcln(buf, BUFSIZE));
 	}
 	else
 		printf("%s.", GREEN);
 	return ;
 }
 
-
-char *make_buf(char *buf, char const *tocpy = "")
-{
-	bzero(buf, BUFSIZE);
-	strcpy(buf, tocpy);
-	return buf;
-}
-
-
-void	test_naf(void)
-{
-	char	buf[BUFSIZE];
-
-	printf("\tft_strcpy[");
-	fun_tester_na(strcpy, ft_strcpy, make_buf(buf), "to copy");
-	printf("]\n\tt_strlcat[");
-	fun_tester_na(strlcat, ft_strlcat, make_buf(buf), "to copy", 12);
-	printf("]\n");
-	return ;
-}
+#endif
