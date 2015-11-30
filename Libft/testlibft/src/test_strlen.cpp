@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_putchar_fd.c                                      :+:      :+:    :+:   */
+/*   test_strlen.c										:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 10:07:10 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 10:25:35 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 16:17:02 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/30 12:21:30 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
-void	test_putchar_fd(void (*ft)(char c, int fd))
+void	test_strlen(size_t (*ft)(const char *s))
 {
-	int		p[2][2];
-	char	buf[2][BUSZ];
+	char const *tests[] = {
+		"",
+		"1234567890",
+		"asd\0qwe",
+		"\200 \v\r\t 345 "
+	};
 
-	fflush(stdout);
-	pipe(p[0]);
-	pipe(p[1]);
-	for (char c = -128 ; c < 127 ; c ++)
+	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
 	{
-		ft(c, p[0][1]);
-		dprintf(p[1][1], "%c", c);
+		MARK((strlen(tests[i]) == ft(tests[i])), ".", strcln(tests[i]));
 	}
-	buf[0][read(p[0][0], buf[0], BUSZ - 1)] = '\0';
-	buf[1][read(p[1][0], buf[1], BUSZ - 1)] = '\0';
-	MARK(!strcmp(buf[0], buf[1]));
-	close(p[0][0]);
-	close(p[0][1]);
-	close(p[1][0]);
-	close(p[1][1]);
 }

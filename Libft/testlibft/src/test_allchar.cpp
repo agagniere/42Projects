@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_strlen.c										:+:      :+:    :+:   */
+/*   test_tolower.c										:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 16:17:02 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/25 20:46:39 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 16:46:07 by angagnie          #+#    #+#             */
+//   Updated: 2015/11/30 14:15:16 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
-void	test_strlen(size_t (*ft)(const char *s))
+void	test_allchar(int (*ft)(int c), int (*ref)(int c))
 {
-	char const *tests[] = {
-		"",
-		"1234567890",
-		"asd\0qwe",
-		"\200 \v\r\t 345 "
-	};
-
-	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
+	for (int i = -130 ; i < 130 ; i++)
 	{
-		MARK(strlen(tests[i]) == ft(tests[i]));
+		MARK(ref(i) == ft(i), , i);
 	}
 }

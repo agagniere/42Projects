@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_atoi.c                                        :+:      :+:    :+:   */
+/*   test_putchar_fd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 13:58:58 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/29 12:09:18 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/28 10:07:10 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/30 12:24:44 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
-void	test_atoi(int (*ft)(const char *str))
+void	test_putchar_fd(void (*ft)(char c, int fd))
 {
-	int		status;
-	char const	*tests[] = {
-		"",
-		"-0",
-		"     +1",
-		"123",
-		"-1230",
-		" \t 567",
-		" \r +654 Hello There",
-		" \f 987 Noooo",
-		"++3",
-		"_987",
-		" \n 49376 876",
-		" \v -000000789",
-		"-2147483648",
-		"2147483647"
-	};
+	int		p[2][2];
+	char	buf[2][BUSZ];
 
-	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
-		YDNHS(atoi(tests[i]) == ft(tests[i]), strcln(tests[i]));
+	fflush(stdout);
+	pipe(p[0]);
+	pipe(p[1]);
+	for (char c = -128 ; c < 127 ; c ++)
+	{
+		ft(c, p[0][1]);
+		dprintf(p[1][1], "%c", c);
+	}
+	buf[0][read(p[0][0], buf[0], BUSZ - 1)] = '\0';
+	buf[1][read(p[1][0], buf[1], BUSZ - 1)] = '\0';
+	MARK(!strcmp(buf[0], buf[1]), ".", "F");
+	close(p[0][0]);
+	close(p[0][1]);
+	close(p[1][0]);
+	close(p[1][1]);
 }

@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_bzero.c										:+:      :+:    :+:   */
+/*   test_atoi.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 15:19:40 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/29 12:47:08 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/25 13:58:58 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/30 12:31:44 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
-#define TOTAL 15
-
-void	test_bzero(void (*ft)(void * s, size_t n))
+void	test_atoi(int (*ft)(const char *str))
 {
-	char	*buf1;
-	char	*buf2;
+	int		status;
+	char const	*tests[] = {
+		"",
+		"-0",
+		"     +1",
+		"123",
+		"-1230",
+		" \t 567",
+		" \r +654 Hello There",
+		" \f 987 Noooo",
+		"++3",
+		"_987",
+		" \n 49376 876",
+		" \v -000000789",
+		"-2147483648",
+		"2147483647"
+	};
 
-	for (int i = 0 ; i <= TOTAL ; i++)
+	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
 	{
-		buf1 = (char *)memset(malloc(TOTAL + 1), '0' + i, TOTAL);
-		buf2 = (char *)memset(malloc(TOTAL + 1), '0' + i, TOTAL);
-		buf1[TOTAL] = '\0';
-		buf2[TOTAL] = '\0';
-		bzero(buf1, i);
-		ft(buf2, i);
-		ONFAIL(!memcmp(buf1, buf2, i), "KO");
+		MARKF((atoi(tests[i]) == ft(tests[i])), ., strcln(tests[i]));
 	}
-	ONFAIL(bzero(buf1, 0) == ft(buf1, 0));
 }

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 18:59:46 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 17:15:06 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/30 12:22:12 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void	test_putnbr(void (*ft)(int n))
 	close(p2[0]);
 	close(p2[1]);
 	close(out); // we don't need the backup anymore
-	MARK(!(strcmp(buf1, buf2)));
+	MARK(!(strcmp(buf1, buf2)), ".", "F");
 }

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:14:10 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/29 12:45:31 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/30 16:14:11 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,32 @@
 # define STRIDE_ARRAY(A) (sizeof(*(A)))
 # define END_ARRAY(A) ((void*)(A) + sizeof((A)))
 
-# define OK printf("%sOK", GREEN)
-# define POINT printf("%s.", GREEN)
+# include "magic.hpp"
 
-#define MARK(success) if (success)				\
-		OK;										\
-    else										\
-        printf("%sX", RED)
+#define MARK(success, ok, ko) if (success)					\
+		printf("%s%s", GREEN, #ok);							\
+    else													\
+	{														\
+        printf("%s[%s]", RED, ft::valToString(ko).c_str());	\
+	}														\
 
-# define ONFAIL(success, message) if (success)	\
-        OK;										\
-	else										\
-		printf("%s[%s]", RED, (message))
-
-# define YDNHI(success, entree) if (success)							\
-		POINT;															\
-	else																\
-		printf("%s[Failed with : %i]", RED, (entree))
-
-# define YDNHS(success, entree) if (success)							\
-		POINT;															\
-	else																\
-		printf("%s[Failed with : \"%s\"]", RED, (entree))
+#define MARKF(success, ok, ko) fflush(stdout);					\
+	if (!fork())												\
+	{															\
+		if (success)											\
+			printf("%s%s", GREEN, #ok);							\
+		else													\
+			printf("%s[%s]", RED, ft::valToString(ko).c_str());	\
+		exit(0);												\
+	}															\
+	else														\
+	{															\
+		wait(&status);											\
+		if (status == 11)										\
+			printf("%sS", RED);									\
+		else if (status)										\
+			printf("[%i]", status);								\
+	}
 
 # define FORK(FUN) printf("%s[", #FUN);						\
 	fflush(stdout);											\
@@ -51,20 +55,19 @@
 	{														\
 		wait(&status);										\
 		if (status == 11)									\
-			printf("%s[SegFault]", RED);					\
+			printf("%sSegFault", RED);						\
 		else if (status)									\
-			printf("[Exit code : %i]", status);				\
+			printf("Exit code : %i", status);				\
 	}														\
 	printf("%s]\n", END);									\
 	fflush(stdout)
 
-/* # define TEST(FUN) printf("%s[", #FUN);			\ */
-/* 	fflush(stdout);									\ */
-/*     test_##FUN(&ft_##FUN);                      \ */
-/*     printf("%s]\n", END);						\ */
-/* 	fflush(stdout) */
 
-
+# define TEST(FUN) printf("%s[", #FUN);			\
+	fflush(stdout);								\
+	test_##FUN(&ft_##FUN);						\
+	printf("%s]\n", END);						\
+	fflush(stdout)
 
 # define TESTAC(FUN) printf("%s[", #FUN);		\
     test_allchar(&ft_##FUN, &FUN);				\

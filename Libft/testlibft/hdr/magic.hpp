@@ -6,7 +6,7 @@
 //   By: ngoguey <ngoguey@student.42.fr>            +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/11/23 14:36:46 by ngoguey           #+#    #+#             //
-//   Updated: 2015/11/29 12:57:27 by ngoguey          ###   ########.fr       //
+/*   Updated: 2015/11/30 13:01:31 by angagnie         ###   ########.fr       */
 //                                                                            //
 // ************************************************************************** //
 
@@ -53,17 +53,6 @@ struct is_printable
 # undef OK_IF
 
 #endif /* ************************************************ FT_TYPE_TRAITS_HPP */
-// ************************************************************************** //
-//                                                                            //
-//                                                        :::      ::::::::   //
-//   utils.hpp                                          :+:      :+:    :+:   //
-//                                                    +:+ +:+         +:+     //
-//   By: jaguillo <jaguillo@student.42.fr>          +#+  +:+       +#+        //
-//                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/09/25 13:42:20 by jaguillo          #+#    #+#             //
-//   Updated: 2015/11/24 18:44:34 by juloo            ###   ########.fr       //
-//                                                                            //
-// ************************************************************************** //
 
 #ifndef UTILS_H
 # define UTILS_H
@@ -266,7 +255,7 @@ std::string				typesToString(void)
 };
 
 #endif
-
+/*
 template <typename F, typename ...Args>
 void			launchTest(F f, char const *funname, Args ...args)
 {
@@ -290,3 +279,4 @@ int							main(void)
 
 	return (0);
 }
+*/

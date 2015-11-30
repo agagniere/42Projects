@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_tolower.c										:+:      :+:    :+:   */
+/*   test_bzero.c										:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/25 16:46:07 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 11:46:52 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/28 15:19:40 by angagnie          #+#    #+#             */
+/*   Updated: 2015/11/30 12:37:37 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
-void	test_allchar(int (*ft)(int c), int (*ref)(int c))
+#define TOTAL 15
+
+void	test_bzero(void (*ft)(void * s, size_t n))
 {
-	for (int i = -130 ; i < 130 ; i++)
+	char	*buf1;
+	char	*buf2;
+
+	for (int i = 0 ; i <= TOTAL ; i++)
 	{
-		YDNHI(ref(i) == ft(i), i);
+		buf1 = (char *)memset(malloc(TOTAL + 1), '0' + i, TOTAL);
+		buf2 = (char *)memset(malloc(TOTAL + 1), '0' + i, TOTAL);
+		buf1[TOTAL] = '\0';
+		buf2[TOTAL] = '\0';
+		bzero(buf1, i);
+		ft(buf2, i);
+		MARK(!memcmp(buf1, buf2, i), ., "F");
 	}
 }
