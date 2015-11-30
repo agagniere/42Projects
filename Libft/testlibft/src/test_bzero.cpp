@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 15:19:40 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 12:37:37 by angagnie         ###   ########.fr       */
+//   Updated: 2015/11/30 18:10:30 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 void	test_bzero(void (*ft)(void * s, size_t n))
 {
+
 	char	*buf1;
 	char	*buf2;
 

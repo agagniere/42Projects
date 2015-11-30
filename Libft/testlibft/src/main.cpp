@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-//   Updated: 2015/11/30 16:36:22 by angagnie         ###   ########.fr       //
+//   Updated: 2015/11/30 17:57:14 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		main(void)
 {
 	printf("%s\t\t-== Start ==-%s\n", GREEN, END);
 	FORK(atoi);
-	FORK(bzero);
 
 	TESTAC(isalnum);
 	TESTAC(isalpha);
@@ -35,15 +34,13 @@ int		main(void)
 //	TESTAC(isxdigit);
 	TESTAC(tolower);
 	TESTAC(toupper);
-/*
+
 	FORK(putchar_fd);
 	FORK(putnbr);
 	FORK(putstr);
 
+	FORK(strcpy);
 	FORK(strlen);
-	FORK(memset);
-*/
-	TEST(strcpy);
 	printf("%s\t\t-=== End ===-%s\n", GREEN, END);
 	return (0);
 }
