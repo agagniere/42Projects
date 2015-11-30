@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 16:57:59 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 17:14:42 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/30 12:24:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	test_putstr(void (*ft)(char const * s))
     close(p2[0]);
     close(p2[1]);
     close(out); // we don't need the backup anymore
-    MARK(!(strcmp(buf1, buf2)));
+    MARK(!(strcmp(buf1, buf2)), ".", "F");
 	printf(END);
 }

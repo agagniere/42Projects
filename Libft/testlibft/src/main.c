@@ -6,18 +6,17 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/29 12:07:29 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/30 12:34:00 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
+int status = 0;
+
 int		main(void)
 {
-	int status;
-
-	status = 0;
-
+	printf("%s\t\t-== Start ==-%s\n", GREEN, END);
 	FORK(atoi);
 	FORK(bzero);
 
@@ -36,12 +35,14 @@ int		main(void)
 //	TESTAC(isxdigit);
 	TESTAC(tolower);
 	TESTAC(toupper);
-
+/*
 	FORK(putchar_fd);
 	FORK(putnbr);
 	FORK(putstr);
 
 	FORK(strlen);
 	FORK(memset);
-	return (status);
+*/
+	printf("%s\t\t-=== End ===-%s\n", GREEN, END);
+	return (0);
 }
