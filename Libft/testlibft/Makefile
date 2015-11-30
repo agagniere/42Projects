@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/29 12:17:28 by angagnie         ###   ########.fr        #
+#    Updated: 2015/11/30 13:41:01 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -36,11 +36,11 @@ CCHPATH=cache/
 # ================
 
 # === Better not to touch ===
-SRC=$(addprefix $(SRCPATH),$(addsuffix .c,$(SRCLIST)))
+SRC=$(addprefix $(SRCPATH),$(addsuffix .cpp,$(SRCLIST)))
 OBJ=$(addprefix $(CCHPATH),$(addsuffix .o,$(SRCLIST)))
 HDR=$(addprefix $(HDRPATH),$(addsuffix .h,$(HDRLIST)))
 CC=clang++
-CFLAGS=-Wall -Wextra
+CFLAGS=-Wall -Wextra -std=c++14
 FULCFLAGS=$(CFLAGS) -I $(HDRPATH) -I ../
 # ===========================
 
@@ -71,13 +71,13 @@ endif
 # == Rule that compile the final file ==
 $(NAME): $(OBJ)
 	@echo "\033[1;35m - Compiling $@" $(RED)
-	@$(CC) $(FULCFLAGS) $(OBJ) -o $(NAME) -L .. -lft
+	@$(CC) $(OBJ) -o $(NAME) -L .. -lft
 	@echo "\033[0;32m - Done!" $(END)
 
 # == Rule that compile source files into object files ==
-$(CCHPATH)%.o: $(SRCPATH)%.c $(CCHPATH)
+$(CCHPATH)%.o: $(SRCPATH)%.cpp $(CCHPATH)
 	@echo "\033[1;36m - Compiling $< into $@" $(RED)
-	@$(CC) $(FULCFLAGS) -c -x c $< -o $@
+	@$(CC) $(FULCFLAGS) -c $< -o $@
 
 # == Rule called only if a source file is missing ==
 $(SRCPATH)%.c:

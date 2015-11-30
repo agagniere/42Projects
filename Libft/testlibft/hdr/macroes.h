@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:14:10 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 12:42:14 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/30 13:04:25 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # define STRIDE_ARRAY(A) (sizeof(*(A)))
 # define END_ARRAY(A) ((void*)(A) + sizeof((A)))
 
+# include "magic.hpp"
+
 #define MARK(success, ok, ko) if (success)			\
 		printf("%s%s", GREEN, #ok);					\
     else											\
 	{												\
-        printf("%s%s, ", RED, ko);					\
+        printf("%s[%s]", RED, ft::valToString(ko));	\
 	}												\
 
 #define MARKF(success, ok, ko) fflush(stdout);				\
@@ -30,7 +32,7 @@
 		if (success)										\
 			printf("%s%s", GREEN, #ok);						\
 		else												\
-			printf("%s%s, ", RED, ko);						\
+			printf("%s[%s]", RED, ft::valToString(ko));		\
 		exit(0);											\
 	}														\
 	else													\

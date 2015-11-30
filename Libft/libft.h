@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/29 16:46:14 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/30 12:45:23 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int		ft_atoi(const char *str);
 
-void	*ft_bzero(void *s, size_t n);
+void	ft_bzero(void *s, size_t n);
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
