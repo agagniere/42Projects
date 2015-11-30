@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:14:10 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 13:04:25 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/30 16:14:11 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,29 @@
 
 # include "magic.hpp"
 
-#define MARK(success, ok, ko) if (success)			\
-		printf("%s%s", GREEN, #ok);					\
-    else											\
-	{												\
-        printf("%s[%s]", RED, ft::valToString(ko));	\
-	}												\
-
-#define MARKF(success, ok, ko) fflush(stdout);				\
-	if (!fork())											\
+#define MARK(success, ok, ko) if (success)					\
+		printf("%s%s", GREEN, #ok);							\
+    else													\
 	{														\
-		if (success)										\
-			printf("%s%s", GREEN, #ok);						\
-		else												\
-			printf("%s[%s]", RED, ft::valToString(ko));		\
-		exit(0);											\
+        printf("%s[%s]", RED, ft::valToString(ko).c_str());	\
 	}														\
-	else													\
-	{														\
-		wait(&status);										\
-		if (status == 11)									\
-			printf("%sS", RED);								\
-		else if (status)									\
-			printf("[%i]", status);							\
+
+#define MARKF(success, ok, ko) fflush(stdout);					\
+	if (!fork())												\
+	{															\
+		if (success)											\
+			printf("%s%s", GREEN, #ok);							\
+		else													\
+			printf("%s[%s]", RED, ft::valToString(ko).c_str());	\
+		exit(0);												\
+	}															\
+	else														\
+	{															\
+		wait(&status);											\
+		if (status == 11)										\
+			printf("%sS", RED);									\
+		else if (status)										\
+			printf("[%i]", status);								\
 	}
 
 # define FORK(FUN) printf("%s[", #FUN);						\
@@ -68,8 +68,6 @@
 	test_##FUN(&ft_##FUN);						\
 	printf("%s]\n", END);						\
 	fflush(stdout)
-
-
 
 # define TESTAC(FUN) printf("%s[", #FUN);		\
     test_allchar(&ft_##FUN, &FUN);				\

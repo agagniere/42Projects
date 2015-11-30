@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 12:51:28 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/30 16:25:14 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@
 # include <stdio.h>
 # include <string.h>
 # include <unistd.h>
+
+extern "C"
+{
 # include "libft.h"
+}
 # include "colors.h"
 # include "macroes.h"
 
-char	*strcln(char const *str);
+char	*strcln(char const *str, size_t size = 0);
+void	test_naf(void);
 
 void	test_atoi(int (*ft)(const char *str));
 void	test_bzero(void (*ft)(void * s, size_t n));

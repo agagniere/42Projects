@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 12:34:00 by angagnie         ###   ########.fr       */
+//   Updated: 2015/11/30 16:24:18 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		main(void)
 	FORK(strlen);
 	FORK(memset);
 */
+	test_naf();
 	printf("%s\t\t-=== End ===-%s\n", GREEN, END);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/30 13:41:01 by angagnie         ###   ########.fr        #
+#    Updated: 2015/11/30 15:56:25 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,7 +23,7 @@ NAME=libft_tester
 # Just put the filename without the ".c".
 SRCLIST=main test_atoi test_bzero\
 	test_strlen test_putnbr test_allchar test_memset strcln \
-	test_putstr test_putchar_fd
+	test_putstr test_putchar_fd ultimate
 # Headers' names. This may actually be useless.
 HDRLIST=testlibft macroes ../../libft
 # === Standard ===
@@ -36,12 +36,13 @@ CCHPATH=cache/
 # ================
 
 # === Better not to touch ===
-SRC=$(addprefix $(SRCPATH),$(addsuffix .cpp,$(SRCLIST)))
-OBJ=$(addprefix $(CCHPATH),$(addsuffix .o,$(SRCLIST)))
-HDR=$(addprefix $(HDRPATH),$(addsuffix .h,$(HDRLIST)))
-CC=clang++
-CFLAGS=-Wall -Wextra -std=c++14
-FULCFLAGS=$(CFLAGS) -I $(HDRPATH) -I ../
+SRC:=$(addprefix $(SRCPATH),$(addsuffix .cpp,$(SRCLIST)))
+OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(SRCLIST)))
+HDR:=$(addprefix $(HDRPATH),$(addsuffix .h,$(HDRLIST)))
+CC:=clang++
+CFLAGS:=-Wall -Wextra -std=c++14
+FULCFLAGS:=$(CFLAGS) -I $(HDRPATH) -I ../
+LDFLAG:=-L ../ -lft
 # ===========================
 
 # === Colors ===
@@ -71,7 +72,7 @@ endif
 # == Rule that compile the final file ==
 $(NAME): $(OBJ)
 	@echo "\033[1;35m - Compiling $@" $(RED)
-	@$(CC) $(OBJ) -o $(NAME) -L .. -lft
+	@$(CC) $(LDFLAG) $(OBJ) -o $(NAME)
 	@echo "\033[0;32m - Done!" $(END)
 
 # == Rule that compile source files into object files ==
@@ -80,7 +81,7 @@ $(CCHPATH)%.o: $(SRCPATH)%.cpp $(CCHPATH)
 	@$(CC) $(FULCFLAGS) -c $< -o $@
 
 # == Rule called only if a source file is missing ==
-$(SRCPATH)%.c:
+$(SRCPATH)%.cpp:
 	@echo $(RED) " /!\\ Missing file : $@ /!\\" $(BLACK)
 
 # == Rule called only if a header file is missing ==
