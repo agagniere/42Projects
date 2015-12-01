@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 18:10:16 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/29 20:37:37 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/11/30 16:58:48 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ char	*ft_strstr(const char *s1, const char *s2)
 		s1 = save1 + 1;
 		s2 = save2;
 	}
-	return (*s2 == '\0' ? s1 : NULL);
+	return (*s2 == '\0' ? (char *)s1 : NULL);
 }

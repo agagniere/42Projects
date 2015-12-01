@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 17:24:33 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/27 17:25:56 by angagnie         ###   ########.fr       */
+//   Updated: 2015/12/01 12:42:31 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 void	test_memcpy(void * (*ft)(void *dst, const void *src, size_t n))
 {
-	 const tests[] = {
-		// some  values
-	};
+	char	buf[BUFSIZE];
 
-	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
-	{
-		MARK(memcpy(tests[i]) == ft(tests[i]));
-	}
-	printf(END);
+	fun_tester(memcpy, ft,  clear_buf(buf, "Destination"), "Source", strlen("Source"));
+	fun_tester(memcpy, ft,  clear_buf(buf, "Destination"), "DO NOT COPY", 0);
+	fun_tester(memcpy, ft,  clear_buf(buf, "Destination"), "_____\0| To be copied| Not to be !!!!!", 20);
 }
