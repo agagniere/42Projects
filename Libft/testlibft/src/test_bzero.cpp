@@ -6,28 +6,30 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 15:19:40 by angagnie          #+#    #+#             */
-//   Updated: 2015/11/30 18:10:30 by angagnie         ###   ########.fr       //
+//   Updated: 2015/12/01 13:22:41 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
-#define TOTAL 15
-
 void	test_bzero(void (*ft)(void * s, size_t n))
 {
-
-	char	*buf1;
-	char	*buf2;
-
-	for (int i = 0 ; i <= TOTAL ; i++)
+	(void)ft;
+/*
+	char		buf[BUFSIZE];
+	auto		reffn = [](void *ptr, size_t n) -> int
 	{
-		buf1 = (char *)memset(malloc(TOTAL + 1), '0' + i, TOTAL);
-		buf2 = (char *)memset(malloc(TOTAL + 1), '0' + i, TOTAL);
-		buf1[TOTAL] = '\0';
-		buf2[TOTAL] = '\0';
-		bzero(buf1, i);
-		ft(buf2, i);
-		MARK(!memcmp(buf1, buf2, i), ., "F");
-	}
+		bzero(ptr, n);
+		return 42;
+	};
+	auto		ftfn = [ft](void *ptr, size_t n) -> int
+	{
+		ft(ptr, n);
+		return 42;
+	};
+
+	fun_tester(reffn, ftfn, clear_buf(buf, "Should be null | Should not"), 15);
+	fun_tester(reffn, ftfn, clear_buf(buf, "Should not be null"), 0);
+	fun_tester(reffn, ftfn, clear_buf(buf, "Should be null \0 Should as well"), 30);
+*/
 }

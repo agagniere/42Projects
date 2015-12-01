@@ -6,11 +6,13 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/25 15:25:08 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/30 16:50:45 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/01 13:15:22 by angagnie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 file="src/test_"$2".cpp"
+header="hdr/testlibft.hpp"
+
 echo "Generating" $file
 echo "// ************************************************************************** //
 //                                                                            //
@@ -25,17 +27,22 @@ echo "//                                                                        
 // ************************************************************************** //
 
 #include \"testlibft.h\"
+" >> $file
 
-void\ttest_$2($1 (*ft)($3 $4))
-{
-\t$3 const tests[] = {
-\t\t// some $3 values
-\t};
+if [ "$#" -gt "3" ]; then
+	echo "void\ttest_$2($1 (*ft)($3, $4))" >> $file
+	echo "void\ttest_$2($1 (*ft)($3, $4));" >> $header
+else
+	echo "void\ttest_$2($1 (*ft)($3))" >> $file
+	echo "void\ttest_$2($1 (*ft)($3));" >> $header
+fi
 
-\tfor (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
-\t{
-\t\tMARK($2(tests[i]) == ft(tests[i]));
-\t}
-\tprintf(END);
-}" >> $file
-echo "void\ttest_$2($1 (*ft)($3 $4));" >> hdr/testlibft.h
+echo "{
+\tchar\tbuf[BUFSIZE];
+" >> $file
+
+if [ "$#" -gt "3" ]; then
+	echo "\tfun_tester($2, ft, clear_buf(buf, \"Some value\"), $4);\n}" >> $file
+else
+	echo "\tfun_tester($2, ft, clear_buf(buf, \"Some value\"));\n}" >> $file
+fi

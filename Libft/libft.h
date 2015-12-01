@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 17:35:36 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/01 12:42:41 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int		ft_atoi(const char *str);
 
-void	ft_bzero(void *s, size_t n);
+void	ft_bzero(void *s, size_t n); // SP++
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -37,7 +37,7 @@ char	*ft_itoa_base(int n, int base);
 char	*ft_itoa(int n);
 
 void	*ft_memalloc(size_t size);
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n); //withit
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n); //withit OK
 void	*ft_memchr(const void *s, int c, size_t n); //withit
 int		ft_memcmp(const void *s1, const void *s2, size_t n); //withit
 void	*ft_memcpy(void *dst, const void *src, size_t n); //withit

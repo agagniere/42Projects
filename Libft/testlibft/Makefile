@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/11/30 17:30:08 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/01 13:17:52 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -23,7 +23,8 @@ NAME=libft_tester
 # Just put the filename without the ".c".
 SRCLIST=main test_atoi test_bzero\
 	test_strlen test_putnbr test_allchar test_memset strcln \
-	test_putstr test_putchar_fd test_strcpy make_buf
+	test_putstr test_putchar_fd test_strcpy make_buf test_memcpy \
+	test_memchr
 # Headers' names. This may actually be useless.
 HDRLIST=testlibft macroes ../../libft
 # === Standard ===
@@ -78,7 +79,7 @@ $(NAME): $(OBJ)
 # == Rule that compile source files into object files ==
 $(CCHPATH)%.o: $(SRCPATH)%.cpp $(CCHPATH)
 	@echo "\033[1;36m - Compiling $< into $@" $(RED)
-	@$(CC) $(FULCFLAGS) -c $< -o $@
+	@$(CC) $(FULCFLAGS) -c $< -o $@ -DDETAILED
 
 # == Rule called only if a source file is missing ==
 $(SRCPATH)%.cpp:

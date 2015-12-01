@@ -6,16 +6,12 @@
 //   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/11/30 16:55:54 by angagnie          #+#    #+#             //
-//   Updated: 2015/11/30 20:17:36 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/12/01 12:21:53 by angagnie         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #ifndef ULTIMATE_HPP
 # define ULTIMATE_HPP
-
-// # define END "\e[0;0m"
-// # define RED "\e[1;31m"
-// # define GREEN "\e[0;32m"
 
 # include <stdlib.h>
 # include <string.h>
@@ -36,7 +32,7 @@ struct Checker<true, FRet, Args...>
 {
 	static void		check(char *refret_buffer, char *ftret_buffer
 						  , FRet const refret, FRet const ftret
-						  , char const *original_buffer, Args const ...)
+						  , char const *original_buffer, Args const ...args)
 		{
 			(void)original_buffer;
 			(void)refret_buffer;
@@ -44,13 +40,23 @@ struct Checker<true, FRet, Args...>
 			if (ftret == NULL && refret != NULL)
 				printf("%s[Should not be NULL]", RED);
 			else if (ftret == NULL && refret == NULL)
-				printf("%s.", GREEN);
+				printf("%s_", GREEN);
 			else if (ftret != 0 && refret == NULL)
 				printf("%s[Should be NULL]", RED);
 			else if (strcmp(refret, ftret) == 0)
 				printf("%s.", GREEN);
 			else
+			{
+# ifndef DETAILED
 				printf("%s[Wrong output]", RED);
+				(void);
+# else
+				printf("%s>-----------/ Error \\-----------<%s\n", RED, END);
+				printf("\tYour function output  : [%s]\n", strcln(ftret));
+				printf("\tWhereas it should be  : [%s]\n", strcln(refret));
+				std::cout << "\tWith input :" << ft::variadicToString(args...) << std::endl;
+# endif
+			}
 			if (refret != NULL)
 				free(refret);
 			if (ftret != NULL)
@@ -64,7 +70,7 @@ struct Checker<false, FRet, Args...>
 {
 	static void		check(char const *refret_buffer, char const *ftret_buffer
 						  , FRet const refret, FRet const ftret
-						  , char const *original_buffer, Args const ...)
+						  , char const *original_buffer, Args const ...args)
 		{
 			if (refret == ftret)
 				printf("%s_", GREEN);
@@ -72,10 +78,18 @@ struct Checker<false, FRet, Args...>
 				printf("%s[Wrong return value]", RED);
 			if (memcmp(refret_buffer, ftret_buffer, BUFSIZE) != 0)
 			{
+# ifndef DETAILED
+				printf("%s[Wrong behavior]", RED);
+				(void)original_buffer;
+				(void)refret_buffer;
+				(void)ftret_buffer;
+# else
 				printf("%s>-----------/ Error \\-----------<%s\n", RED, END);
 				printf("\tOriginal memory state : [%s]\n", strcln(original_buffer, BUFSIZE));
 				printf("\tAfter your function   : [%s]\n", strcln(ftret_buffer, BUFSIZE));
 				printf("\tWhereas it should be  : [%s]\n", strcln(refret_buffer, BUFSIZE));
+				std::cout << "\tWith input : " << ft::variadicToString(args...) << std::endl;
+# endif
 			}
 			else
 				printf("%s.", GREEN);
@@ -86,7 +100,7 @@ struct Checker<false, FRet, Args...>
 template <bool Allocates = false
 		  , class FRet, class ...FParams
 		  , class ...Args>
-void	fun_tester_na(FRet (*fref)(FParams...), FRet (*fft)(FParams...)
+void	fun_tester(FRet (*fref)(FParams...), FRet (*fft)(FParams...)
 							  , char *buf, Args const ...args)
 {
 	char		original_buffer[BUFSIZE];

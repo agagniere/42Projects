@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 16:17:02 by angagnie          #+#    #+#             */
-//   Updated: 2015/11/30 17:58:59 by angagnie         ###   ########.fr       //
+//   Updated: 2015/12/01 11:18:04 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ void	test_strlen(size_t (*ft)(const char *s))
 
 	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
 	{
-		fun_tester_na(strlen, ft, clear_buf(buf, tests[i]));
+		fun_tester(strlen, ft, clear_buf(buf, tests[i]));
 	}
 }

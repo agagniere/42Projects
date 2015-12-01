@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 09:44:18 by angagnie          #+#    #+#             */
-//   Updated: 2015/11/30 16:09:50 by angagnie         ###   ########.fr       //
+//   Updated: 2015/12/01 11:54:00 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ char	*strcln(char const *str, size_t size)
 	size_t	len;
 	int		offset;
 
+	if (str == NULL)
+		return (strdup("[NULL]"));
 	if (size == 0)
 		size = strlen(str);
-	if (str == NULL)
-		return (strdup("NULL"));
-	len = -1;
+	len = 0;
 	offset = 0;
-	while (str[++len] != '\0')
-		if (iscntrl(str[len]))
+	while (len < size)
+		if (iscntrl(str[len++]))
 			offset++;
 	ans = (char *)malloc(len + offset + 1);
 	ans[len + offset] = '\0';
