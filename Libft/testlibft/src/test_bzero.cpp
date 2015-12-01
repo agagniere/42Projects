@@ -6,30 +6,34 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 15:19:40 by angagnie          #+#    #+#             */
-//   Updated: 2015/12/01 13:22:41 by angagnie         ###   ########.fr       //
+//   Updated: 2015/12/01 13:35:50 by ngoguey          ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "testlibft.h"
 
+static void			(*ftft)(void*,size_t);
+
+int			reffn(void *ptr, size_t n)
+{
+	bzero(ptr, n);
+	return 42;
+}
+
+int			ftfn(void *ptr, size_t n)
+{
+	ftft(ptr, n);
+	return 42;
+}
+
+// j'ai rien trouve de plus beau
 void	test_bzero(void (*ft)(void * s, size_t n))
 {
-	(void)ft;
-/*
 	char		buf[BUFSIZE];
-	auto		reffn = [](void *ptr, size_t n) -> int
-	{
-		bzero(ptr, n);
-		return 42;
-	};
-	auto		ftfn = [ft](void *ptr, size_t n) -> int
-	{
-		ft(ptr, n);
-		return 42;
-	};
 
+	ftft = ft;
 	fun_tester(reffn, ftfn, clear_buf(buf, "Should be null | Should not"), 15);
 	fun_tester(reffn, ftfn, clear_buf(buf, "Should not be null"), 0);
 	fun_tester(reffn, ftfn, clear_buf(buf, "Should be null \0 Should as well"), 30);
-*/
+
 }
