@@ -6,7 +6,7 @@
 //   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/11/30 16:55:54 by angagnie          #+#    #+#             //
-//   Updated: 2015/12/01 12:21:53 by angagnie         ###   ########.fr       //
+//   Updated: 2015/12/03 20:12:13 by angagnie         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -34,7 +34,6 @@ struct Checker<true, FRet, Args...>
 						  , FRet const refret, FRet const ftret
 						  , char const *original_buffer, Args const ...args)
 		{
-			(void)original_buffer;
 			(void)refret_buffer;
 			(void)ftret_buffer;
 			if (ftret == NULL && refret != NULL)
@@ -49,12 +48,11 @@ struct Checker<true, FRet, Args...>
 			{
 # ifndef DETAILED
 				printf("%s[Wrong output]", RED);
-				(void);
 # else
 				printf("%s>-----------/ Error \\-----------<%s\n", RED, END);
 				printf("\tYour function output  : [%s]\n", strcln(ftret));
 				printf("\tWhereas it should be  : [%s]\n", strcln(refret));
-				std::cout << "\tWith input :" << ft::variadicToString(args...) << std::endl;
+				std::cout << "\tWith input : " << ft::variadicToString(original_buffer) << ",  " << ft::variadicToString(args...) << std::endl;
 # endif
 			}
 			if (refret != NULL)
@@ -75,7 +73,13 @@ struct Checker<false, FRet, Args...>
 			if (refret == ftret)
 				printf("%s_", GREEN);
 			else
+			{
+# ifndef DETAILED
 				printf("%s[Wrong return value]", RED);
+# else
+				std::cout << RED << "%s[Wrong return value : you " << ft::variadicToString(ftret) << " vs " << ft::variadicToString(refret) << " libc]" << std::endl;
+# endif
+			}
 			if (memcmp(refret_buffer, ftret_buffer, BUFSIZE) != 0)
 			{
 # ifndef DETAILED
@@ -88,7 +92,7 @@ struct Checker<false, FRet, Args...>
 				printf("\tOriginal memory state : [%s]\n", strcln(original_buffer, BUFSIZE));
 				printf("\tAfter your function   : [%s]\n", strcln(ftret_buffer, BUFSIZE));
 				printf("\tWhereas it should be  : [%s]\n", strcln(refret_buffer, BUFSIZE));
-				std::cout << "\tWith input : " << ft::variadicToString(args...) << std::endl;
+				std::cout << "\tWith input : " << ft::variadicToString(original_buffer) << ",  " << ft::variadicToString(args...) << std::endl;
 # endif
 			}
 			else

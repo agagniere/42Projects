@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 14:12:37 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 16:57:56 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/03 20:21:25 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,21 @@
 
 size_t	ft_strlcat(char *s1, const char *s2, size_t n)
 {
-	char	*const save = s1;
+	size_t i;
 
-	while (*s1 != '\0' && n-- > 0)
+	i = 0;
+	while (*s1 != '\0' && i < n - 1)
+	{
 		s1++;
-	while (*s2 != '\0' && n-- > 0)
+		i++;
+	}
+	while (*s2 != '\0' && i < n - 1)
+	{
 		*s1++ = *s2++;
+		i++;
+	}
+	if (*s2 != '\0')
+		return (n);
 	*s1 = '\0';
-	return (s1 - save);
+	return (i);
 }
