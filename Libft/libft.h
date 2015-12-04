@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/04 15:08:15 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/04 18:09:05 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 # define ABS(v) ((v) < 0 ? -(v) : (v))
+# define DYNA_INITIAL_SIZE 64
+# define DYNA_FACTOR 2
 
 typedef struct		s_list
 {
@@ -92,5 +94,21 @@ typedef struct		s_list
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
+
+typedef struct		s_dyna
+{
+	void			*data;
+	size_t			chunck_count;
+	size_t			chunck_max;
+	size_t			chunck_size;
+}					t_dyna;
+
+typedef struct		s_complex
+{
+	double			rep;
+	double			imp;
+	double			mod;
+	double			arg;
+}					t_complex;
 
 #endif
