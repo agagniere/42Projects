@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/01 12:42:41 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/04 12:34:09 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ char	*ft_itoa(int n);
 
 void	*ft_memalloc(size_t size);
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n); //withit OK
-void	*ft_memchr(const void *s, int c, size_t n); //withit
-int		ft_memcmp(const void *s1, const void *s2, size_t n); //withit
-void	*ft_memcpy(void *dst, const void *src, size_t n); //withit
+void	*ft_memchr(const void *s, int c, size_t n); //withit OK
+int		ft_memcmp(const void *s1, const void *s2, size_t n); //withit OK
+void	*ft_memcpy(void *dst, const void *src, size_t n); //withit OK
 void	ft_memdel(void **ap);
 void	*ft_memmove(void *dst, const void *src, size_t len); //withit
 void	*ft_memset(void *b, int c, size_t len); //withit

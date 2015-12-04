@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:15:32 by angagnie          #+#    #+#             */
-//   Updated: 2015/12/03 18:53:36 by angagnie         ###   ########.fr       //
+//   Updated: 2015/12/04 11:58:23 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	test_putchar_fd(void (*ft)(char c, int fd));
 void	test_strcpy(char *(*ft)(char *dst, char const *src));
 void    test_memchr(void* (*ft)(const void *s, int c, size_t n));
 void	test_strlcat(size_t (*ft)(char *dst, const char *src, size_t size));
+void	test_memcmp(int (*ft)(const void *s1, const void *s2, size_t n));
 
 #endif

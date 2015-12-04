@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 13:58:58 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 12:31:44 by angagnie         ###   ########.fr       */
+//   Updated: 2015/12/04 11:02:48 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	test_atoi(int (*ft)(const char *str))
 
 	for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
 	{
-		MARKF((atoi(tests[i]) == ft(tests[i])), ., strcln(tests[i]));
+		MARKF((atoi(tests[i]) == ft(tests[i])), _, strcln(tests[i]));
 	}
 }

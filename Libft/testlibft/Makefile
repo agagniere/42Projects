@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/03 18:53:48 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/04 11:59:54 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -24,7 +24,7 @@ NAME=libft_tester
 SRCLIST=main test_atoi test_bzero\
 	test_strlen test_putnbr test_allchar test_memset strcln \
 	test_putstr test_putchar_fd test_strcpy make_buf test_memcpy \
-	test_memchr test_strlcat
+	test_memchr test_strlcat test_memcmp
 # Headers' names. This may actually be useless.
 HDRLIST=testlibft macroes ../../libft
 # === Standard ===

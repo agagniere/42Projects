@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 15:19:40 by angagnie          #+#    #+#             */
-//   Updated: 2015/12/01 13:35:50 by ngoguey          ###   ########.fr       //
+//   Updated: 2015/12/04 12:16:52 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,4 @@ void	test_bzero(void (*ft)(void * s, size_t n))
 	fun_tester(reffn, ftfn, clear_buf(buf, "Should be null | Should not"), 15);
 	fun_tester(reffn, ftfn, clear_buf(buf, "Should not be null"), 0);
 	fun_tester(reffn, ftfn, clear_buf(buf, "Should be null \0 Should as well"), 30);
-
 }

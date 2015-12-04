@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   test_memcpy.c										:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/28 14:12:37 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/04 12:31:48 by angagnie         ###   ########.fr       */
+/*   Created: 2015/11/27 17:24:33 by angagnie          #+#    #+#             */
+//   Updated: 2015/12/01 12:42:31 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "libft.h"
+#include "testlibft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+void	test_memcpy(void * (*ft)(void *dst, const void *src, size_t n))
 {
-	return (1 + strlcat(dst, src, size));
+	char	buf[BUFSIZE];
+
+	fun_tester(memcpy, ft,  clear_buf(buf, "Destination"), "Source", strlen("Source"));
+	fun_tester(memcpy, ft,  clear_buf(buf, "Destination"), "DO NOT COPY", 0);
+	fun_tester(memcpy, ft,  clear_buf(buf, "Destination"), "_____\0| To be copied| Not to be !!!!!", 20);
+
 }
