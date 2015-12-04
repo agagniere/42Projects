@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/11/27 15:16:14 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/04 14:45:46 by angagnie         ###   ########.fr       */
+/*   Created: 2015/12/04 15:18:00 by angagnie          #+#    #+#             */
+/*   Updated: 2015/12/04 16:45:41 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t n)
+void ft_lstdelone(t_list **alst, void (*del)(void *, size_t))
 {
-	char *save;
-
-	save = dst;
-	while (*src != '\0' && n-- > 0)
-		*(dst++) = *(src++);
-	while (n-- > 0)
-		*(dst++) = '\0';
-	return (save);
+	del((*alst)->content, (*alst)->content_size);
+	free(*alst);
+	*alst = NULL;
 }

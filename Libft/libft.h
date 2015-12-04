@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/04 12:34:09 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/04 15:08:15 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,12 @@ int		ft_tolower(int c);
 int		ft_toupper(int c);
 
 # define ABS(v) ((v) < 0 ? -(v) : (v))
+
+typedef struct		s_list
+{
+	void			*content;
+	size_t			content_size;
+	struct s_list	*next;
+}					t_list;
 
 #endif

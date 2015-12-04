@@ -6,7 +6,7 @@
 //   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/11/30 16:55:54 by angagnie          #+#    #+#             //
-//   Updated: 2015/12/03 20:12:13 by angagnie         ###   ########.fr       //
+//   Updated: 2015/12/04 14:34:19 by angagnie         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -77,7 +77,7 @@ struct Checker<false, FRet, Args...>
 # ifndef DETAILED
 				printf("%s[Wrong return value]", RED);
 # else
-				std::cout << RED << "%s[Wrong return value : you " << ft::variadicToString(ftret) << " vs " << ft::variadicToString(refret) << " libc]" << std::endl;
+				std::cout << RED << "[Wrong return value : you " << ft::variadicToString(ftret) << " vs " << ft::variadicToString(refret) << " libc]" << std::endl;
 # endif
 			}
 			if (memcmp(refret_buffer, ftret_buffer, BUFSIZE) != 0)
