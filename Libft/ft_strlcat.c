@@ -6,23 +6,22 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 14:12:37 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/04 14:47:04 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/06 14:54:21 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-#define MIN(a, b) (a < b ? a : b)
-
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t len_dst;
-	size_t len_src;
+	size_t	dst_len;
+	size_t	ret;
 
-	len_dst = ft_strlen(dst);
-	len_src = ft_strlen(src);
-	if (size <= len_dst)
-		return (len_dst + len_src);
-	ft_strncpy(dst + len_dst, src, size - len_dst);
-	return (MIN(size, len_dst + len_src));
+	dst_len = ft_strlen(dst);
+	ret = ft_strlen(src) + (size < dst_len ? size : dst_len);
+	dst += dst_len;
+	while ((dst_len++ + 1) < size && *src != '\0')
+		*dst++ = *src++;
+	*dst = '\0';
+	return (ret);
 }

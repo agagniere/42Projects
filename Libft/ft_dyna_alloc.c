@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dyna_dataclear.c                                :+:      :+:    :+:   */
+/*   ft_dyna_alloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 17:46:25 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/06 18:01:55 by angagnie         ###   ########.fr       */
+/*   Created: 2015/12/04 17:21:32 by angagnie          #+#    #+#             */
+/*   Updated: 2015/12/06 17:41:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dyna_dataclear(t_dyna t)
+t_dyna	*ft_dyna_alloc(size_t chunck_size)
 {
-	if (t->chunck_max > 0)
-	{
-		free(t->data);
-		t->chunck_count = 0;
-		t->chunck_max = 0;
-	}
+	t_dyna	*ans;
+
+	ans = (t_dyna *)malloc(sizeof(t_dyna));
+	ans->chunck_size = chunck_size;
+	return (ft_dyna_datainit(ans) ? NULL : ans);
 }

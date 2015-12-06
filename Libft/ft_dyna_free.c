@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dyna_dataclear.c                                :+:      :+:    :+:   */
+/*   ft_dyna_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 17:46:25 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/06 18:01:55 by angagnie         ###   ########.fr       */
+/*   Created: 2015/12/04 17:44:14 by angagnie          #+#    #+#             */
+/*   Updated: 2015/12/06 17:56:28 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dyna_dataclear(t_dyna t)
+void	ft_dyna_free(t_dyna **tda)
 {
-	if (t->chunck_max > 0)
-	{
-		free(t->data);
-		t->chunck_count = 0;
-		t->chunck_max = 0;
-	}
+	ft_dyna_dataclear(*tda);
+	free(*tda);
+	*tda = NULL;
 }

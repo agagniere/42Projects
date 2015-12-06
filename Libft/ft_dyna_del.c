@@ -5,16 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 17:44:14 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/04 17:52:47 by angagnie         ###   ########.fr       */
+/*   Created: 2015/12/06 17:57:56 by angagnie          #+#    #+#             */
+/*   Updated: 2015/12/06 18:01:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dyna_del(t_dyna **tda)
+void	ft_dyna_del(t_dyna *td)
 {
-	ft_dyna_dataclear(*tda);
-	free(*tda);
-	*tda = NULL;
+	ft_dyna_dataclear(td);
 }
