@@ -12,40 +12,33 @@
 
 #include "testlibft.h"
 
-static char	*mm()
+// # define END_ARRAY(A) ((void*)(A) + sizeof((A))) //version c
+# define END_ARRAYCPP(A) ((void*)((char*)(A) + sizeof((A)))) //la version c marche que en c
+
+struct vals_s
 {
-	char *const ans = strdup("1234567");
-	bzero(ans, 7);
-	return (ans);
-}
+	char const	*s;
+	char 		c;
+	size_t		len;
+};
+
+struct vals_s const		tests[] =
+{
+	{"Hello World", '.', 10},
+	{"", '*', 5},
+	{"0123456789ABCDEF Wow", '_', 30},
+	{"Noooo", '@', 0},
+};
+
 
 void	test_memset(void *(*ft)(void *b, int c, size_t len))
 {
-	char *bees[] = {
-		strdup("Hello World"),
-		mm(),
-		strdup("0123456789ABCDEF Wow now that makes 16 digits OMG"),
-		strdup("Nooo")
-	};
-	int const cees[] = {
-		'.',
-		'*',
-		'_',
-		'@'
-	};
-	size_t const lengths[] = {
-		10,
-		5,
-		40,
-		0
-	};
+	struct vals_s const		*t = tests;
+	char					buf[BUFSIZE];
 
-	for (unsigned int i = 0 ; i < SIZE_ARRAY(cees) ; i++)
+	while (t < END_ARRAYCPP(tests))
 	{
-		MARK(!(memcmp(
-				   ft(strdup(bees[i]), cees[i], lengths[i]),
-				   memset(strdup(bees[i]), cees[i], lengths[i]),
-				   lengths[i])), ., "F");
+		fun_tester(memset, ft, clear_buf(buf, t->s), t->c, t->len);
+		t++;
 	}
-	MARK((memset(bees[0], cees[1], 0) == memset(bees[0], cees[1], 0)), ., "[dst not returned]");
 }
