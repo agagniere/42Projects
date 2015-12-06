@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/06 19:44:26 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/06 23:12:28 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,8 +14,8 @@
 DBPATH=db_
 REPATH=ft_
 # == Just (Un)comment =
-#CURPATH=$(DBPATH)
-CURPATH=$(REPATH)
+CURPATH=$(DBPATH)
+#CURPATH=$(REPATH)
 # =====================
 
 # === Editable ===

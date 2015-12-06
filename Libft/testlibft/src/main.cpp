@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/25 14:20:00 by angagnie          #+#    #+#             */
-//   Updated: 2015/12/04 12:46:12 by angagnie         ###   ########.fr       //
+//   Updated: 2015/12/06 20:39:02 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@ int status = 0;
 
 int		main(void)
 {
+#ifdef DETAILED
+	std::cout << WHITE << "(detailed)" << END << std::endl;
+#endif
 	printf("%s\t\t-== Start ==-%s\n", GREEN, END);
+
+	FORK(atoi);
+	FORK(bzero);
 
 	TESTAC(isalnum);
 	TESTAC(isalpha);
@@ -38,8 +44,6 @@ int		main(void)
 	FORK(putnbr);
 	FORK(putstr);
 */
-	FORK(atoi);
-	FORK(bzero);
 	FORK(strcpy);
 	FORK(strlen);
 	FORK(memcpy);

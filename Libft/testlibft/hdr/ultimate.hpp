@@ -6,7 +6,7 @@
 //   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2015/11/30 16:55:54 by angagnie          #+#    #+#             //
-//   Updated: 2015/12/04 14:34:19 by angagnie         ###   ########.fr       //
+//   Updated: 2015/12/06 22:51:22 by angagnie         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -48,6 +48,10 @@ struct Checker<true, FRet, Args...>
 			{
 # ifndef DETAILED
 				printf("%s[Wrong output]", RED);
+				ft::variadicToString(args...);
+				(void)ftret;
+				(void)refret;
+				(void)original_buffer;
 # else
 				printf("%s>-----------/ Error \\-----------<%s\n", RED, END);
 				printf("\tYour function output  : [%s]\n", strcln(ftret));
@@ -84,6 +88,7 @@ struct Checker<false, FRet, Args...>
 			{
 # ifndef DETAILED
 				printf("%s[Wrong behavior]", RED);
+				ft::variadicToString(args...);
 				(void)original_buffer;
 				(void)refret_buffer;
 				(void)ftret_buffer;

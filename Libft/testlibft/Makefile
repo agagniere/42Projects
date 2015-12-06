@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/04 14:35:35 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/06 22:46:26 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,6 +20,7 @@ CURPATH=$(REPATH)
 
 # === Editable ===
 NAME=libft_tester
+LIBFT=~/Documents/42Projects/Libft/
 # Just put the filename without the ".c".
 SRCLIST=main test_atoi test_bzero\
 	test_strlen test_putnbr test_allchar test_memset strcln \
@@ -42,8 +43,9 @@ OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(SRCLIST)))
 HDR:=$(addprefix $(HDRPATH),$(addsuffix .h,$(HDRLIST)))
 CC:=clang++
 CFLAGS:=-Wall -Wextra -std=c++14
-FULCFLAGS:=$(CFLAGS) -I $(HDRPATH) -I ../
-LDFLAG:=-L ../ -lft
+DEFLAG=
+FULCFLAGS=$(CFLAGS) -I $(HDRPATH) -I $(LIBFT) $(DEFLAG)
+LDFLAG:=-L $(LIBFT) -lft
 # ===========================
 
 # === Colors ===
@@ -57,14 +59,17 @@ END="\033[0;0m"
 # ==============
 
 # == First Rule : what is done by default ==
-all:
+all: print_1 print_2
+
+print_1:
 ifeq ($(CURPATH),$(DBPATH))
 	@echo "\033[0;31m" "\t\t/!\\ Debug Mode /!\\"
 	@norminette $(SRC) $(HDR) | grep -v  Norme -B 1 || true
 	@echo $(END)
 endif
 	@echo $(GREEN) "\t - Make All -" $(END)
-	@make $(NAME)
+
+print_2: $(NAME)
 	@echo $(GREEN) "\t - Success! -" $(END)
 ifeq ($(CURPATH),$(DBPATH))
 	@echo $(RED) "\t\t/!\\ Debug Mode /!\\" $(END)
@@ -79,7 +84,7 @@ $(NAME): $(OBJ)
 # == Rule that compile source files into object files ==
 $(CCHPATH)%.o: $(SRCPATH)%.cpp $(CCHPATH)
 	@echo "\033[1;36m - Compiling $< into $@" $(RED)
-	@$(CC) $(FULCFLAGS) -c $< -o $@ -DDETAILED
+	@$(CC) $(FULCFLAGS) -c $< -o $@
 
 # == Rule called only if a source file is missing ==
 $(SRCPATH)%.cpp:
@@ -88,11 +93,6 @@ $(SRCPATH)%.cpp:
 # == Rule called only if a header file is missing ==
 $(HDRPATH)%.h:
 	@echo $(RED) " /!\\ Missing file : $@ /!\\" $(BLACK)
-
-# == Rule that compile header files ==
-$(CCHPATH)%.h.gch: $(HDRPATH)%.h $(CCHPATH)
-	@echo "\033[0;36m - Compiling $< into $@" $(RED)
-	@$(CC) $(CFLAGS) -o $@ -c $<
 
 # == Rule called if the cache folder doesn't exist yet ==
 $(CCHPATH):
@@ -125,5 +125,11 @@ test:
 	@echo "\033[0;35mCompiled Headers : \033[1;35m $(CDR)"
 	@echo "\033[0;36mThis file was written by : \033[1;36m angagnie"
 
+set_detailed:
+	$(eval DEFLAG = -DDETAILED)
+	@echo $(DEFLAG)
+
+detailed: set_detailed all
+
 # == Rule preventing conflicts ==
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test print_1 print_2 set_detailed detailed
