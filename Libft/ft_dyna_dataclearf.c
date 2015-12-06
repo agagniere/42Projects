@@ -6,13 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 17:46:25 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/06 18:04:35 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/06 19:30:36 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dyna_dataclearf(t_dyna t, void (*del)(void *))
+void	ft_dyna_dataclearf(t_dyna *t, void (*del)(void *))
 {
 	if (t->chunck_max > 0)
 	{

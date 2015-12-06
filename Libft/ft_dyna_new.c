@@ -6,9 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/06 17:41:24 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/06 17:50:19 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/06 19:36:09 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 t_dyna	ft_dyna_new(size_t chunck_size)
 {

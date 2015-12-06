@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/04 18:09:05 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/06 19:30:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,44 @@
 
 # include <string.h>
 
+
+typedef struct		s_list
+{
+	void			*content;
+	size_t			content_size;
+	struct s_list	*next;
+}					t_list;
+
+typedef struct		s_dyna
+{
+	void			*data;
+	size_t			chunck_count;
+	size_t			chunck_max;
+	size_t			chunck_size;
+}					t_dyna;
+
+typedef struct		s_complex
+{
+	double			rep;
+	double			imp;
+	double			mod;
+	double			arg;
+}					t_complex;
+
 int		ft_atoi(const char *str);
 
 void	ft_bzero(void *s, size_t n); // SP++
+
+t_dyna	*ft_dyna_alloc(size_t chunck_size);
+int		ft_dyna_append(t_dyna *td, void *data, size_t datalen);
+void	ft_dyna_dataclear(t_dyna *t);
+void	ft_dyna_dataclearf(t_dyna *t, void (*del)(void *));
+int		ft_dyna_datadouble(t_dyna *td, size_t factor);
+int		ft_dyna_datainit(t_dyna *td);
+void	ft_dyna_del(t_dyna *td);
+void	ft_dyna_free(t_dyna **tda);
+t_dyna	ft_dyna_new(size_t chunck_size);
+int		ft_dyna_trim(t_dyna *td);
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -87,28 +122,5 @@ int		ft_toupper(int c);
 # define ABS(v) ((v) < 0 ? -(v) : (v))
 # define DYNA_INITIAL_SIZE 64
 # define DYNA_FACTOR 2
-
-typedef struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
-
-typedef struct		s_dyna
-{
-	void			*data;
-	size_t			chunck_count;
-	size_t			chunck_max;
-	size_t			chunck_size;
-}					t_dyna;
-
-typedef struct		s_complex
-{
-	double			rep;
-	double			imp;
-	double			mod;
-	double			arg;
-}					t_complex;
 
 #endif
