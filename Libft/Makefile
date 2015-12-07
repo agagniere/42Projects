@@ -6,13 +6,13 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/07 18:36:21 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/07 20:24:32 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 # ==== Editable ====
 NAME:=libft.a
-FILES:=ft_atoi ft_bzero ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl ft_isdigit ft_isgraph ft_islower ft_isprint ft_ispunct ft_isspace ft_isupper ft_isxdigit ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin ft_strlcat ft_strlen ft_strncat ft_strncmp ft_strncpy ft_strnew ft_strnstr ft_strstr ft_tolower ft_toupper ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ \
+FILES:=ft_atoi ft_bzero ft_isalnum ft_isalpha ft_isascii ft_isblank ft_iscntrl ft_isdigit ft_isgraph ft_islower ft_isprint ft_ispunct ft_isspace ft_isupper ft_isxdigit ft_itoa ft_itoa_base ft_memalloc ft_memccpy ft_memchr ft_memdel ft_memcmp ft_memcpy ft_memmove ft_memset ft_putchar ft_putchar_fd ft_putendl ft_putendl_fd ft_putnbr ft_putnbr_fd ft_putstr ft_putstr_fd ft_strcat ft_strchr ft_strrchr ft_strcmp ft_strcpy ft_strdup ft_strjoin ft_strlcat ft_strlen ft_strncat ft_strncmp ft_strncpy ft_strnew ft_strnstr ft_strstr ft_tolower ft_toupper ft_strdel ft_strtrim ft_strsub ft_strsplit ft_strclr ft_strequ ft_striter ft_striter ft_strmap ft_striteri ft_strmapi ft_strnequ ft_realloc\
 ft_lstadd ft_lstdel ft_lstdel_rec ft_lstdelone ft_lstiter ft_lstmap ft_lstnew ft_lstpush ft_lstpush_rec \
 ft_dyna_alloc ft_dyna_append ft_dyna_dataclear ft_dyna_dataclearf ft_dyna_datadouble ft_dyna_datainit ft_dyna_del ft_dyna_free ft_dyna_new ft_dyna_trim
 # ==================

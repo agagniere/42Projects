@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/06 23:12:06 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/07 20:25:23 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	ft_putnbr(int n);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr(char const *s);
 void	ft_putstr_fd(char const *s, int fd);
+
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
 
 char	*ft_strcat(char *s1, const char *s2); //withit
 char	*ft_strchr(const char *s, int c); //withit
