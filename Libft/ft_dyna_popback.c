@@ -6,11 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 20:08:29 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/07 20:09:45 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/07 21:49:54 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_dyna_popback(t_dyna td)
+void	ft_dyna_popback(t_dyna *td)
 {
 	td->chunck_count--;
 }

@@ -6,13 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/04 15:21:50 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/07 20:36:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/07 22:12:18 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel_rec(t_list **alst, void (*del)(void *, size_t))
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
 	t_list **ptr;
 
