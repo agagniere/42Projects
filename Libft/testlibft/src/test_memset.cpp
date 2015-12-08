@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 08:53:14 by angagnie          #+#    #+#             */
-//   Updated: 2015/11/30 16:02:24 by angagnie         ###   ########.fr       //
+//   Updated: 2015/12/08 17:04:24 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ struct vals_s const		tests[] =
 	{"Hello World", '.', 10},
 	{"", '*', 5},
 	{"0123456789ABCDEF Wow", '_', 30},
-	{"Noooo", '@', 0},
+	{"Noooo\0\0\0OMG", '@', BUFSIZE},
+	{"\0\0\0 Y.S.N.P. \0\0\0", ' ', BUFSIZE},
 };
 
 

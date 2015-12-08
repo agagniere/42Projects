@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/08 14:12:29 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/08 17:15:18 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LIBFT_H
 
 # include <string.h>
-
 
 typedef struct		s_list
 {
@@ -41,7 +40,7 @@ void	ft_dyna_dataclear(t_dyna *t);
 void	ft_dyna_dataclearf(t_dyna *t, void (*del)(void *));
 int		ft_dyna_datainit(t_dyna *td);
 void	ft_dyna_del(t_dyna *td);
-void	ft_dyna_free(t_dyna **tda);
+void	ft_dyna_release(t_dyna **tda);
 t_dyna	ft_dyna_new(size_t chunck_size);
 int		ft_dyna_trim(t_dyna *td);
 int     ft_dyna_reserve(t_dyna *td, size_t size);
@@ -79,8 +78,8 @@ void	*ft_memchr(const void *s, int c, size_t n); //withit OK
 int		ft_memcmp(const void *s1, const void *s2, size_t n); //withit OK
 void	*ft_memcpy(void *dst, const void *src, size_t n); //withit OK
 void	ft_memdel(void **ap);
-void	*ft_memmove(void *dst, const void *src, size_t len); //withit
-void	*ft_memset(void *b, int c, size_t len); //withit
+void	*ft_memmove(void *dst, const void *src, size_t len); //withit OK
+void	*ft_memset(void *b, int c, size_t len); //withit OK
 
 void	ft_print_memory(void const *addr, size_t size);
 

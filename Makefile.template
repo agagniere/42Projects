@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-     Updated: 2015/12/08 12:22:37 by angagnie         ###   ########.fr         
+     Updated: 2015/12/08 16:58:51 by angagnie         ###   ########.fr         
 #                                                                              #
 #******************************************************************************#
 
@@ -40,6 +40,8 @@ WHITE:="\033[1;37m"
 SRC:=$(addprefix $(SRCPATH)/,$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH)/,$(addsuffix .o,$(FILES)))
 # ==================
+CCHF:=.cache_exists
+
 
 all: $(NAME)
 	@echo $(GREEN) " - Done -" $(END)
@@ -52,15 +54,17 @@ $(NAME): $(OBJ)
 	@$(CC) $(OBJ) -o $(NAME) $(LFLAG)
 # ===========================
 
-$(CCHPATH)/%.o: $(SRCPATH)/%.c $(CCHPATH)
+$(CCHPATH)/%.o: $(SRCPATH)/%.c $(CCHF)
 	@echo $(PURPLE) " - Compiling $< into $@" $(RED)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(CCHPATH):
+$(CCHF):
 	@mkdir $(CCHPATH)
+	@touch $(CCHF)
 
 clean:
 	@rm -rf $(CCHPATH)
+	@rm -f $(CCHF)
 
 fclean: clean
 	@rm $(NAME)

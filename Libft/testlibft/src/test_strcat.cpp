@@ -1,22 +1,22 @@
 // ************************************************************************** //
 //                                                                            //
 //                                                        :::      ::::::::   //
-//   test_memmove.c										:+:      :+:    :+:   //
+//   test_strcat.c										:+:      :+:    :+:   //
 //                                                    +:+ +:+         +:+     //
 //   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
-//   Created: 2015/12/04 12:36:36 by angagnie          #+#    #+#             //
-//   Updated: 2015/12/08 14:33:47 by angagnie         ###   ########.fr       //
+//   Created: 2015/12/08 17:05:34 by angagnie          #+#    #+#             //
+//   Updated: 2015/12/08 17:43:43 by angagnie         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
 #include "testlibft.h"
 
-void	test_memmove(void	*(*ft)(void *dst, const void *src, size_t len))
+void	test_strcat(char    * (*ft)(char *s1, const char *s2))
 {
-	char	buf[BUFSIZE + 15];
+	char	buf[BUFSIZE];
 
-	fun_tester(memmove, ft, clear_buf(buf, "_____________ <- Where to copy"), "What to copy", strlen("What to copy"));
-	fun_tester(memmove, ft, clear_buf(buf, "Where to copyWhat to dupplicate|"), buf + strlen("Where to copy"), strlen("|What to dupplicate"));
-	fun_tester(memmove, ft, 15 + clear_buf(buf, "|What to dupplicate"), buf, strlen("|What to dupplicate"));
+	memset(buf, ' ', BUFSIZE);
+	strcpy(buf, "Begin ");
+	fun_tester(strcat, ft, buf, "End");
 }

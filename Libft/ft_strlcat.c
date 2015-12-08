@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 14:12:37 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/06 14:54:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/08 18:00:41 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	dst_len = ft_strlen(dst);
 	ret = ft_strlen(src) + (size < dst_len ? size : dst_len);
 	dst += dst_len;
-	while ((dst_len++ + 1) < size && *src != '\0')
+	while ((++dst_len) < size && *src != '\0')
 		*dst++ = *src++;
-	*dst = '\0';
+	*dst = '0';
 	return (ret);
 }
