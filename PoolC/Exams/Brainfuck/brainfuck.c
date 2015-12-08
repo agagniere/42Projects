@@ -1,70 +1,71 @@
 /* ************************************************************************** */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
-/* *                                                                        * */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   brainfuck.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/01 10:02:26 by exam              #+#    #+#             */
+/*   Updated: 2015/12/01 10:18:37 by exam             ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
 
-char*	next(char* str, int way)
+char	*par(char *src, int way)
 {
-	int i;
+	int s;
 
-	i = 0;
-	while (*str)
+	s = 0;
+	while (1)
 	{
-		if (*str == '[')
-			i++;
-		else if (*str == ']')
-			i--;
-		if (i == 0)
-			return (str);
-		str += way;
-    }
+		if (*src == '[')
+			s++;
+		else if (*src == ']')
+			s--;
+		if (s == 0)
+			return (src);
+		src += way;
+	}
 	return (NULL);
 }
 
-void	brainfuck(char* str, unsigned char* buf)
+void	brainfuck(char *src, char *buf)
 {
-  if (*str == '\0')
-    return ;
-  else if (*str == '+')
-    (*buf)++;
-  else if (*str == '-')
-    (*buf)--;
-  else if (*str == '>')
-    buf++;
-  else if (*str == '<')
-    buf--;
-  else if (*str == '.')
-    write(1, buf, 1);
-  else if (*str == '[' && *buf == 0)
-    str = next(str, 1);
-  else if (*str == ']' && *buf != 0)
-      str = next(str, -1);
-  brainfuck(str + 1, buf);
+	while (*src != '\0')
+	{
+		if (*src == '>')
+			buf++;
+		else if (*src == '<')
+			buf--;
+		else if (*src == '+')
+			(*buf)++;
+		else if (*src == '-')
+			(*buf)--;
+		else if (*src == '.')
+			write(1, buf, 1);
+		else if (*src == '[' && !(*buf))
+			src = par(src, 1);
+		else if (*src == ']' && (*buf))
+			src = par(src, -1);
+		src++;
+	}
 }
 
-int	main(int ac, char** av)
+int		main(int ac, char **av)
 {
-  unsigned char*	buffer;
-  int			i;
+	char buf[2048];
+	int a;
 
-  if (ac > 1)
-    {
-      i = -1;
-      buffer = (unsigned char*)malloc(2048 * sizeof(unsigned char));
-      while (++i < 2048)
-	buffer[i] = 0;
-      brainfuck(av[1], buffer);
-    }
-  write(1, "\n", 1);
-  return(0);
+	if (ac > 1)
+	{
+		a = 0;
+		while (a < 2048)
+			buf[a++] = 0;
+		brainfuck(av[1], buf);
+	}
+	else
+		write(1, "\n", 1);
+	return(0);
 }
