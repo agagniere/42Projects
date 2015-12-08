@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 18:10:16 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/08 10:54:46 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/08 19:50:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 	save2 = s2;
 	save = s1;
 	len_s2 = strlen(s2);
+	if ((*s1 == 0 && *s2 == 0) || n == 0)
+		return ((char *)s1);
 	while (*s1 != '\0' && (size_t)(s1 - save) < n && n - (s1 - save) >= len_s2)
 	{
 		save1 = s1;
