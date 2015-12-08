@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/29 15:37:55 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/07 20:38:26 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/08 11:09:24 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char		*ft_strtrim(char const *s)
 	while (s[start + len] != '\0')
 	{
 		if (!ismerde(s[start + len]))
-			flen = len;
+			flen = len + 1;
 		len++;
 	}
 	return (ft_strsub(s, start, flen));

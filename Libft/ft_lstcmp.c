@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_lstequ_rec.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/07 20:12:27 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/08 13:19:01 by angagnie         ###   ########.fr       */
+/*   Created: 2015/12/08 13:58:47 by angagnie          #+#    #+#             */
+/*   Updated: 2015/12/08 14:10:24 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
-
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size, size_t factor)
+int		ft_lstequ_rec(t_list *a, t_list *b, int (*equ)(void *, void *))
 {
-	void	*ans;
-
-	ans = malloc(new_size * factor);
-	if (ptr == NULL || ans == NULL)
-		return (ans);
-	if (new_size < old_size)
-		old_size = new_size;
-	ft_memcpy(ans, ptr, old_size * factor);
-	free(ptr);
-	return (ans);
+	if (a == NULL && b == NULL)
+		return (1);
+	if (a == NULL || b == NULL)
+		return (0);
+	return(equ(a->content, b->content)
+		   && ft_lstequ(a->next, b->next, equ));
 }

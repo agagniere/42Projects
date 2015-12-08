@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 10:07:10 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 12:24:44 by angagnie         ###   ########.fr       */
+//   Updated: 2015/12/08 14:01:31 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	test_putchar_fd(void (*ft)(char c, int fd))
 	}
 	buf[0][read(p[0][0], buf[0], BUSZ - 1)] = '\0';
 	buf[1][read(p[1][0], buf[1], BUSZ - 1)] = '\0';
-	MARK(!strcmp(buf[0], buf[1]), ".", "F");
+	MARK(!strcmp(buf[0], buf[1]), 256, "F");
 	close(p[0][0]);
 	close(p[0][1]);
 	close(p[1][0]);

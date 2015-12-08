@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 16:57:59 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/30 12:24:07 by angagnie         ###   ########.fr       */
+//   Updated: 2015/12/08 14:01:47 by angagnie         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	test_putstr(void (*ft)(char const * s))
 {
 	char const * const tests[] = {
 		// some char const * values
-		"Hello 42",
-		"",
-		NULL
+		"\n - This is madness\n",
+		" - Madness ?\n - ...\n",
+		" - THIS IS SPARTA !!!!!!!!!!\n - *Falling down*\0 And flying",
+		""
 	};
     int out;
     int p1[2];
@@ -36,6 +37,9 @@ void	test_putstr(void (*ft)(char const * s))
     for (unsigned int i = 0 ; i < SIZE_ARRAY(tests) ; i++)
     {
 		dprintf(p2[1], "%s|", tests[i]);
+#ifdef DETAILED
+		dprintf(2, "%s%s|", WHITE, tests[i]);
+#endif
 		ft(tests[i]);
 		printf("|");
 		fflush(stdout);
@@ -48,6 +52,6 @@ void	test_putstr(void (*ft)(char const * s))
     close(p2[0]);
     close(p2[1]);
     close(out); // we don't need the backup anymore
-    MARK(!(strcmp(buf1, buf2)), ".", "F");
+    MARK(!(strcmp(buf1, buf2)), 4, "F");
 	printf(END);
 }

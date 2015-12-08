@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/07/28 22:45:14 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/06 22:46:26 by angagnie         ###   ########.fr        #
+#    Updated: 2015/12/08 12:36:30 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -25,7 +25,7 @@ LIBFT=~/Documents/42Projects/Libft/
 SRCLIST=main test_atoi test_bzero\
 	test_strlen test_putnbr test_allchar test_memset strcln \
 	test_putstr test_putchar_fd test_strcpy make_buf test_memcpy \
-	test_memchr test_strlcat test_memcmp test_memmove
+	test_memchr test_strlcat test_memcmp test_memmove test_dyna
 # Headers' names. This may actually be useless.
 HDRLIST=testlibft macroes ../../libft
 # === Standard ===
@@ -82,7 +82,7 @@ $(NAME): $(OBJ)
 	@echo "\033[0;32m - Done!" $(END)
 
 # == Rule that compile source files into object files ==
-$(CCHPATH)%.o: $(SRCPATH)%.cpp $(CCHPATH)
+$(CCHPATH)%.o: $(SRCPATH)%.cpp .cache_exists
 	@echo "\033[1;36m - Compiling $< into $@" $(RED)
 	@$(CC) $(FULCFLAGS) -c $< -o $@
 
@@ -95,15 +95,16 @@ $(HDRPATH)%.h:
 	@echo $(RED) " /!\\ Missing file : $@ /!\\" $(BLACK)
 
 # == Rule called if the cache folder doesn't exist yet ==
-$(CCHPATH):
+.cache_exists:
 	@echo "\033[0;33m - cache not yet existing\033[1;37m"
 	@mkdir $(CCHPATH)
+	@touch .cache_exists
 
 # == Rule deleting compiled files : The cache folder ==
 clean:
 	@echo "\033[1;33m - Cleaning...\n\t{"
 	@rm -vrf $(CCHPATH)
-	@rm -vrf stdin.txt
+	@rm -f .cache_exists
 	@echo "\t} Done"
 
 # == Rule calling clean and deleting the final file ==

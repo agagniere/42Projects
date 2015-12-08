@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2015/12/07 18:47:47 by angagnie         ###   ########.fr        #
+     Updated: 2015/12/08 12:22:37 by angagnie         ###   ########.fr         
 #                                                                              #
 #******************************************************************************#
 
@@ -16,12 +16,14 @@ NAME:=
 FILES:=
 # ==================
 CCHPATH:=cache
-SRCPATH:=.
+SRCPATH:=src
+HDRPATH:=includes
 # ==================
 
 # ==== Standard ====
 CC:=clang
 CFLAGS:=-Wall -Wextra
+LFLAG:= -I $(HDRPATH)
 # ==================
 
 # ===== Colors =====
@@ -44,10 +46,10 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@echo $(CYAN) " - Compiling $@" $(RED)
 # ==== If it's a library ====
-#	@ar rc $(NAME) $(OBJ)
+#	@ar rc $(NAME) $(OBJ) $(LFLAG)
 #	@ranlib $(NAME)
 # ========== Else ===========
-	@$(CC) $(OBJ) -o $(NAME)
+	@$(CC) $(OBJ) -o $(NAME) $(LFLAG)
 # ===========================
 
 $(CCHPATH)/%.o: $(SRCPATH)/%.c $(CCHPATH)
