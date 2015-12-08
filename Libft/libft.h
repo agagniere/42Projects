@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 13:50:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/08 17:15:18 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/08 21:18:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	ft_dyna_release(t_dyna **tda);
 t_dyna	ft_dyna_new(size_t chunck_size);
 int		ft_dyna_trim(t_dyna *td);
 int     ft_dyna_reserve(t_dyna *td, size_t size);
+void	ft_dyna_popback(t_dyna *td);
+void	ft_dyna_popbackf(t_dyna *td, void (*del)(void *));
 
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
@@ -63,11 +65,13 @@ char	*ft_itoa_base(int n, int base);
 char	*ft_itoa(int n);
 
 void	ft_lstadd(t_list **alst, t_list *new_elem);
+int		ft_lstequ_rec(t_list *a, t_list *b, int (*equ)(void *, void *));
 void	ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void	ft_lstdel_rec(t_list **alst, void (*del)(void *, size_t));
 void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void	ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list	*ft_lstmap(t_list *lst, t_list * (*f)(t_list *elem));
+t_list	*ft_lstmap_rec(t_list *lst, t_list * (*f)(t_list *elem));
 t_list	*ft_lstnew(void const *content, size_t content_size);
 void	ft_lstpush(t_list **alst, t_list *new_elem);
 void	ft_lstpush_rec(t_list **alst, t_list *new_elem);

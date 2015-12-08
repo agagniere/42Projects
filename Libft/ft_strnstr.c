@@ -6,10 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 18:10:16 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/08 19:58:50 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/08 21:13:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include <string.h>
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t n)
@@ -19,10 +20,9 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 	char const	*save2;
 	size_t		len_s2;
 
+	len_s2 = ft_strlen(s2);
 	save2 = s2;
-	save = s1;
-	len_s2 = strlen(s2);
-	if (*s1 == 0 && *s2 == 0)
+	if (*(save = s1) == 0 && *s2 == 0)
 		return ((char *)s1);
 	else if (n == 0)
 		return (NULL);

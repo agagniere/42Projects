@@ -6,11 +6,14 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 20:08:29 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/07 21:49:54 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/08 21:16:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 void	ft_dyna_popback(t_dyna *td)
 {
-	td->chunck_count--;
+	if (td->chunck_count > 0)
+		td->chunck_count--;
 }
