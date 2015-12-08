@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 17:38:45 by angagnie          #+#    #+#             */
-/*   Updated: 2015/12/08 19:52:07 by angagnie         ###   ########.fr       */
+/*   Updated: 2015/12/08 19:55:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strrchr(const char *s, int c)
 	p = s;
 	while (*p != '\0')
 		p++;
-	while (*(const unsigned char)p != c && p >= s)
+	while (*(const unsigned char *)p != c && p >= s)
 		p--;
 	return (*p == c ? (char *)p : NULL);
 }
