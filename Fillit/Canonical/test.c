@@ -6,16 +6,17 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 10:42:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/13 12:28:02 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/13 13:25:50 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
+#define COORD(w, v, u) (tetrimini[w]->block[v].matrix[u]	\
+						+ tetrimini[w]->pos.matrix[u])
 
 int		is_ok(t_tetab tetrimini, t_i i)
 {
-	t_tet *const	current = tetrimini[i];
 	int				n;
 	int				a;
 	int				b;
@@ -28,14 +29,8 @@ int		is_ok(t_tetab tetrimini, t_i i)
 		{
 			b = 4;
 			while (b-- > 0)
-				if (((current->block[a].coord.x
-							+ current->pos.coord.x)
-						== (tetrimini[n]->block[b].coord.x
-							+ tetrimini[n]->pos.coord.x))
-					&& ((current->block[a].coord.y
-							+ current->pos.coord.y)
-						== (tetrimini[n]->block[b].coord.y
-							+ tetrimini[n]->pos.coord.y)))
+				if (COORD(i, a, 0) == COORD(n, b, 0)
+					&& COORD(i, a, 1) == COORD(n, b, 1))
 					return (0);
 		}
 	}
