@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 15:24:09 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/13 09:51:24 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/13 10:20:11 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,12 @@ typedef struct	s_tet
 	t_dim	dim;
 }				t_tet;
 
-void			solve(t_tet* tetrimini, t_i length);
+typedef t_tet *const *const t_tetab;
+
+void			solve(t_tet *const tetrimini, t_i const length);
+
+void			print_solution(t_tetab tetrimini, t_i const length,
+								t_i const side);
 
 
 #endif
