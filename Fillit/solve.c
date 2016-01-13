@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 09:37:48 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/13 10:56:29 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/13 11:40:50 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,19 @@ static int	back_track(t_tetab tetrimini, t_i const length,
 		{
 			if (is_ok(tetrimini, i)
 				&& back_track(tetrimini, length, side, i + 1))
+			{
+				for (int u = 0 ; u < i ; u++)
+					printf(" ");
+				printf("OK\n");
 				return (1);
+			}
 			current->pos.coord.y += 1;
 		}
 		current->pos.coord.x += 1;
 	}
+	for (int u = 0 ; u < i ; u++)
+		printf(" ");
+	printf("_NO_\n");
 	return (0);
 }
 
@@ -58,7 +66,12 @@ void		solve(t_tetab tetrimini, t_i const length)
 	t_i side;
 
 	side = guess_what(length);
+	printf("Starting with side = %i (length = %i)\n", side, length);
+
 	while (!back_track(tetrimini, length, side, 0))
+	{
 		side++;
+		printf("Failed with this side. Restarting with side = %i\n", side);
+	}
 	print_solution(tetrimini, length, side);
 }
