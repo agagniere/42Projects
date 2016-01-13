@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 09:37:48 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/13 12:40:54 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/13 14:08:38 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ static int	back_track(t_tetab tetrimini, t_i const length,
 
 	if (i == length)
 		return (1);
-	current->pos.coord.x = 0;
-	while (current->pos.coord.x <= side - current->dim.width)
+	current->pos.coord.y = 0;
+	while (current->pos.coord.y <= side - current->dim.height)
 	{
-		current->pos.coord.y = 0;
-		while (current->pos.coord.y <= side - current->dim.height)
+		current->pos.coord.x = 0;
+		while (current->pos.coord.x <= side - current->dim.width)
 		{
 			if (is_ok(tetrimini, i)
 				&& back_track(tetrimini, length, side, i + 1))
 				return (1);
-			current->pos.coord.y += 1;
+			current->pos.coord.x += 1;
 		}
-		current->pos.coord.x += 1;
+		current->pos.coord.y += 1;
 	}
 	return (0);
 }

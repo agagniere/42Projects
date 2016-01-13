@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 14:08:53 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/13 13:15:49 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/13 14:31:19 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ void	get_tetrimino(int i, t_tet *where)
 	case 6 :
 		ans = (t_tet){(t_pnt){1,0}, (t_pnt){1,1}, (t_pnt){1,2}, (t_pnt){0,1}, NEW_PNT, (t_dim){2,3}};
 		break;
+	case 7 :
+		ans = (t_tet){(t_pnt){0,0}, (t_pnt){1,0}, (t_pnt){1,1}, (t_pnt){2,1}, NEW_PNT, (t_dim){3,2}};
+		break;
 	}
 	memcpy(where, &ans, sizeof(ans));
 }
@@ -58,7 +61,7 @@ int main(int ac, char **av)
 	while (i-- > 0)
 	{
 		arg1[i] = (t_tet *)malloc(sizeof(t_tet));
-		get_tetrimino(i % 7, arg1[i]);
+		get_tetrimino(i % 8, arg1[i]);
 	}
 	solve(arg1, n);
 	return (0);

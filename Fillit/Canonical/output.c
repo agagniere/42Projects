@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 11:08:29 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/13 13:11:43 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/13 14:17:46 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void            print_solution(t_tetab tetrimini, t_i const length,
 	n = length;
 	i = side * side;
 	while (i-- > 0)
-		buffer[i] = '_';
+		buffer[i] = '.';
 	while (n-- > 0)
 	{
 		i = 4;
@@ -34,15 +34,18 @@ void            print_solution(t_tetab tetrimini, t_i const length,
 	n = 0;
 	while (n < side)
 	{
+		// -- For fun --
 		char c;
 		for (int u = 0 ; u < side ; u++) {
-			c = buffer[side * n + u] - 'A';
-			if (c != '_' - 'A')
-				printf("\033[1;%im%c", 30 + c % 7, c + 'A');
+			c = buffer[side * n + u];
+			if (c != '.')
+				printf("\033[1;%im%c", 30 + c % 8, c);
 			else
-				printf("\033[0m_");
+				printf("\033[0m.");
 		}
 		printf("\n");
+		// -- --
+
 //		write(1, buffer + side * n, side);
 //		write(1, "\n", 1);
 		n++;
