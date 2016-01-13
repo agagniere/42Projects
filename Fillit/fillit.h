@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 15:24:09 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/13 10:20:11 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/13 10:52:14 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FILLIT_H
 
 /*
-** int or char or unsigned ...
+** int or short or char or unsigned ...
 */
 typedef char	t_i;
 
@@ -48,5 +48,6 @@ void			solve(t_tet *const tetrimini, t_i const length);
 void			print_solution(t_tetab tetrimini, t_i const length,
 								t_i const side);
 
+int				is_ok(t_tetab tetrimini, t_i i);
 
 #endif
