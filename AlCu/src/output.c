@@ -6,7 +6,7 @@
 /*   By: yaitalla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 16:39:24 by yaitalla          #+#    #+#             */
-/*   Updated: 2015/12/21 01:49:03 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/07 12:50:19 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static int			max_index(t_ai *all)
 void				result(t_player who)
 {
 	if (who == HUMAN)
-		putcolor("Congratulations, you won !!!", BOLD_GREEN, 1, 1);
+		putcolor("Congratulations, you won !!!", BOLD_GREEN, 1);
 	else
-		putcolor("Sorry, you lost...", BOLD_RED, 1, 1);
+		putcolor("Sorry, you lost...", BOLD_RED, 1);
 }
 
 void				print_board(t_ai *all)
@@ -55,4 +55,12 @@ void				print_board(t_ai *all)
 		write(1, "\n", 1);
 	}
 	write(1, "\033[0m", 4);
+}
+
+void				putcolor(char const *str, char const *color, int fd)
+{
+	ft_putstr_fd(color, fd);
+	ft_putstr_fd(str, fd);
+	ft_putchar_fd('\n', fd);
+	ft_putstr_fd(EOC, fd);
 }

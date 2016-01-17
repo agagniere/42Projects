@@ -6,7 +6,7 @@
 /*   By: yaitalla <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/20 13:57:32 by yaitalla          #+#    #+#             */
-/*   Updated: 2015/12/21 02:26:06 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/07 12:49:57 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int				main(int ac, char **av)
 
 	*all = (t_ai){NULL, NULL, 0};
 	if (ac > 3 || begin(all, av[1]))
-		putcolor("ERROR", BOLD_RED, 2, 1);
+		putcolor("ERROR", BOLD_RED, 2);
 	return (0);
 }
