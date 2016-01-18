@@ -6,13 +6,13 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/01/18 20:04:57 by angagnie         ###   ########.fr        #
+#    Updated: 2016/01/19 00:08:39 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 # ==== Editable ====
 NAME:=fillit
-FILES:=main input_checker
+FILES:=main input_checker solve output apply
 # ==================
 
 # ==== Standard ====

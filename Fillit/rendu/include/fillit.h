@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 15:24:09 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/18 21:42:06 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/19 00:09:42 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** neither a char nor an unsigned char
 ** u_short or u_int or u_long_...
 */
-typedef size_t	t_i;
+typedef unsigned short	t_i;
 
 /*
 ** ret		: read returned value
@@ -29,20 +29,25 @@ typedef size_t	t_i;
 ** out		: the tetrimini list
 ** c		: position in the buffer
 */
-typedef struct	s_reader
+typedef struct			s_reader
 {
 	int			ret;
 	int			index;
 	t_i			out[26][4];
 	int			c;
-}				t_reader;
+}						t_reader;
 
-int				fi_check(char buffer[21], t_reader *all);
+typedef struct			s_map
+{
+	t_i			bool[16];
+	char		out[256];
+}						t_map;
 
-//void			solve(t_tetab tetrimini, t_i const length);
+int						fi_check(char buffer[21], t_reader *all);
+void					init(t_i tetrimini[26][4], int len);
 
-//void			print_solution(char *map, t_i side);
-
-//int				is_ok(t_tet const *const current, t_pnt const pos, char const *const map, t_i const side);
+void					print_solution(t_map map, int side);
+void					fi_apply(t_map *map, t_i cur[4], int row, int i);
+void					fi_remove(t_map *map, t_i cur[4], int row);
 
 #endif

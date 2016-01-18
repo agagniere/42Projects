@@ -6,7 +6,7 @@
 /*   By: sid <sid@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:43:36 by sid               #+#    #+#             */
-/*   Updated: 2016/01/18 21:41:29 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/18 21:53:43 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static int	fi_read(int fd)
 			return (1);
 		all.index++;
 	}
+	init(all.out, all.index);
 	return (0);
 }
 
