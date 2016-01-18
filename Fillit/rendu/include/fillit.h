@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 15:24:09 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/18 20:00:54 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/18 21:42:06 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,13 @@ typedef size_t	t_i;
 ** ret		: read returned value
 ** index	: current index in the tetrimini list
 ** out		: the tetrimini list
-** line		: current tetrimini line
-** c		: position in the line
+** c		: position in the buffer
 */
 typedef struct	s_reader
 {
 	int			ret;
 	int			index;
 	t_i			out[26][4];
-	int			line;
 	int			c;
 }				t_reader;
 

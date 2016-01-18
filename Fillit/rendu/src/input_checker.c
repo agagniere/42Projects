@@ -6,15 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 18:21:58 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/18 21:05:06 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/18 21:45:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-// --
-#include <stdio.h>
-// --
 
 static int	fi_overall(char *buf)
 {
@@ -56,6 +52,8 @@ int			fi_check(char buffer[21], t_reader *all)
 		}
 		else if ((buffer[all->c] != '#' && buffer[all->c] != '.'))
 			return (1);
+		else if (buffer[all->c] == '#')
+			all->out[all->index][all->c / 5] |= 1 << all->c % 5;
 		all->c++;
 	}
 	return (fi_overall(buffer));
