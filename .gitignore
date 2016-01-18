@@ -4,4 +4,4 @@ libft_tester
 *~
 */#*#
 *.bck
-*.cache_exists
+**/*.cache_exists
