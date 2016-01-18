@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 15:24:09 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/18 11:58:43 by sid              ###   ########.fr       */
+/*   Updated: 2016/01/18 20:00:54 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct	s_reader
 	int			line;
 	int			c;
 }				t_reader;
+
+int				fi_check(char buffer[21], t_reader *all);
 
 //void			solve(t_tetab tetrimini, t_i const length);
 

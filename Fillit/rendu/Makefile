@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/01/18 19:11:58 by angagnie         ###   ########.fr        #
+#    Updated: 2016/01/18 20:04:57 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -44,7 +44,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo $(CYAN) " - Compiling $@" $(RED)
-	@$(CC) $(LFLAGS) $< -o $@
+	@$(CC) $(LFLAGS) $(OBJ) -o $@
 	@echo $(GREEN) " - Done" $(END)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c $(CCHF)

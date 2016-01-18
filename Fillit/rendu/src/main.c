@@ -6,7 +6,7 @@
 /*   By: sid <sid@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 10:43:36 by sid               #+#    #+#             */
-/*   Updated: 2016/01/18 19:00:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/18 20:16:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,20 @@ static int	fi_read(int fd)
 {
 	char		buffer[21];
 	t_reader	all;
+	// ----
+	int tbd = 0;
 
 	all.index = 0;
 	all.ret = 21;
 	while (all.ret > 20)
 	{
 		all.ret = read(fd, buffer, 21);
-		if (all.ret < 20 || fi_check(buffer, &all))
+		printf("Piece #%i\n", all.index);
+		if (all.ret < 20 || (tbd = fi_check(buffer, &all))) {
+			printf("Retour de check : %i\n", tbd);
 			return (1);
+		}
+		all.index++;
 	}
 	return (0);
 }

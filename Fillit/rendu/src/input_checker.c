@@ -6,39 +6,45 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 18:21:58 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/18 19:45:24 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/18 21:05:06 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int	fi_spread(char *buf, int c, int i)
+// --
+#include <stdio.h>
+// --
+
+static int	fi_overall(char *buf)
 {
-	int const	*ind[4] = {c - 5, c + 5, c - 1, c + 1};
-	int const	*cond[4] = {c > 4, c < 15, c % 5 > 0, c % 5 < 4};
-	int			tmp[4];
-	int			i;
+	int		i;
+	int		j;
+	int		n;
+	int		c;
 
 	i = 4;
-	buf[c] = 'O';
+	n = 0;
+	c = 0;
 	while (i-- > 0)
 	{
-		tmp[i] = 0;
-		if (cond[i] && buf[ind[i]] == '#')
+		j = 3;
+		while (j-- > 0)
 		{
-			tmp[i] = 1;
-			i += fi_spread(buf, ind[i], 1);
-			buf[ind[i]] = 'O';
+			if (buf[5 * i + j] == '#' && buf[5 * i + j + 1] == '#')
+				c++;
+			if (buf[5 * j + i] == '#' && buf[5 * (j + 1) + i] == '#')
+				c++;
 		}
 	}
-	i = 4;
+	i = 20;
 	while (i-- > 0)
-		if (tmp[i])
-			buf[ind[i]] = '#';
-	return (i);
+		if (buf[i] == '#')
+			n++;
+	return (n != 4 || (c != 4 && c != 3));
 }
 
-int			fi_check(char buf[21], t_reader *all)
+int			fi_check(char buffer[21], t_reader *all)
 {
 	all->c = 0;
 	while (all->c < all->ret)
@@ -46,12 +52,11 @@ int			fi_check(char buf[21], t_reader *all)
 		if (all->c % 5 == 4 || all->c == 20)
 		{
 			if (buffer[all->c] != '\n')
-				return (1);
+				return (2);
 		}
-		else if ((buffer[all->c] == '#' && spread(buffer, al->c, 1) != 4)
-				|| (buffer[all->c] != '#' && buffer[all->c] != '.'))
+		else if ((buffer[all->c] != '#' && buffer[all->c] != '.'))
 			return (1);
 		all->c++;
 	}
-	return (0);
+	return (fi_overall(buffer));
 }
