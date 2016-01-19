@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 21:48:05 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/19 02:21:45 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/19 02:53:35 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <stdio.h>
 // -----
 
+#define TEST(w)		(!(cur[w] & (1 << data.side)))
+#define DECAL(w)	(cur[w] <<= 1)
 
 /*
 ** | guess_what :   [| 1 ; 26 |]   ->   [| 2 ; 11 |]
@@ -47,38 +49,35 @@ static int	is_ok(t_i cur[4], int row, t_i mapbool[16])
 	return (1);
 }
 
-static int	backtrack(t_i tet[26][4], int len, int side, t_map *map, int i)
+static int	backtrack(t_i tet[26][4], t_bt data, t_map *map, int i)
 {
 	int		row;
 	t_i		cur[4];
 	int		a;
 
-	printf("SIDE = %i\n", side);
-
-	if (i == len)
+	printf("data.side = %i\n", data.side); /* <- */
+	if (i == data.len)
 		return (1);
 	row = 0;
-	while (side - row > 3 || cur[side - row] == 0)
+	while (data.side - row > 3 || cur[data.side - row] == 0)
 	{
 		a = 4;
 		while (a-- > 0)
 			cur[a] = tet[i][a];
-		while (!(cur[0] & (1 << side)) && !(cur[1] & (1 << side)) && !(cur[2] & (1 << side)))
+		while (TEST(0) && TEST(1) && TEST(2))
 		{
-			printf("(%i) Testing tetrimino #%i, @row %i\n", side, i, row);
+			printf("(%i) Testing tetrimino #%i, @row %i\n", data.side, i, row); /* <- */
 			if (is_ok(cur, row, map->bool))
 			{
-				printf("Success\n");
+				printf("Success\n"); /* <- */
 				fi_apply(map, cur, row, i);
-				if (backtrack(tet, len, side, map, i + 1))
+				if (backtrack(tet, data, map, i + 1))
 					return (1);
 				fi_remove(map, cur, row);
 			}
-			else
-				printf("Fail\n");
-
-			((cur[0] <<= 1) && (cur[1] <<= 1)
-				&& (cur[2] <<= 1) && (cur[3] <<= 1));
+			else /* <- */
+				printf("Fail\n");/* <- */
+			(DECAL(0) && DECAL(1) && DECAL(2) && DECAL(3));
 		}
 		row++;
 	}
@@ -98,8 +97,7 @@ void		init(t_i tetrimini[26][4], int len)
 		map.out[side] = '.';
 	side = guess_what(len);
 	printf("Starting with side %i\n", side);
-	while (!backtrack(tetrimini, len, side, &map, 0)) {
+	while (!backtrack(tetrimini, (t_bt){len, side}, &map, 0))
 		side++;
-	}
 	print_solution(map.out, side);
 }
