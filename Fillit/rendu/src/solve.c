@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 21:48:05 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/19 00:02:55 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/19 01:38:35 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	is_ok(t_i cur[4], int row, t_i mapbool[16])
 
 	i = 4;
 	while (i-- > 0)
-		if (cur[i] | mapbool[row + i])
+		if (cur[i] & mapbool[row + i])
 			return (0);
 	return (1);
 }
@@ -45,17 +45,17 @@ static int	backtrack(t_i tet[26][4], int len, int side, t_map *map, int i)
 {
 	int		row;
 	t_i		cur[4];
+	int		a;
 
 	if (i == len)
 		return (1);
-	row = 4;
-	while (row-- > 0)
-		cur[row] = tet[i][row];
 	row = 0;
-	while (side - row > 3 && cur[side - row] == 0)
+	while (side - row > 3 || cur[side - row] == 0)
 	{
-		while (!(cur[0] & (1 << (side - 1))) && !(cur[1] & (1 << (side - 1)))
-			&& !(cur[2] & (1 << (side - 1))))
+		a = 4;
+		while (a-- > 0)
+			cur[a] = tet[i][a];
+		while (!(cur[0] & (1 << side)) && !(cur[1] & (1 << side)) && !(cur[2] & (1 << side)))
 		{
 			if (is_ok(cur, row, map->bool))
 			{
@@ -64,7 +64,8 @@ static int	backtrack(t_i tet[26][4], int len, int side, t_map *map, int i)
 					return (1);
 				fi_remove(map, cur, row);
 			}
-			(cur[0] <<= 1 && cur[1] <<= 1 && cur[2] <<= 1 && cur[3] <<= 1);
+			((cur[0] <<= 1) && (cur[1] <<= 1)
+				&& (cur[2] <<= 1) && (cur[3] <<= 1));
 		}
 		row++;
 	}
@@ -83,7 +84,8 @@ void		init(t_i tetrimini[26][4], int len)
 	while (side-- > 0)
 		map.out[side] = '.';
 	side = guess_what(len);
-	while (!backtrack(tetrimini, len, side, map, 0))
+	while (!backtrack(tetrimini, len, side, &map, 0)) {
 		side++;
-	print_solution(map, side);
+	}
+	print_solution(map.out, side);
 }

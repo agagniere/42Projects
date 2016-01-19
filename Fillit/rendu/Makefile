@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/01/19 00:08:39 by angagnie         ###   ########.fr        #
+#    Updated: 2016/01/19 01:56:16 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -70,9 +70,14 @@ re: fclean all
 test:
 	@echo "Files :" $(FILES)
 
+define_color:
+	$(eval CFLAGS += -DCOLOR)
+
+color: define_color all
+
 norme:
 	@echo $(RED)
 	@norminette $(SRC) $(HDRPATH) | grep -v  Norme -B1 || true
 	@echo $(END)
 
-.PHONY: all clean fclean re test norme
+.PHONY: all clean fclean re test norme color define_color

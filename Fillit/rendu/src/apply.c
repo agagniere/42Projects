@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 23:26:56 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/19 00:08:13 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/19 01:37:23 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	fi_apply(t_map *map, t_i cur[4], int row, int i)
 		while (b)
 		{
 			if ((b % 2))
-				map[16 * row + c] = 'A' + i;
+				map->out[16 * (row + a) + c] = 'A' + i;
 			c++;
 			b >>= 1;
 		}
@@ -44,12 +44,12 @@ void	fi_remove(t_map *map, t_i cur[4], int row)
 	while (a-- > 0)
 	{
 		b = cur[a];
-		map->bool[row + 1] ^= b;
+		map->bool[row + a] ^= b;
 		c = 0;
 		while (b)
 		{
 			if (b % 2)
-				map[16 * row + c] = '.';
+				map->out[16 * (row + a) + c] = '.';
 			c++;
 			b >>= 1;
 		}
