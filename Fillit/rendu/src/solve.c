@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 21:48:05 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/19 06:32:14 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/19 07:25:38 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 #define TEST(w)		(!(cur[w] & (1 << data.side)))
 #define DECAL(w)	(cur[w] <<= 1)
+#define ASSIGN(w)	(cur[w] = tet[i][w])
 
 /*
 ** | guess_what :   [| 1 ; 26 |]   ->   [| 2 ; 11 |]
@@ -40,20 +41,16 @@ static int	guess_what(int const length)
 
 static int	is_ok(t_i cur[4], int row, t_i mapbool[16])
 {
-	int i;
-
-	i = 4;
-	while (i-- > 0)
-		if (cur[i] & mapbool[row + i])
-			return (0);
-	return (1);
+	return (!(cur[0] & mapbool[row])
+		&& !(cur[1] & mapbool[row + 1])
+		&& !(cur[2] & mapbool[row + 2])
+		&& !(cur[3] & mapbool[row + 3]));
 }
 
 static int	backtrack(t_i tet[26][4], t_bt data, t_map *map, int i)
 {
 	int		row;
 	t_i		cur[4];
-	int		a;
 
 //	printf("data.side = %i\n", data.side); /* <- */
 	if (i == data.len)
@@ -61,9 +58,7 @@ static int	backtrack(t_i tet[26][4], t_bt data, t_map *map, int i)
 	row = 0;
 	while (data.side - row > 3 || cur[data.side - row] == 0)
 	{
-		a = 4;
-		while (a-- > 0)
-			cur[a] = tet[i][a];
+		(ASSIGN(0) && ASSIGN(1) && ASSIGN(2) && ASSIGN(3));
 		while (TEST(0) && TEST(1) && TEST(2))
 		{
 //			printf("(%i) Testing tetrimino #%i, @row %i\n", data.side, i, row); /* <- */
@@ -76,7 +71,7 @@ static int	backtrack(t_i tet[26][4], t_bt data, t_map *map, int i)
 				fi_remove(map, cur, row);
 			}
 //			else /* <- */
-//				printf("Fail\n");/* <- */
+//				printf("Fail\n"); /* <- */
 			(DECAL(0) && DECAL(1) && DECAL(2) && DECAL(3));
 		}
 		row++;
@@ -96,10 +91,10 @@ void		init(t_i tetrimini[26][4], int len)
 	while (side-- > 0)
 		map.out[side] = '.';
 	side = guess_what(len);
-	printf("Starting with side %i\n", side);
+	printf("Starting with side %i\n", side); /* <- */
 	while (!backtrack(tetrimini, (t_bt){len, side}, &map, 0)) {
 		side++;
-		printf("Restarting with side %i\n", side);
+		printf("Restarting with side %i\n", side); /* <- */
 	}
 	print_solution(map.out, side);
 }
