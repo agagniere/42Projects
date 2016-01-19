@@ -6,11 +6,16 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 21:48:05 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/19 01:38:35 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/19 02:21:45 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+// ----
+#include <stdio.h>
+// -----
+
 
 /*
 ** | guess_what :   [| 1 ; 26 |]   ->   [| 2 ; 11 |]
@@ -27,6 +32,7 @@ static int	guess_what(int const length)
 	side = 2;
 	while (side * side < cmp)
 		side++;
+	printf("Guessed : %i\n", side);
 	return (side);
 }
 
@@ -47,6 +53,8 @@ static int	backtrack(t_i tet[26][4], int len, int side, t_map *map, int i)
 	t_i		cur[4];
 	int		a;
 
+	printf("SIDE = %i\n", side);
+
 	if (i == len)
 		return (1);
 	row = 0;
@@ -57,13 +65,18 @@ static int	backtrack(t_i tet[26][4], int len, int side, t_map *map, int i)
 			cur[a] = tet[i][a];
 		while (!(cur[0] & (1 << side)) && !(cur[1] & (1 << side)) && !(cur[2] & (1 << side)))
 		{
+			printf("(%i) Testing tetrimino #%i, @row %i\n", side, i, row);
 			if (is_ok(cur, row, map->bool))
 			{
+				printf("Success\n");
 				fi_apply(map, cur, row, i);
 				if (backtrack(tet, len, side, map, i + 1))
 					return (1);
 				fi_remove(map, cur, row);
 			}
+			else
+				printf("Fail\n");
+
 			((cur[0] <<= 1) && (cur[1] <<= 1)
 				&& (cur[2] <<= 1) && (cur[3] <<= 1));
 		}
@@ -84,6 +97,7 @@ void		init(t_i tetrimini[26][4], int len)
 	while (side-- > 0)
 		map.out[side] = '.';
 	side = guess_what(len);
+	printf("Starting with side %i\n", side);
 	while (!backtrack(tetrimini, len, side, &map, 0)) {
 		side++;
 	}

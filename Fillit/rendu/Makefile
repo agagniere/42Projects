@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/01/19 01:56:16 by angagnie         ###   ########.fr        #
+#    Updated: 2016/01/19 02:07:47 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,7 +21,7 @@ CCHPATH:=cache/
 SRCPATH:=src/
 HDRPATH:=include/
 LFLAGS:=-I $(HDRPATH)
-CFLAGS:=-Wall -Wextra -Werror $(LFLAGS)
+CFLAGS:=-Wall -Wextra $(LFLAGS)
 # ==================
 
 # ===== Colors =====
