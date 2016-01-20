@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 15:24:09 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/19 02:32:37 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/20 17:58:22 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,32 @@
 ** neither a char nor an unsigned char
 ** u_short or u_int or u_long_...
 */
-typedef unsigned short	t_i;
+typedef uint64_t		t_line;
 
-/*
-** ret		: read returned value
-** index	: current index in the tetrimini list
-** out		: the tetrimini list
-** c		: position in the buffer
-*/
-typedef struct			s_reader
+typedef union			u_vec2i
 {
-	int			ret;
-	int			index;
-	t_i			out[26][4];
-	int			c;
-}						t_reader;
+	int		m[2];
+	struct
+	{
+		int	x;
+		int	y;
+	}		c;
+}						t_vec2i;
+
+typedef struct			s_tet
+{
+	t_line		line;
+	t_vec2i		pos;
+	t_vec2i		dim;
+}						t_tet;
 
 typedef struct			s_map
 {
-	t_i			bool[16];
-	char		out[256];
+	int			side;
+	t_line		line[3];
 }						t_map;
 
-typedef struct			s_bt
-{
-	int const	len;
-	int const	side;
-}						t_bt;
+t_map		apply(t_map const m[1], t_line const line[4], t_vec2i const pos);
 
-int						fi_check(char buffer[21], t_reader *all);
-void					init(t_i tetrimini[26][4], int len);
-
-void					print_solution(char mapout[256], int side);
-void					fi_apply(t_map *map, t_i cur[4], int row, int i);
-void					fi_remove(t_map *map, t_i cur[4], int row);
 
 #endif

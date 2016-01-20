@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/13 09:37:48 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/13 14:08:38 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/20 15:29:03 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,38 @@ static t_i	guess_what(t_i const length)
 }
 
 static int	back_track(t_tetab tetrimini, t_i const length,
-						t_i const side, t_i const i)
+					   t_i const side, char *map, t_i const i)
 {
-	t_tet *const	current = tetrimini[i];
+	int		x;
+	int		y;
 
-	if (i == length)
+	if  (i == length)
 		return (1);
-	current->pos.coord.y = 0;
-	while (current->pos.coord.y <= side - current->dim.height)
+	y = 0;
+	while (y <= side - height)
 	{
-		current->pos.coord.x = 0;
-		while (current->pos.coord.x <= side - current->dim.width)
-		{
-			if (is_ok(tetrimini, i)
-				&& back_track(tetrimini, length, side, i + 1))
-				return (1);
-			current->pos.coord.x += 1;
-		}
-		current->pos.coord.y += 1;
+		x = 0;
+		while (x <= side - width)
+			if(is_ok(x, y, tetramini[i], map))
+			{
+				map[y * side + x] = 'A' + i;
+				if (back_track(tetrimini, length, side, map, i + 1))
+					return (1);
+				map[y * side + x] = '.';
+			}
+		y++;
+	}
+	return (0);
+}
+
+int			go(tetrimini, length, side)
+{
+	char	map[side * side];
+
+	if (back_track(tetrimini, length, side, map, 0))
+	{
+		print_solution(map, side);
+		return (1);
 	}
 	return (0);
 }
@@ -58,7 +72,6 @@ void		solve(t_tetab tetrimini, t_i const length)
 	t_i side;
 
 	side = guess_what(length);
-	while (!back_track(tetrimini, length, side, 0))
+	while (!go(tetrimini, length, side))
 		side++;
-	print_solution(tetrimini, length, side);
 }
