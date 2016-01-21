@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 18:21:58 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/19 01:15:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/21 15:12:49 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,45 @@ static void	trim(t_i *p)
 	}
 }
 
-int			fi_check(char buffer[21], t_reader *all)
+static int			fi_check(char const buffer[21], t_tet *const tetrimino, int const max)
 {
-	all->c = 0;
-	while (all->c < all->ret)
+	int		c;
+
+	c = 0;
+	while (c < max)
 	{
-		if (all->c % 5 == 4 || all->c == 20)
+		if (c % 5 == 4 || c == 20)
 		{
-			if (buffer[all->c] != '\n')
+			if (buffer[c] != '\n')
 				return (2);
 		}
-		else if ((buffer[all->c] != '#' && buffer[all->c] != '.'))
+		else if ((buffer[c] != '#' && buffer[c] != '.'))
 			return (1);
-		else if (buffer[all->c] == '#')
-			all->out[all->index][all->c / 5] |= 1 << all->c % 5;
-		all->c++;
+		else if (buffer[c] == '#')
+			tetrimino[c / 5] |= (1 << c % 5);
+		c++;
 	}
 	trim(all->out[all->index]);
 	return (fi_overall(buffer));
+}
+
+int		fi_read(char const *const file_name, t_tet tetrimini[26], int *const length)
+{
+	int		fd;
+	int		ret;
+	char	buffer[21];
+	int		index;
+
+	index = 0;
+	if ((fd = open(file_name, O_RDONLY)) == -1)
+		return (1);
+	while (ret == 21)
+	{
+		ret = read(fd, buffer, 21);
+		if (ret < 20 || index > 25 || fi_check(buffer, tetrimini + index))
+			break ;
+		index++;
+	}
+	close(fd);
+	return (1);
 }
