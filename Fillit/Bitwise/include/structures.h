@@ -1,26 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 15:24:09 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/21 17:50:17 by angagnie         ###   ########.fr       */
+/*   Created: 2016/01/21 15:27:44 by angagnie          #+#    #+#             */
+/*   Updated: 2016/01/21 18:23:43 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#ifndef STRUCTURES_H
+# define STRUCTURES_H
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "structures.h"
+/*
+** neither a char nor an unsigned char
+** u_short or u_int or u_long_...
+*/
+typedef uint16_t		t_line;
 
-int         fi_read(char const *const file_name,
-	t_tet tetrimini[26], int *const length);
-int			fi_print(t_tet const tetrimini[26], int const side, int const length);
-int			fi_solve(t_tet tetrimini[26], int *const side, int const length);
+typedef union			u_vec2i
+{
+	int				m[2];
+		struct
+		{
+			int		x;
+			int		y;
+		}			c;
+}						t_vec2i;
+
+typedef struct			s_tet
+{
+	t_line		line[4];
+	t_vec2i		pos;
+	t_vec2i		dim;
+}						t_tet;
+
+typedef struct			s_map
+{
+	int			side;
+	t_line		line[12];
+}						t_map;
 
 #endif

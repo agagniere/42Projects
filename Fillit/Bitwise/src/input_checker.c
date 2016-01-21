@@ -6,13 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 18:21:58 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/21 15:12:49 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/21 16:50:03 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int	fi_overall(char *buf)
+static int	fi_overall(char const *buf)
 {
 	int		i;
 	int		j;
@@ -40,26 +40,28 @@ static int	fi_overall(char *buf)
 	return (n != 4 || (c != 4 && c != 3));
 }
 
-static void	trim(t_i *p)
+static void	trim(t_tet *const p)
 {
 	int i;
 
-	while (*p == 0)
+	while (p->line[0] == 0)
 	{
 		i = 0;
 		while (++i < 4)
-			p[i - 1] = p[i];
-		p[3] = 0;
+			p->line[i - 1] = p->line[i];
+		p->line[3] = 0;
 	}
-	while (!(p[0] % 2) && !(p[1] % 2) && !(p[2] % 2) && !(p[3] % 2))
+	while (!(p->line[0] % 2) && !(p->line[1] % 2)
+		&& !(p->line[2] % 2) && !(p->line[3] % 2))
 	{
 		i = 4;
 		while (i-- > 0)
-			p[i] >>= 1;
+			p->line[i] >>= 1;
 	}
 }
 
-static int			fi_check(char const buffer[21], t_tet *const tetrimino, int const max)
+static int	fi_check(char const buffer[21],
+	t_tet *const tetrimino, int const max)
 {
 	int		c;
 
@@ -74,14 +76,15 @@ static int			fi_check(char const buffer[21], t_tet *const tetrimino, int const m
 		else if ((buffer[c] != '#' && buffer[c] != '.'))
 			return (1);
 		else if (buffer[c] == '#')
-			tetrimino[c / 5] |= (1 << c % 5);
+			tetrimino->line[c / 5] |= (1 << c % 5);
 		c++;
 	}
-	trim(all->out[all->index]);
+	trim(tetrimino);
 	return (fi_overall(buffer));
 }
 
-int		fi_read(char const *const file_name, t_tet tetrimini[26], int *const length)
+int			fi_read(char const *const file_name,
+	t_tet tetrimini[26], int *const length)
 {
 	int		fd;
 	int		ret;
@@ -89,15 +92,22 @@ int		fi_read(char const *const file_name, t_tet tetrimini[26], int *const length
 	int		index;
 
 	index = 0;
+	ret = 21;
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		return (1);
 	while (ret == 21)
 	{
 		ret = read(fd, buffer, 21);
-		if (ret < 20 || index > 25 || fi_check(buffer, tetrimini + index))
+		if (ret < 20 || index > 25 || fi_check(buffer, tetrimini + index, ret))
+		{
+			index = -1;
 			break ;
+		}
 		index++;
 	}
 	close(fd);
-	return (1);
+	if (index == -1)
+		return (1);
+	*length = index;
+	return (0);
 }
