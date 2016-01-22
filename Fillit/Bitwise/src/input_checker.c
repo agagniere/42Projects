@@ -6,14 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 18:21:58 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/22 14:03:17 by sid              ###   ########.fr       */
+/*   Updated: 2016/01/22 20:04:43 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-// ---
-#include <stdio.h>
-// ===
 
 static int	fi_overall(char const *buf)
 {
@@ -64,7 +61,6 @@ static void	trim(t_tet *const p)
 {
 	int i;
 
-	printf("Before : %i %i %i %i\n", p->line[0], p->line[1], p->line[2], p->line[3]);
 	while (p->line[0] == 0)
 	{
 		i = 0;
@@ -101,7 +97,6 @@ static int	fi_check(char const buffer[21],
 		c++;
 	}
 	trim(tetrimino);
-	printf("%i %i %i %i\n", tetrimino->line[0], tetrimino->line[1], tetrimino->line[2], tetrimino->line[3]);
 	measure(tetrimino);
 	return (fi_overall(buffer));
 }
@@ -121,9 +116,7 @@ int			fi_read(char const *const file_name,
 	while (ret == 21)
 	{
 		ret = read(fd, buffer, 21);
-		printf("Initial %i %i %i %i\n", tetrimini->line[0], tetrimini->line[1], tetrimini->line[2], tetrimini->line[3]);
-		if (ret < 20 || index > 25
-			|| fi_check(buffer, tetrimini + index, ret))
+		if (ret < 20 || index > 25 || fi_check(buffer, tetrimini + index, ret))
 		{
 			index = -1;
 			break ;

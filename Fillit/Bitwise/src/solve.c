@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 21:48:05 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/22 14:01:18 by sid              ###   ########.fr       */
+/*   Updated: 2016/01/22 20:02:04 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 ** | side being the smallest natural integer verifying :
 ** |    length * 4 <= side * side
 */
+
 static int		guess_what(int const length)
 {
-	int         side;
-	int const   cmp = length * 4;
+	int			side;
+	int const	cmp = length * 4;
 
 	side = 2;
 	while (side * side < cmp)
@@ -50,22 +51,24 @@ static t_map	apply(t_map map, t_tet const *const cur)
 	return (map);
 }
 
-static int		back_track(t_tet tetrimini[26],
+static int		back_track(t_tet *tetrimini,
 	int const length, t_map map, int i)
 {
-	t_tet cur = tetrimini[i];
+	t_tet cur;
 
 	if (i == length)
 		return (1);
+	cur = tetrimini[i];
 	cur.pos.c.y = 0;
-	printf("Piece #%i (%i, %i)\n", i, cur.dim.c.x, cur.dim.c.y);fflush(stdout);
+	printf("Piece #%i (%i, %i)\n", i, cur.dim.c.x, cur.dim.c.y);fflush(stdout); /* <- */
 	while (cur.pos.c.y <= map.side - cur.dim.c.y)
 	{
 		cur.pos.c.x = 0;
 		while (cur.pos.c.x <= map.side - cur.dim.c.x)
 		{
 			printf("(%i, %i)\n", cur.pos.c.x, cur.pos.c.y);fflush(stdout); /* <- */
-			if (is_ok(&cur, &map) && back_track(tetrimini, length, apply(map, &cur), i + 1))
+			if (is_ok(&cur, &map)
+				&& back_track(tetrimini, length, apply(map, &cur), i + 1))
 				return (1);
 			cur.pos.c.x++;
 		}

@@ -6,40 +6,16 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 22:33:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/22 12:13:23 by sid              ###   ########.fr       */
+/*   Updated: 2016/01/22 20:05:21 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		fi_print(t_tet const tetrimini[26], int const side, int const length)
+static void		print_already(char buffer[144], int side)
 {
-	int			i;
-	int			j;
-	int			c;
-	t_line		b;
-	char		buffer[144];
+	int		i;
 
-	for (int a = 0 ; a < 144 ; a++)
-		buffer[a] = '.';
-	i = 0;
-	while (i < length)
-	{
-		j = 4;
-		while (j-- > 0)
-		{
-			b = 1;
-			c = tetrimini[i].pos.c.x;
-			while (b)
-			{
-				if (tetrimini[i].line[j] & b)
-					buffer[(tetrimini[i].pos.c.y + j) * 12 + c] = 'A' + i;
-				c++;
-				b <<= 1;
-			}
-		}
-		i++;
-	}
 	i = 0;
 	while (i < side)
 	{
@@ -47,5 +23,44 @@ int		fi_print(t_tet const tetrimini[26], int const side, int const length)
 		write(1, "\n", 1);
 		i++;
 	}
+}
+
+static void		draw_one(char *buf, t_tet const *const pce, int index)
+{
+	int		col;
+	int		row;
+	int		mask;
+
+	row = 4;
+	while (row-- > 0)
+	{
+		col = pce->pos.c.x;
+		mask = 1;
+		while (mask)
+		{
+			if (pce->line[row] & mask)
+				buf[(row + pce->pos.c.y) * 12 + col] = 'A' + index;
+			mask <<= 1;
+			col++;
+		}
+	}
+}
+
+int				fi_print(t_tet const tetrimini[26],
+	int const side, int const length)
+{
+	char	buffer[144];
+	int		i;
+
+	i = 144;
+	while (i-- > 0)
+		buffer[i] = '.';
+	i = 0;
+	while (i < length)
+	{
+		draw_one(buffer, tetrimini + i, i);
+		i++;
+	}
+	print_already(buffer, side);
 	return (0);
 }
