@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/21 15:27:44 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/21 18:23:43 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/22 11:52:33 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** neither a char nor an unsigned char
 ** u_short or u_int or u_long_...
 */
-typedef uint16_t		t_line;
+typedef unsigned short	t_line;
 
 typedef union			u_vec2i
 {

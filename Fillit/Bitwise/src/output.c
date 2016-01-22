@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 22:33:45 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/21 18:45:13 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/22 12:13:23 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int		fi_print(t_tet const tetrimini[26], int const side, int const length)
 	t_line		b;
 	char		buffer[144];
 
+	for (int a = 0 ; a < 144 ; a++)
+		buffer[a] = '.';
 	i = 0;
 	while (i < length)
 	{

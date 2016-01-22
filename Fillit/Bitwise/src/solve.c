@@ -6,11 +6,14 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 21:48:05 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/21 18:11:00 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/22 14:01:18 by sid              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+// ---
+#include <stdio.h>
+// ===
 
 /*
 ** | guess_what :   [| 1 ; 26 |]   ->   [| 2 ; 11 |]
@@ -55,11 +58,13 @@ static int		back_track(t_tet tetrimini[26],
 	if (i == length)
 		return (1);
 	cur.pos.c.y = 0;
+	printf("Piece #%i (%i, %i)\n", i, cur.dim.c.x, cur.dim.c.y);fflush(stdout);
 	while (cur.pos.c.y <= map.side - cur.dim.c.y)
 	{
 		cur.pos.c.x = 0;
 		while (cur.pos.c.x <= map.side - cur.dim.c.x)
 		{
+			printf("(%i, %i)\n", cur.pos.c.x, cur.pos.c.y);fflush(stdout); /* <- */
 			if (is_ok(&cur, &map) && back_track(tetrimini, length, apply(map, &cur), i + 1))
 				return (1);
 			cur.pos.c.x++;
@@ -72,8 +77,12 @@ static int		back_track(t_tet tetrimini[26],
 int				fi_solve(t_tet tetrimini[26], int *const side, int const length)
 {
 	*side = guess_what(length);
+	printf("Starting with : %i\n", *side);
 	while (!back_track(tetrimini, length,
 		(t_map){*side, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}, 0))
+	{
+		printf("Restarting with : %i\n", *side);
 		(*side)++;
-	return (1);
+	}
+	return (0);
 }
