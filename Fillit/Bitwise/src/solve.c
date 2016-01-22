@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 21:48:05 by angagnie          #+#    #+#             */
-/*   Updated: 2016/01/22 20:02:04 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/01/22 20:19:14 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,41 +51,40 @@ static t_map	apply(t_map map, t_tet const *const cur)
 	return (map);
 }
 
-static int		back_track(t_tet *tetrimini,
+static int		back_track(t_tet *const tetrimini,
 	int const length, t_map map, int i)
 {
-	t_tet cur;
+	t_tet *const cur = tetrimini + i;
 
 	if (i == length)
 		return (1);
-	cur = tetrimini[i];
-	cur.pos.c.y = 0;
-	printf("Piece #%i (%i, %i)\n", i, cur.dim.c.x, cur.dim.c.y);fflush(stdout); /* <- */
-	while (cur.pos.c.y <= map.side - cur.dim.c.y)
+	cur->pos.c.y = 0;
+	printf("Piece #%i (%i, %i)\n", i, cur->dim.c.x, cur->dim.c.y);fflush(stdout); /* <- */
+	while (cur->pos.c.y <= map.side - cur->dim.c.y)
 	{
-		cur.pos.c.x = 0;
-		while (cur.pos.c.x <= map.side - cur.dim.c.x)
+		cur->pos.c.x = 0;
+		while (cur->pos.c.x <= map.side - cur->dim.c.x)
 		{
-			printf("(%i, %i)\n", cur.pos.c.x, cur.pos.c.y);fflush(stdout); /* <- */
-			if (is_ok(&cur, &map)
-				&& back_track(tetrimini, length, apply(map, &cur), i + 1))
+			printf("(%i, %i)\n", cur->pos.c.x, cur->pos.c.y);fflush(stdout); /* <- */
+			if (is_ok(cur, &map)
+				&& back_track(tetrimini, length, apply(map, cur), i + 1))
 				return (1);
-			cur.pos.c.x++;
+			cur->pos.c.x++;
 		}
-		cur.pos.c.y++;
+		cur->pos.c.y++;
 	}
 	return (0);
 }
 
-int				fi_solve(t_tet tetrimini[26], int *const side, int const length)
+int				fi_solve(t_tet *const tetrimini, int *const side, int const length)
 {
 	*side = guess_what(length);
 	printf("Starting with : %i\n", *side);
 	while (!back_track(tetrimini, length,
 		(t_map){*side, {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}, 0))
 	{
-		printf("Restarting with : %i\n", *side);
 		(*side)++;
+		printf("Restarting with : %i\n", *side);
 	}
 	return (0);
 }
