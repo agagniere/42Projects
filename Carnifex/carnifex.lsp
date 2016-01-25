@@ -6,7 +6,7 @@
 ;    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2016/01/24 20:07:18 by angagnie          #+#    #+#              ;
-;    Updated: 2016/01/25 22:00:23 by angagnie         ###   ########.fr        ;
+;    Updated: 2016/01/25 22:14:35 by angagnie         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
@@ -46,6 +46,7 @@
   (floor (/ (* index screen) total))
   )
 (defun unconvert (pixel total screen)
+  (format t "Pixel ~$ Screen ~$ 4v ~$~%" pixel screen total)
   (floor (/ (* pixel total) screen))
   )
 
@@ -96,6 +97,14 @@
   (setf *oy* (max 0 (- *oy* *vy*)))
   )
 
+;; (defun life
+;;   (dotimes (i *tw*)
+;; 	(dotimes (j *th*)
+
+;; 	 )
+;; 	)
+;;   )
+
 (defun main (argv)
   "Makes me cry :'("
   (format t "0 : ~$~%1 : ~$~%2 : ~$~%" (first argv) (second argv) (third argv))
@@ -133,18 +142,16 @@ positional arguments:~%width                 width of the grid~%height          
 								  (:quit-event () (exit))
 								  (:mouse-button-up-event (:button button :x x :y y)
 														  (format t "Button : ~$ Coordonnees = x : ~$ y : ~$ ~%" button x y)
-														  (case button
-																(let ((tx (+ *ox* (unconvert x (* 4 *vx*) *sw*)))
-																	  (ty (+ *oy* (unconvert y (* 4 *vy*) *sh*))))
-																  (format t "x : ~$  y : ~$~%" tx ty)
-																  (if (and (< tx *tw*) (< ty *th*))
-																	  (progn
-																		(1 (setf (aref *grid* tx ty) 1))
-																		(2 (setf (aref *grid* tx ty) 0))
-																		)
-																	)
-																  )
-																)
+														  (let ((tx (+ *ox* (unconvert x (* 4 *vx*) *sw*)))
+																(ty (+ *oy* (unconvert y (* 4 *vy*) *sh*))))
+															(format t "x : ~$  y : ~$~%" tx ty)
+															(if (and (< tx *tw*) (< ty *th*))
+																(case button
+																	  (1 (setf (aref *grid* tx ty) 1))
+																	  (3 (setf (aref *grid* tx ty) 0))
+																	  )
+															  )
+															)
 														  (render)
 														  (sdl:update-display)
 														  )
