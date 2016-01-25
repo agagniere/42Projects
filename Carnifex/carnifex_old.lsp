@@ -1,12 +1,12 @@
 ;******************************************************************************;
 ;                                                                              ;
 ;                                                         :::      ::::::::    ;
-;    helloWorld.lisp                                    :+:      :+:    :+:    ;
+;    carnifex.lsp                                       :+:      :+:    :+:    ;
 ;                                                     +:+ +:+         +:+      ;
 ;    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
-;    Created: 2016/01/23 15:59:57 by angagnie          #+#    #+#              ;
-;    Updated: 2016/01/24 19:53:58 by angagnie         ###   ########.fr        ;
+;    Created: 2016/01/24 20:07:18 by angagnie          #+#    #+#              ;
+;    Updated: 2016/01/24 23:37:46 by angagnie         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
@@ -54,8 +54,6 @@
 	)
   )
 
-
-
 (defun life0 (grid i)
   (set-value grid (mod (floor *time*) *length*) 1)
   (set-value grid (mod (floor (- *time* *speed*)) *length*) 0)
@@ -66,11 +64,81 @@
   ;; 	)
   )
 
-(defun life1 (grid i)
-  (let ((x (mod i *grid-w*))
-		(y ))
+(defun set-state (initial nb total)
+  (format t "Initial : ~$  nb : ~$  total : ~$~%" initial nb total)
+  (if (> total 3)
+	  0
+	(if (eq (length nb) 0)
+		(if (< total 2)
+			0
+		  (if (eq total 3)
+			  1
+			initial
+			)
+		  )
+	  (set-state initial (rest nb) (+ total (car nb)))
+	  )
 	)
   )
+
+;; (defun life1 (grid i)
+;;   (if (eq i (- *length* (* 2 *grid-w*) 2))
+;; 	  *grid-tmp*
+;; 	(let* ((x (mod i *grid-w*))
+;; 		   (y (floor (/ i *grid-h*)))
+;; 		   (indexes (list 0 1 2 *grid-w* (+ 1 *grid-w*) (+ 2 *grid-w*) (* 2 *grid-w*) (+ 1 (* 2 *grid-w*)) (+ 2 (* 2 *grid-w*))))
+;; 		   (cache (mapcar #'(lambda (idk) (get-val grid idk)) indexes))
+;; 		   (cache2 (mapcar #'(lambda (idk) (get-val *grid-tmp* (+ idk i))) indexes)))
+;; 	  (defparameter i 0)
+;; 	  (dotimes (i 9)
+;; 	  	(format t "~$[~$] = ~$ / ~$~%" i (get-val indexes i) (get-val cache i) (get-val cache2 i))
+;; 	  	)
+;; 	  (if (and (eq x 0) (eq y 0) (eq 2 (car cache2)))
+;; 	  	  (progn (format t "csg~%")
+;; 	  			 (setf
+;; 				  *grid-tmp*
+;; 				  (set-value
+;; 				   *grid-tmp*
+;; 				   i
+;; 				   (set-state
+;; 					(car cache)
+;; 					(list (second cache) (fourth cache) (fifth cache))
+;; 					0
+;; 					)
+;; 				   )
+;; 				  )
+;; 	  			 )
+;; 	  	(format t "nope~%")
+;; 	  	)
+;; 	  ;; (if (and (eq y 0) (eq 2 (second cache2)))
+;; 	  ;; 	  (progn (format t "c")
+;; 	  ;; 			 ;;(setf *grid-tmp* (set-value *grid-tmp* (+ i 1) (set-state (second cache) (list (car cache) (third cache) (fourth cache) (fifth cache) (sixth cache)) 0)))
+;; 	  ;; 			 )
+;; 	  ;; 	(format t " ")
+;; 	  ;; 	)
+;; 	  ;; (if (and (eq x (- *grid-w* 3)) (eq y 0) (eq 2 (third cache2)))
+;; 	  ;; 	  (progn (format t "c~%")
+;; 	  ;; 			 (setf *grid-tmp* (set-value *grid-tmp* (+ i 2) (set-state (third cache) (list (second cache) (fifth cache) (sixth cache)) 0)))
+;; 	  ;; 			 )
+;; 	  ;; 	(format t "~%")
+;; 	  ;; 	)
+;; 	  ;; (if (and (eq x 0) (eq 2 (fourth cache2)))
+;; 	  ;; 	  (setf *grid-tmp* (set-value *grid-tmp* (+ i *grid-w*) (set-state (fourth cache) (list (car cache) (second cache) (fifth cache) (seventh cache) (heighth cache)) 0)))
+;; 	  ;; 	)
+;; 	  ;; (if (eq 2 (fifth cache2))
+;; 	  ;; 	  (setf *grid-tmp* (set-value *grid-tmp* (+ i 1 *grid-w*) (set-state (fifth cache) (set-value cache 5 0) 0)))
+;; 	  ;; 	)
+;; 	  ;; (if (and (eq x (- *grid-w* 3)) (eq 2 (sixth cache2)))
+;; 	  ;; 	  (setf *grid-tmp* (set-value *grid-tmp* (+ i 2 *grid-w*) (set-state (sixth cache) (list (second cache) (third cache) (fifth cache) (heighth cache) (ninth cache)) 0)))
+;; 	  ;; 	)
+;; 	  ;; (if (and (eq x (- *grid-w* 3)) (eq 2 (sixth cache2)))
+;; 	  ;; 	  (setf *grid-tmp* (set-value *grid-tmp* (+ i 2 *grid-w*) (set-state (sixth cache) (list (second cache) (third cache) (fifth cache) (heighth cache) (ninth cache)) 0)))
+;; 	  ;; 	)
+;; 	  (format t "Recursion~%")
+;; 	  (life1 (rest grid) (+ i 1))
+;; 	  )
+;; 	)
+;;   )
 
 (defun render ()
 ;  (format t "Repainting~%")
@@ -84,10 +152,12 @@
 	  (setf posy (floor (/ (* y *height*) *grid-h*)))
 ;	  (format t "grid[~$] = ~$~%(~$, ~$)~%" i (get-val *grid* i) x y)
 	  (if (eq (get-val *grid* i) 1)
-										;		(format t "Alive~%")
-										;	  (format t "Dead ~%"))
 		  (sdl:draw-box-* posx posy (floor (/ *width* *grid-w*)) (ceiling (/ *height* *grid-h*)) :color sdl:*white*)
-		(sdl:draw-rectangle-* posx posy (floor (/ *width* *grid-w*)) (ceiling (/ *height* *grid-h*)) :color sdl:*white*))
+		(sdl:draw-rectangle-* posx posy (floor (/ *width* *grid-w*)) (ceiling (/ *height* *grid-h*)) :color sdl:*white*)
+		)
+	  (if (eq (get-val *grid* i) 2)
+		  (sdl:draw-box-* posx posy (floor (/ *width* *grid-w*)) (ceiling (/ *height* *grid-h*)) :color sdl:*red*)
+		)
 	  )
 	)
   )
@@ -108,10 +178,14 @@ optional arguments:~%
 		   )
 	)
   (setf *grid* (new-grid *length* 0))
-  (set-value *grid* 5 1)
+  (set-value *grid* 0 1)
+  (set-value *grid* 2 1)
+  (set-value *grid* 33 1)
+  (set-value *grid* 67 1)
   (sdl:with-init ()
 				 (sdl:window *width* *height* :title-caption "Conway's Game of Life")
 				 (setf (sdl:frame-rate) 20)
+				 (render)
 				 (sdl:update-display)
 				 (sdl:with-events ()
 								  (:quit-event () (exit))
@@ -132,10 +206,10 @@ optional arguments:~%
 										 (incf *time* (* *speed* (mod *pause* 2)))
 										 (if (not (eq (floor *time-save*) (floor *time*))) (progn
 																							 ;; --=== Life 1 : Way 1 ===--
-																							 (setf *grid-tmp* (new-grid *length* 2))
-																							 (setf *grid* (life1 *grid* 0))
+																							 ;(setf *grid-tmp* (new-grid *length* 2))
+																							 ;(setf *grid* (life1 *grid* 0))
 																							 ;; --=== Life 0 : debug ===--
-																							 ;; (setf *grid* (life0 *grid* 0))
+																							 (setf *grid* (life0 *grid* 0))
 																							 ;; ------========------
 										 													 (render)
 										 													 (sdl:update-display)
