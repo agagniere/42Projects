@@ -6,7 +6,7 @@
 ;    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2016/01/24 20:07:18 by angagnie          #+#    #+#              ;
-;    Updated: 2016/01/25 22:14:35 by angagnie         ###   ########.fr        ;
+;    Updated: 2016/01/28 17:34:17 by angagnie         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
@@ -42,11 +42,17 @@
 (defparameter *speed* 1)
 (defparameter *pause* 0)
 
+;; Bounds : 1 => limits
+;;			_ => free
+(defparameter *bounds* 0)
+
+;; Show grid ? (boolean)
+(defparameter *show-grid* 0)
+
 (defun convert (index total screen)
   (floor (/ (* index screen) total))
   )
 (defun unconvert (pixel total screen)
-  (format t "Pixel ~$ Screen ~$ 4v ~$~%" pixel screen total)
   (floor (/ (* pixel total) screen))
   )
 
@@ -55,12 +61,12 @@
   (sdl:clear-display *background*)
   (let ((vw (* 4 *vx*)) (vh (* 4 *vy*)))
 	(dotimes (i vw)
-	  (if (< (+ i *ox*) *tw*)
+	  (if (and (< (+ i *ox*) *tw*) (>= (+ i *ox*) 0))
 		  (dotimes (j vh)
-			(if (< (+ j *oy*) *th*)
+			(if (and (< (+ j *oy*) *th*) (>= (+ j *oy*) 0))
 				(if (eq 1 (aref *grid* (+ i *ox*) (+ j *oy*)))
 					(sdl:draw-box-* (convert i vw *sw*) (convert j vh *sh*) (convert 1 vw *sw*) (convert 1 vh *sh*) :color *foreground*)
-				  (sdl:draw-rectangle-* (convert i vw *sw*) (convert j vh *sh*) (convert 1 vw *sw*) (convert 1 vh *sh*) :color *foreground*)
+				  (if (eq *show-grid* 1) (sdl:draw-rectangle-* (convert i vw *sw*) (convert j vh *sh*) (convert 1 vw *sw*) (convert 1 vh *sh*) :color *foreground*))
 				  )
 			  )
 			)
@@ -93,20 +99,47 @@
 (defun unzoom ()
   (setf *vx* (* *vx* 2))
   (setf *vy* (* *vy* 2))
-  (setf *ox* (max 0 (- *ox* *vx*)))
-  (setf *oy* (max 0 (- *oy* *vy*)))
+  (if (eq *bounds* 1)
+	  (progn ; then
+		(setf *ox* (max 0 (- *ox* *vx*)))
+		(setf *oy* (max 0 (- *oy* *vy*))))
+	(progn ; else
+	  (decf *ox* *vx*)
+	  (decf *oy* *vy*))
+	)
   )
 
-;; (defun life
-;;   (dotimes (i *tw*)
-;; 	(dotimes (j *th*)
+(defun life (grid)
+  (dotimes (i *tw*)
+	(dotimes (j *th*)
+	  (let ((total 0))
+		(if (> i 0) (incf total (aref *grid* (- i 1) j)))
+		(if (> j 0) (incf total (aref *grid* i (- j 1))))
+		(if (and (> i 0) (> j 0)) (incf total (aref *grid* (- i 1) (- j 1))))
+		(if (< i (- *tw* 1)) (incf total (aref *grid* (+ i 1) j)))
+		(if (< j (- *th* 1)) (incf total (aref *grid* i (+ j 1))))
+		(if (and (< i (- *tw* 1)) (< j (- *th* 1))) (incf total (aref *grid* (+ i 1) (+ j 1))))
+		(if (and (> i 0) (< j (- *th* 1))) (incf total (aref *grid* (- i 1) (+ j 1))))
+		(if (and (> j 0) (< i (- *tw* 1))) (incf total (aref *grid* (+ i 1) (- j 1))))
+		;; --==--
+		(setf (aref grid i j) (aref *grid* i j))
+		(if (or (> total 3) (< total 2)) (setf (aref grid i j) 0))
+		(if (= total 3) (setf (aref grid i j) 1))
+		)
+	  )
+	)
+  )
 
-;; 	 )
-;; 	)
-;;   )
+(defun grid-copy (grid)
+  (dotimes (x *tw*)
+	(dotimes (y *th*)
+	  (setf (aref *grid* x y) (aref grid x y))
+	  )
+	)
+  )
 
 (defun main (argv)
-  "Makes me cry :'("
+  "Better now"
   (format t "0 : ~$~%1 : ~$~%2 : ~$~%" (first argv) (second argv) (third argv))
   (if (or (eq (length argv) 1) (eq (second argv) "-h") (eq (second argv) "--help"))
 	  (progn (format t "usage: sbcl --load game_of_life.lsp [-h] width height~%~%
@@ -121,18 +154,6 @@ positional arguments:~%width                 width of the grid~%height          
 		   )
 	)
   (init-grid)
-  ;; --== Sample ==--
-  (setf (aref *grid* 0 0) 1)
-  (setf (aref *grid* 1 1) 1)
-  (setf (aref *grid* 1 0) 1)
-  (setf (aref *grid* 2 2) 1)
-  (setf (aref *grid* 4 4) 1)
-  (setf (aref *grid* 4 2) 1)
-  (setf (aref *grid* 10 10) 1)
-  (setf (aref *grid* (/ *tw* 2) (/ *th* 2)) 1)
-  (setf (aref *grid* (+ 3 (/ *tw* 2)) (/ *th* 2)) 1)
-  (setf (aref *grid* (/ *tw* 2) (+ 3 (/ *th* 2))) 1)
-  ;; --====--
   (sdl:with-init ()
 				 (sdl:window *sw* *sh* :title-caption "Conway's Game of Life")
 				 (setf (sdl:frame-rate) 20)
@@ -145,7 +166,7 @@ positional arguments:~%width                 width of the grid~%height          
 														  (let ((tx (+ *ox* (unconvert x (* 4 *vx*) *sw*)))
 																(ty (+ *oy* (unconvert y (* 4 *vy*) *sh*))))
 															(format t "x : ~$  y : ~$~%" tx ty)
-															(if (and (< tx *tw*) (< ty *th*))
+															(if (and (< tx *tw*) (< ty *th*) (>= tx 0) (>= ty 0))
 																(case button
 																	  (1 (setf (aref *grid* tx ty) 1))
 																	  (3 (setf (aref *grid* tx ty) 0))
@@ -164,10 +185,20 @@ positional arguments:~%width                 width of the grid~%height          
 													   (:sdl-key-p			(incf *pause* 1))
 													   (:sdl-key-period		(if (eq mod 1) (setf *speed* (* *speed* 2))))
 													   (:sdl-key-comma		(if (eq mod 1) (setf *speed* (/ *speed* 2))))
-													   (:sdl-key-w			(setf *oy* (max 0 (- *oy* *vy*))))
-													   (:sdl-key-s			(setf *oy* (min (- *th* (* 4 *vy*)) (+ *oy* *vy*))))
-													   (:sdl-key-a			(setf *ox* (max 0 (- *ox* *vx*))))
-													   (:sdl-key-d			(setf *ox* (min (- *tw* (* 4 *vx*)) (+ *ox* *vx*))))
+													   (:sdl-key-w			(if (eq *bounds* 1)
+																				(setf *oy* (max 0 (- *oy* *vy*)))
+																			  (decf *oy* *vy*)))
+													   (:sdl-key-s			(if (eq *bounds* 1)
+																				(setf *oy* (min (- *th* (* 4 *vy*)) (+ *oy* *vy*)))
+																			  (incf *oy* *vy*)))
+													   (:sdl-key-a			(if (eq *bounds* 1)
+																				(setf *ox* (max 0 (- *ox* *vx*)))
+																			  (decf *ox* *vx*)))
+													   (:sdl-key-d			(if (eq *bounds* 1)
+																				(setf *ox* (min (- *tw* (* 4 *vx*)) (+ *ox* *vx*)))
+																			  (incf *ox* *vx*)))
+													   (:sdl-key-r			(progn (init-grid)
+																				   (setf *pause* 0)))
 													   )
 												 (render)
 												 (sdl:update-display)
@@ -177,9 +208,13 @@ positional arguments:~%width                 width of the grid~%height          
 										 (let ((time-save *time*))
 										   (incf *time* (* *speed* (mod *pause* 2)))
 										   (if (not (eq (floor time-save) (floor *time*))) (progn
-																							   (render)
-																							   (sdl:update-display)
+																							 (let ((grid-tmp (make-array (list *tw* *th*))))
+																							   (life grid-tmp)
+																							   (grid-copy grid-tmp)
 																							   )
+																							 (render)
+																							 (sdl:update-display)
+																							 )
 											 )
 										   )
 										 )
