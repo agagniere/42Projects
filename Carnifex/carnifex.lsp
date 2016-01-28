@@ -6,7 +6,7 @@
 ;    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2016/01/24 20:07:18 by angagnie          #+#    #+#              ;
-;    Updated: 2016/01/28 18:17:34 by angagnie         ###   ########.fr        ;
+;    Updated: 2016/01/28 19:16:24 by angagnie         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
@@ -138,6 +138,18 @@
 	)
   )
 
+(defun draw-gun (x y)
+
+  )
+
+(defun draw-glider (x y)
+  (setf (aref *grid* x y) 1)
+  (setf (aref *grid* (+ x 2) y) 1)
+  (setf (aref *grid* (+ x 1) (+ y 1)) 1)
+  (setf (aref *grid* (+ x 2) (+ y 1)) 1)
+  (setf (aref *grid* (+ x 1) (+ y 2)) 1)
+  )
+
 (defun main (argv)
   "Better now"
   (format t "0 : ~$~%1 : ~$~%2 : ~$~%" (first argv) (second argv) (third argv))
@@ -156,7 +168,7 @@ positional arguments:~%width                 width of the grid~%height          
   (init-grid)
   (sdl:with-init ()
 				 (sdl:window *sw* *sh* :title-caption "Conway's Game of Life")
-				 (setf (sdl:frame-rate) 20)
+				 (setf (sdl:frame-rate) 60)
 				 (render)
 				 (sdl:update-display)
 				 (sdl:with-events ()
@@ -164,7 +176,6 @@ positional arguments:~%width                 width of the grid~%height          
 								  (:mouse-button-up-event (:button button :x x :y y)
 														  (let ((tx (+ *ox* (unconvert x (* 4 *vx*) *sw*)))
 																(ty (+ *oy* (unconvert y (* 4 *vy*) *sh*))))
-															(format t "x : ~$  y : ~$~%" tx ty)
 															(if (and (< tx *tw*) (< ty *th*) (>= tx 0) (>= ty 0))
 																(case button
 																	  (1 (setf (aref *grid* tx ty) 1))
@@ -197,6 +208,9 @@ positional arguments:~%width                 width of the grid~%height          
 																			  (incf *ox* *vx*)))
 													   (:sdl-key-r			(progn (init-grid)
 																				   (setf *pause* 0)))
+													   (:sdl-key-g			(if (eq mod 1)
+																				(draw-gun 0 0)
+																			  (draw-glider 0 0)))
 													   )
 												 (render)
 												 (sdl:update-display)
