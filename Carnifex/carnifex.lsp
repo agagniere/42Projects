@@ -6,7 +6,7 @@
 ;    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
 ;    Created: 2016/01/24 20:07:18 by angagnie          #+#    #+#              ;
-;    Updated: 2016/01/28 17:34:17 by angagnie         ###   ########.fr        ;
+;    Updated: 2016/01/28 18:17:34 by angagnie         ###   ########.fr        ;
 ;                                                                              ;
 ;******************************************************************************;
 
@@ -162,7 +162,6 @@ positional arguments:~%width                 width of the grid~%height          
 				 (sdl:with-events ()
 								  (:quit-event () (exit))
 								  (:mouse-button-up-event (:button button :x x :y y)
-														  (format t "Button : ~$ Coordonnees = x : ~$ y : ~$ ~%" button x y)
 														  (let ((tx (+ *ox* (unconvert x (* 4 *vx*) *sw*)))
 																(ty (+ *oy* (unconvert y (* 4 *vy*) *sh*))))
 															(format t "x : ~$  y : ~$~%" tx ty)
@@ -177,7 +176,6 @@ positional arguments:~%width                 width of the grid~%height          
 														  (sdl:update-display)
 														  )
 								  (:key-up-event (:KEY KEY :mod mod)
-												 (format t "Key : ~$ ~$ ~%" key mod)
 												 (case key
 													   (:sdl-key-escape		(sdl:push-quit-event))
 													   (:sdl-key-kp-plus	(zoom))
