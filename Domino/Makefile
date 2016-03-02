@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/02/28 06:40:32 by angagnie          #+#    #+#              #
-#    Updated: 2016/02/28 22:59:09 by angagnie         ###   ########.fr        #
+#    Updated: 2016/03/02 20:17:38 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -14,7 +14,7 @@ NAME=IAhyperforte
 FLAGS=-g -Wall -Wextra -Werror -I includes/
 LIBFT=libft/libft.a
 LIBFLAGS=-lft -L libft
-SRCSF=main.c input.c play.c board.c
+SRCSF=main.c input.c input2.c play.c play2.c board.c
 OBJSF=$(SRCSF:.c=.o)
 SRCDIR=srcs/
 OBJDIR=objs/

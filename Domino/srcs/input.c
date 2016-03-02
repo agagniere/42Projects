@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 05:27:33 by angagnie          #+#    #+#             */
-/*   Updated: 2016/02/28 23:40:46 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/03/02 20:17:19 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,6 @@ static void		last_move(t_env *e, char *str)
 		e->my_last_action = r;
 	else
 		e->opp_last_action = r;
-}
-
-static void		aux(t_domino *t, char *str)
-{
-	t->ori = ft_atoi(str);
-	t->dir = ft_atoi(str + 2);
-	t->pos.x += (t->ori - 1) * (2 * t->dir - 3);
-	t->pos.y -= (t->ori - 2) * (2 * t->dir - 3);
-	t->u[0] = 1;
-	t->u[1] = 0;
 }
 
 static int		niklapolice(char *buf, t_env *e)

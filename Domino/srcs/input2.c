@@ -6,13 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/28 23:38:37 by angagnie          #+#    #+#             */
-/*   Updated: 2016/02/28 23:40:28 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/03/02 20:17:13 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "domino.h"
 
-void	find_hook(t_env *e, t_domino *t)
+void		find_hook(t_env *e, t_domino *t)
 {
 	int		i;
 	t_pnt	ctr;
@@ -41,7 +41,17 @@ void	find_hook(t_env *e, t_domino *t)
 	e->dom[i].u[1] = 1;
 }
 
-void	new_piece(t_env *e, char *str)
+static void	aux(t_domino *t, char *str)
+{
+	t->ori = ft_atoi(str);
+	t->dir = ft_atoi(str + 2);
+	t->pos.x += (t->ori - 1) * (2 * t->dir - 3);
+	t->pos.y -= (t->ori - 2) * (2 * t->dir - 3);
+	t->u[0] = 1;
+	t->u[1] = 0;
+}
+
+void		new_piece(t_env *e, char *str)
 {
 	t_domino	t;
 	int			i;
