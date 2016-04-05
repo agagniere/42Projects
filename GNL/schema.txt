@@ -1,0 +1,34 @@
+********************************************************************************
+
+                                                          :::      ::::::::
+     schema.txt                                         :+:      :+:    :+:
+                                                      +:+ +:+         +:+
+     By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+
+                                                  +#+#+#+#+#+   +#+
+     Created: 2016/04/05 08:19:34 by angagnie          #+#    #+#
+     Updated: 2016/04/05 13:00:37 by angagnie         ###   ########.fr         
+
+********************************************************************************
+
+save :
+	 - 0	"Hello World\nHi Human\n"
+	 - 13	"Children of Paradise.\nWithout a care\nIt was long ago\n
+			No trouble no grief\n"
+	 - 5	"Foo Bar Baz \0 I think therefore I am"
+
+4 : "In search of the light\nIn the early morning glow\n"
+
+gnl(4) -> 1
+	   | save += (4, "In the early morning glow\n")
+	   | *line = "In search of the light"
+
+gnl(4) -> 1
+	   save -= 4
+	   *line = "In the early morning glow"
+
+gnl(4) -> 0
+	   *line = ??
+
+gnl(5) -> 1
+	   save -= 5
+	   *line = "..."
