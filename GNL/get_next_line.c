@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/05 12:59:17 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/05 14:44:46 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,41 +27,46 @@
 ** -
 */
 
-t_fdsave		*get_past(t_list *save)
+/* static t_fdsave		*get_past(int const fd, t_list *save) */
+/* { */
+/* 	t_node	*tmp; */
+/* 	fd_save	**data; */
+/* 	char	*pos; */
+
+/* 	data = &tmp; */
+/* 	tmp = save; */
+/* 	while ((tmp = tmp->next) != (t_node *)save) */
+/* 	{ */
+/* 		if (*data->fd == fd) */
+/* 		{ */
+/* 			if (pos = strchr(*data->data)) */
+/* 				return (*data); */
+/* 		} */
+/* 	} */
+/* 	return (NULL); */
+/* } */
+
+/* static int			now_read() */
+/* { */
+
+/* } */
+
+int					get_next_line(int const fd, char **line)
 {
-	t_node	*tmp;
-	fd_save	**data;
-	char	*pos;
+	(void)fd;
+	*line = ft_strdup("Hello :*");
+/* 	static t_list	save; */
+/* 	t_dyna			data; */
 
-	data = &tmp;
-	tmp = save;
-	while ((tmp = tmp->next) != (t_node *)save)
-	{
-		if ((*data)->fd == fd)
-		{
-			if (pos = strchr())
-			return (*data);
-		}
-	}
-	return (NULL);
-}
+/* 	if (*line != NULL)	// Free previous line */
+/* 	{ */
+/* 		free(*line); */
+/* 		*line = NULL; */
+/* 	} */
+/* 	if (get_past(fd, &save) && ) */
+/* 	data = ft_dyna_new(sizeof(char)); */
+/* 	ft_dyna_datainit(&data); */
 
-int		get_next_line(int const fd, char **line)
-{
-	static t_list	save;
-	t_fdsave		*past;
-	t_dyna			data;
-
-	if (*line != NULL)	// Free previous line
-	{
-		free(*line);
-		*line = NULL;
-	}
-	if ((past = get_past(fd, &save)) && handle_past(past, line))
-		return (1);
-	data = ft_dyna_new(sizeof(char));
-	ft_dyna_datainit(&data);
-
-	handle_past(fd, line,);
-	return (0);
+/* 	handle_past(fd, line,);	 */
+	return (1);
 }

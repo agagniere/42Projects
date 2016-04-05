@@ -6,7 +6,7 @@
      By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2016/04/05 08:19:34 by angagnie          #+#    #+#
-     Updated: 2016/04/05 13:00:37 by angagnie         ###   ########.fr         
+     Updated: 2016/04/05 13:19:40 by angagnie         ###   ########.fr         
 
 ********************************************************************************
 
@@ -32,3 +32,14 @@ gnl(4) -> 0
 gnl(5) -> 1
 	   save -= 5
 	   *line = "..."
+
+gnl(0) -> 1
+	   "Hello World"
+gnl(0) -> 1
+	   "Hi Human"
+gnl(0) - nothing happens
+
+in stdin the user writes "How R U ?" then hits Ctrl-D
+
+gnl(0) -> 0
+	   *line = "How R U ?"
