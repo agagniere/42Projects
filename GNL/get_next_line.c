@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/12 19:42:24 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/12 20:55:48 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static t_fdsave		*get_past(int const fd, const t_list *save)
 			return ((t_fdsave *)tmp);
 	return (NULL);
 }
+
+static
 
 static int			handle_past(t_fdsave *past, char **line)
 {
@@ -43,12 +45,27 @@ static int			handle_past(t_fdsave *past, char **line)
 	return (0);
 }
 
-static int			now_read(t_fdsave *past, char **line, t_dyna *acc, int const fd)
+static int			now_read(char **line, t_dyna *acc, int const fd, t_list *save)
 {
 	char	buf[BUFF_SIZE];
+	char	*acc_before;
+	char	*ln;
 	int		ret;
 
-	while (ret = read(fd, ))
+	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	{
+		acc_before = acc->data + acc->chunck_count;
+		ft_dyna_append(acc, buf, ret);
+		ln = memchr(acc_before, ret);
+		if (ln != NULL)
+		{
+			*line = ft_memdup(acc->data, ln - acc->data + 1);
+			*line[ln - acc->data] = '\0';
+			ftl_push_back(save, &(t_fdsave){{0, 0}, fd, acc->data + acc->chunck_count - ln, ln});
+			ft_dyna_del(&acc);
+		}
+	}
+
 }
 
 /*
@@ -70,24 +87,24 @@ int					get_next_line(int const fd, char **line)
 {
 	static t_list	save;
 	t_dyna			data;
-	t_fdsave		past;
+	t_fdsave		*past;
 
 	if (line == NULL || BUFF_SIZE <= 0 || fd < 0)
 		return (-1);
-	if (*line != NULL)	// Free previous line
+/*	if (*line != NULL)	// Free previous line
 	{
 		free(*line);
 		*line = NULL;
-	}
+}*/
 	data = ft_dyna_new(sizeof(char));
 	past = get_past(fd, &save);
 	if (past != NULL)
 	{
 		if (handle_past(past, line))
 			return (1);
-		else if (past->)
-		ft_dyna_append(&data, past->data);
+		ft_dyna_append(&data, past->data, past->size);
+		ftl_pop_elem(&save, &past);
 	}
-	now_read(line, &data);
+	now_read(line, &data, fd, &save);
 	return (1);
 }
