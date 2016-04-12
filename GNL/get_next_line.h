@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:17 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/05 11:14:08 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/12 07:09:49 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct	s_fdsave
 {
 	t_node	self;
 	int		fd;
+	size_t	size;
 	char	*data;
 }				t_fdsave;
 
