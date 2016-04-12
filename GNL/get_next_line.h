@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:17 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/12 07:09:49 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/12 19:50:22 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ typedef struct	s_fdsave
 	size_t	size;
 	char	*data;
 }				t_fdsave;
-
-typedef struct	s_gnl
-{
-	char	buf[BUFF_SIZE];
-	t_dyna	acc;
-}				t_gnl;
 
 /*
 ** gnl :    N x A       ->  N x S
