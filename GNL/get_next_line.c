@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/12 20:55:48 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/12 21:15:19 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static t_fdsave		*get_past(int const fd, const t_list *save)
 	return (NULL);
 }
 
-static
-
 static int			handle_past(t_fdsave *past, char **line)
 {
 	char	*ln;
@@ -33,9 +31,9 @@ static int			handle_past(t_fdsave *past, char **line)
 
 	if (past != NULL && (ln = ft_memchr(past->data, '\n', past->size)) != NULL)
 	{
-		*line = ft_memdup(past->data, ln - past->data + 1);
+		*line = ft_memdup(past->data, ln - (char *)past->data + 1);
 		*line[ln - past->data] = '\0';
-		len = past->size - (ln - past->data + 1);
+		len = past->size - (ln - (char *)past->data + 1);
 		tmp = ft_memdup(ln + 1, len);
 		free(past->data);
 		past->data = tmp;
@@ -56,16 +54,28 @@ static int			now_read(char **line, t_dyna *acc, int const fd, t_list *save)
 	{
 		acc_before = acc->data + acc->chunck_count;
 		ft_dyna_append(acc, buf, ret);
-		ln = memchr(acc_before, ret);
+		ln = ft_memchr(acc_before, '\n', ret);
 		if (ln != NULL)
 		{
-			*line = ft_memdup(acc->data, ln - acc->data + 1);
-			*line[ln - acc->data] = '\0';
-			ftl_push_back(save, &(t_fdsave){{0, 0}, fd, acc->data + acc->chunck_count - ln, ln});
-			ft_dyna_del(&acc);
+			*line = ft_memdup(acc->data, ln - (char *)acc->data + 1);
+			*line[ln - (char *)acc->data] = '\0';
+			ftl_push_back(save, (t_node *)&(t_fdsave){{0, 0}, fd, (char *)acc->data + acc->chunck_count - ln, ln});
+			ft_dyna_del(acc);
+			return (1);
 		}
 	}
-
+	if (ret < 0)
+	{
+		ft_dyna_del(acc);
+		return (-1);
+	}
+	if (acc->chunck_count > 0)
+	{
+		*line = acc->data;
+		return (1);
+	}
+	ft_dyna_del(acc);
+	return (0);
 }
 
 /*
@@ -103,8 +113,17 @@ int					get_next_line(int const fd, char **line)
 		if (handle_past(past, line))
 			return (1);
 		ft_dyna_append(&data, past->data, past->size);
-		ftl_pop_elem(&save, &past);
+		ftl_pop_elem(&save, (t_node **)&past);
 	}
-	now_read(line, &data, fd, &save);
-	return (1);
+	return (now_read(line, &data, fd, &save));
+}
+
+int		main(int ac, char **av)
+{
+	char *buffer;
+
+	(void)ac;
+	(void)av;
+	get_next_line(0, &buffer);
+	return (0);
 }
