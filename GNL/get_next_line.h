@@ -6,15 +6,18 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:17 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/12 21:07:30 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/13 13:58:35 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
-#include <stdlib.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#define BUFF_SIZE 1024
+# include "libft.h"
+# include <unistd.h>
+# include <stdlib.h>
+
+# define BUFF_SIZE 1024
 
 typedef struct	s_fdsave
 {
@@ -37,3 +40,5 @@ typedef struct	s_fdsave
 */
 
 int				get_next_line(int const fd, char **line);
+
+#endif

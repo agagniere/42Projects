@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/13 11:44:11 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/13 14:01:03 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static int			now_read(char **line, t_dyna *acc, int const fd, t_list *save)
 			*line = ft_memdup(acc->data, ln - (char *)(acc->data) + 1);
 			*(*line + (ln - (char *)(acc->data))) = '\0';
 			if (((char *)(acc->data) + acc->chunck_count) - ln - 1 > 0)
-				ftl_push_back(save, (t_node *)&(t_fdsave){{0, 0}, fd, ((char *)(acc->data) + acc->chunck_count) - ln - 1, ln + 1});
+				ftl_push_back(save, (t_node *)&(t_fdsave){{0, 0}, fd,
+					((char *)(acc->data) + acc->chunck_count) - ln - 1, ln + 1});
 			ft_dyna_del(acc);
 			return (1);
 		}
