@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/13 10:01:29 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/13 11:44:11 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static int			now_read(char **line, t_dyna *acc, int const fd, t_list *save)
 		{
 			*line = ft_memdup(acc->data, ln - (char *)(acc->data) + 1);
 			*(*line + (ln - (char *)(acc->data))) = '\0';
-			ftl_push_back(save, (t_node *)&(t_fdsave){{0, 0}, fd, ((char *)(acc->data) + acc->chunck_count) - ln, ln});
+			if (((char *)(acc->data) + acc->chunck_count) - ln - 1 > 0)
+				ftl_push_back(save, (t_node *)&(t_fdsave){{0, 0}, fd, ((char *)(acc->data) + acc->chunck_count) - ln - 1, ln + 1});
 			ft_dyna_del(acc);
 			return (1);
 		}
@@ -116,6 +117,8 @@ int					get_next_line(int const fd, char **line)
 		ft_dyna_append(&data, past->data, past->size);
 		ftl_pop_elem(&save, (t_node **)&past);
 	}
+	else if (save.size == 0)
+		ftl_init(&save, sizeof(t_fdsave));
 	return (now_read(line, &data, fd, &save));
 }
 
