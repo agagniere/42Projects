@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/12 21:15:19 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/13 10:01:29 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static int			now_read(char **line, t_dyna *acc, int const fd, t_list *save)
 		ln = ft_memchr(acc_before, '\n', ret);
 		if (ln != NULL)
 		{
-			*line = ft_memdup(acc->data, ln - (char *)acc->data + 1);
-			*line[ln - (char *)acc->data] = '\0';
-			ftl_push_back(save, (t_node *)&(t_fdsave){{0, 0}, fd, (char *)acc->data + acc->chunck_count - ln, ln});
+			*line = ft_memdup(acc->data, ln - (char *)(acc->data) + 1);
+			*(*line + (ln - (char *)(acc->data))) = '\0';
+			ftl_push_back(save, (t_node *)&(t_fdsave){{0, 0}, fd, ((char *)(acc->data) + acc->chunck_count) - ln, ln});
 			ft_dyna_del(acc);
 			return (1);
 		}
@@ -107,9 +107,10 @@ int					get_next_line(int const fd, char **line)
 		*line = NULL;
 }*/
 	data = ft_dyna_new(sizeof(char));
-	past = get_past(fd, &save);
-	if (past != NULL)
+	ft_dyna_datainit(&data);
+	if (save.size != 0 && (past = get_past(fd, &save)) != NULL)
 	{
+		past = get_past(fd, &save);
 		if (handle_past(past, line))
 			return (1);
 		ft_dyna_append(&data, past->data, past->size);
@@ -118,12 +119,14 @@ int					get_next_line(int const fd, char **line)
 	return (now_read(line, &data, fd, &save));
 }
 
+/*
 int		main(int ac, char **av)
 {
-	char *buffer;
+	char *buffer = NULL;
 
 	(void)ac;
 	(void)av;
 	get_next_line(0, &buffer);
 	return (0);
 }
+*/
