@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:17 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/13 20:43:20 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/13 20:47:12 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-# define BUFF_SIZE 1024
+# define BUFF_SIZE 2048
 
 typedef struct	s_fdsave
 {

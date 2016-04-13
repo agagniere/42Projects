@@ -6,11 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/13 20:36:32 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/13 21:12:21 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#define ACCSIZE (acc->chunck_count)
 
 static t_fdsave		*get_past(int const fd, const t_list *save)
 {
@@ -43,44 +44,48 @@ static int			handle_past(t_fdsave *past, char **line)
 	return (0);
 }
 
-static int			now_read(char **line, t_dyna *acc, int const fd, t_list *save)
+static int			gnl2(int ret, t_dyna *acc, char **line)
+{
+	if (ret < 0)
+	{
+		ft_dyna_del(acc);
+		return (-1);
+	}
+	if (ACCSIZE > 0)
+	{
+		*line = ft_memdup(acc->data, ACCSIZE + 1);
+		(*line)[ACCSIZE] = '\0';
+		return (1);
+	}
+	ft_dyna_del(acc);
+	return (0);
+}
+
+static int			now_read(char **line, t_dyna *acc,
+	int const fd, t_list *save)
 {
 	char	buf[BUFF_SIZE];
-	size_t	acc_before;
 	char	*ln;
 	int		ret;
 	int		len;
 
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
-		acc_before = acc->chunck_count;
 		ft_dyna_append(acc, buf, ret);
-		ln = ft_memchr((char *)acc->data + acc_before, '\n', ret);
+		ln = ft_memchr((char *)acc->data + ACCSIZE - ret, '\n', ret);
 		if (ln != NULL)
 		{
-			len = ((char *)(acc->data) + acc->chunck_count) - ln - 1;
+			len = ((char *)(acc->data) + ACCSIZE) - ln - 1;
 			*line = ft_memdup(acc->data, ln - (char *)(acc->data) + 1);
 			*(*line + (ln - (char *)(acc->data))) = '\0';
 			if (len > 0)
-				ftl_push_back(save, (t_node *)&(t_fdsave){{0, 0},
-							fd, len, ft_memdup(ln + 1, len)});
+				ftl_push_back(save, (t_node *)&(t_fdsave){{0, 0}, fd,
+					len, ft_memdup(ln + 1, len)});
 			ft_dyna_del(acc);
 			return (1);
 		}
 	}
-	if (ret < 0)
-	{
-		ft_dyna_del(acc);
-		return (-1);
-	}
-	if (acc->chunck_count > 0)
-	{
-		*line = ft_memdup(acc->data, acc->chunck_count + 1);
-		*line[acc->chunck_count] = '\0';
-		return (1);
-	}
-	ft_dyna_del(acc);
-	return (0);
+	return (gnl2(ret, acc, line));
 }
 
 /*
@@ -106,11 +111,6 @@ int					get_next_line(int const fd, char **line)
 
 	if (line == NULL || BUFF_SIZE <= 0 || fd < 0)
 		return (-1);
-/*	if (*line != NULL)	// Free previous line
-	{
-		free(*line);
-		*line = NULL;
-}*/
 	data = ft_dyna_new(sizeof(char));
 	ft_dyna_datainit(&data);
 	if (save.size != 0 && (past = get_past(fd, &save)) != NULL)
@@ -127,13 +127,11 @@ int					get_next_line(int const fd, char **line)
 }
 
 /*
-int		main(int ac, char **av)
-{
-	char *buffer = NULL;
-
-	(void)ac;
-	(void)av;
-	get_next_line(0, &buffer);
-	return (0);
-}
+**	--== I planned to add ==--
+**	if (*line != NULL)	// Free previous line
+**	{
+**		free(*line);
+**		*line = NULL;
+**	}
+**	--======================--
 */
