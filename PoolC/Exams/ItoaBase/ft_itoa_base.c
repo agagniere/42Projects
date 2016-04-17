@@ -6,27 +6,20 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/28 11:37:29 by angagnie          #+#    #+#             */
-/*   Updated: 2015/11/28 12:48:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/17 14:23:51 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #define ABS(v) ((v) < 0 ? -(v) : (v))
 
-void	aux_dix(int n, char *ans, int *p)
-{
-	if (n < -9 || 9 < n)
-		aux_dix(n / 10, ans, p);
-	ans[(*p)++] = '0' + ABS(n % 10);
-}
-
-void	aux(unsigned int n, unsigned int b, char *ans, int *p)
+void	aux(int n, int b, char *ans, int *p)
 {
 	char	base[] = "0123456789ABCDEF";
 
-	if (n >= b)
+	if (n <= -b || b <= n)
 		aux(n / b, b, ans, p);
-	ans[(*p)++] = base[n % b];
+	ans[(*p)++] = base[ABS(n % b)];
 }
 
 char	*ft_itoa_base(int value, int base)
@@ -40,10 +33,7 @@ char	*ft_itoa_base(int value, int base)
 	p = 0;
 	if (base == 10 && value < 0)
 		ans[p++] = '-';
-	if (base == 10)
-		aux_dix(value, ans, &p);
-	else
-		aux((unsigned int)value, (unsigned int)base, ans, &p);
+	aux(value, base, ans, &p);
 	ans[p] = '\0';
 	return (ans);
 }

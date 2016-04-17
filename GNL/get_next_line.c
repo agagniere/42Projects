@@ -6,12 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/29 10:45:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/13 21:12:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/17 15:32:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #define ACCSIZE (acc->chunck_count)
+#define DATA(A) ((char *)(A->data))
 
 static t_fdsave		*get_past(int const fd, const t_list *save)
 {
@@ -32,9 +33,9 @@ static int			handle_past(t_fdsave *past, char **line)
 
 	if (past != NULL && (ln = ft_memchr(past->data, '\n', past->size)) != NULL)
 	{
-		*line = ft_memdup(past->data, ln - (char *)past->data + 1);
+		*line = ft_memdup(past->data, ln - DATA(past) + 1);
 		(*line)[ln - past->data] = '\0';
-		len = past->size - (ln - (char *)past->data + 1);
+		len = past->size - (ln - DATA(past) + 1);
 		tmp = ft_memdup(ln + 1, len);
 		free(past->data);
 		past->data = tmp;
@@ -72,14 +73,14 @@ static int			now_read(char **line, t_dyna *acc,
 	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		ft_dyna_append(acc, buf, ret);
-		ln = ft_memchr((char *)acc->data + ACCSIZE - ret, '\n', ret);
+		ln = ft_memchr(DATA(acc) + ACCSIZE - ret, '\n', ret);
 		if (ln != NULL)
 		{
-			len = ((char *)(acc->data) + ACCSIZE) - ln - 1;
-			*line = ft_memdup(acc->data, ln - (char *)(acc->data) + 1);
-			*(*line + (ln - (char *)(acc->data))) = '\0';
+			len = (DATA(acc) + ACCSIZE) - ln - 1;
+			*line = ft_memdup(acc->data, ln - DATA(acc) + 1);
+			*(*line + (ln - DATA(acc))) = '\0';
 			if (len > 0)
-				ftl_push_back(save, (t_node *)&(t_fdsave){{0, 0}, fd,
+				ftl_push_front(save, (t_node *)&(t_fdsave){{0, 0}, fd,
 					len, ft_memdup(ln + 1, len)});
 			ft_dyna_del(acc);
 			return (1);
@@ -127,7 +128,7 @@ int					get_next_line(int const fd, char **line)
 }
 
 /*
-**	--== I planned to add ==--
+**	--== This part is not subject compliant ==--
 **	if (*line != NULL)	// Free previous line
 **	{
 **		free(*line);
@@ -135,3 +136,6 @@ int					get_next_line(int const fd, char **line)
 **	}
 **	--======================--
 */
+
+#undef DATA
+#undef ACCSIZE
