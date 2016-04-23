@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 14:52:07 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 00:34:27 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 01:52:41 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*hm_memcpy(void *dst, const void *src, size_t len)
 
 	while (len-- > 0)
 		*(char *)(dst++) = *(char *)(src++);
-	return (save);
+	return ((void *)save);
 }
 
 void	*hm_memdup(const void *src, size_t len)

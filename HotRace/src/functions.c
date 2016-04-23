@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 21:23:40 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 00:31:16 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 01:53:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		hr_strequ(const t_hm_node *a, const t_hm_node *b)
 	two = ((t_hr_kv *)b)->key;
 	if (one == NULL || two == NULL)
 		return (0);
-	while (*one == *two && *one )
+	while (*one == *two && *one)
 	{
 		one++;
 		two++;

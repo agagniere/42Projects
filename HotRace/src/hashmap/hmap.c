@@ -6,13 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:44:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 01:48:37 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 01:56:34 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hashmap.h"
 
-# define NONE (void *)0xDEADBEEF
+#define HM_NONE (void *)0xDEADBEEF
 
 int		init(t_hmap *m)
 {
@@ -23,7 +23,7 @@ int		init(t_hmap *m)
 		return (1);
 	m->capacity = n;
 	while (n-- > 0)
-		((t_hm_node *)(m->data + n * m->type_size))->next = NONE;
+		((t_hm_node *)(m->data + n * m->type_size))->next = HM_NONE;
 	return (0);
 }
 
@@ -34,7 +34,7 @@ int		hm_add(t_hmap *m, t_hm_node *kv)
 	kv->hash = m->hash(kv) % m->capacity;
 	if (m->capacity == 0)
 		init(m);
-	if (((t_hm_node *)(m->data + kv->hash * m->type_size))->next == NONE)
+	if (((t_hm_node *)(m->data + kv->hash * m->type_size))->next == HM_NONE)
 		hm_memcpy(m->data + kv->hash * m->type_size, kv, sizeof(*kv));
 	else
 	{
@@ -51,3 +51,5 @@ int		hm_get(t_hmap *m, t_hm_node *kv)
 	kv->hash = m->hash(kv) % m->capacity;
 	return (0);
 }
+
+#undef HM_NONE

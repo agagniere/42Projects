@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:21:18 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 01:48:58 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 01:55:27 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,21 @@ typedef struct	s_hm_node
 ** -----=====  Constructor  =====-----
 */
 
-# define NEW_HMAP(ELEM_SZ, FNC_EQUAL, FNC_HASH)		\
-	(t_hmap){0, 0, 0, ELEM_SZ, FNC_EQUAL, FNC_HASH}
+# define NEW_HMAP(SZ, EQ, HSH) (t_hmap){0, 0, 0, SZ, EQ, HSH}
 
 /*
 ** -----=====  Member Functions  =====-----
 */
 
-int		hm_init(t_hmap *m);
-int		hm_add(t_hmap *m, t_hm_node *kv);
-int		hm_get(t_hmap *m, t_hm_node *kv);
+int				hm_init(t_hmap *m);
+int				hm_add(t_hmap *m, t_hm_node *kv);
+int				hm_get(t_hmap *m, t_hm_node *kv);
 
 /*
 ** -----=====  Helpful functions (for internal usage)  =====-----
 */
 
-void	*hm_memcpy(void *dst, const void *src, size_t len);
-void	*hm_memdup(const void *src, size_t len);
+void			*hm_memcpy(void *dst, const void *src, size_t len);
+void			*hm_memdup(const void *src, size_t len);
 
 #endif
