@@ -6,11 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 21:23:40 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 00:03:19 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 00:31:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		equal(const t_hm_node *a, const t_hm_node *b)
+#include "hotrace.h"
+
+int		hr_strequ(const t_hm_node *a, const t_hm_node *b)
 {
 	char	*one;
 	char	*two;
@@ -65,7 +67,7 @@ size_t	hr_fnv1a(char *str)
 	size_t	hash;
 	size_t	c;
 
-	hash = 14695981039346656037;
+	hash = 14695981039346656037UL;
 	while ((c = (unsigned char)*str++))
 	{
 		hash ^= c;

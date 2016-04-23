@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/04/23 18:11:16 by angagnie         ###   ########.fr        #
+#    Updated: 2016/04/24 00:30:07 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,7 +16,7 @@ NAME:=hotrace
 HASH_PATH:=hashmap/
 HASH_FILES:=hmap hm_memcpy
 
-FILES:=main
+FILES:=main functions
 # ==================
 
 # ==== Standard ====
@@ -44,7 +44,7 @@ SRC:=$(addprefix $(SRCPATH),$(addsuffix .c,$(FILES)))
 OBJ:=$(addprefix $(CCHPATH),$(addsuffix .o,$(FILES)))
 # ==================
 CCHF:=.cache_exists
-MAKEFLAGS+=-j
+#MAKEFLAGS+=-j
 
 all: $(NAME)
 
@@ -54,7 +54,7 @@ $(NAME): $(OBJ)
 	@echo $(GREEN) " - Done" $(END)
 
 $(CCHPATH)%.o: $(SRCPATH)%.c | $(CCHF)
-	@echo "  - Compiling $@ into $<"
+	@echo "  - Compiling $< into $@"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 %.c:

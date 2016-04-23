@@ -6,9 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 14:52:07 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/23 18:05:32 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 00:34:27 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "hashmap.h"
 
 void	*hm_memcpy(void *dst, const void *src, size_t len)
 {
@@ -19,7 +21,7 @@ void	*hm_memcpy(void *dst, const void *src, size_t len)
 	return (save);
 }
 
-void	*hm_memdup(void *src, size_t len)
+void	*hm_memdup(const void *src, size_t len)
 {
 	void	*dst;
 	void	*tmp;
@@ -30,5 +32,5 @@ void	*hm_memdup(void *src, size_t len)
 		while (len-- > 0)
 			*(char *)(tmp++) = *(char *)(src++);
 	}
-	return (dst);
+	return ((void *)dst);
 }

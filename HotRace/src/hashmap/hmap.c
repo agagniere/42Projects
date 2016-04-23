@@ -6,13 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:44:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/23 21:19:53 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 01:48:37 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hashmap.h"
 
-# define NONE 0xDEADBEEF
+# define NONE (void *)0xDEADBEEF
 
 int		init(t_hmap *m)
 {
@@ -27,24 +27,27 @@ int		init(t_hmap *m)
 	return (0);
 }
 
-int		hm_add(t_hmap *m, const t_hm_node *kv)
+int		hm_add(t_hmap *m, t_hm_node *kv)
 {
 	t_hm_node	*cur;
 
-	kv->hash = m->hash(kv);
+	kv->hash = m->hash(kv) % m->capacity;
 	if (m->capacity == 0)
 		init(m);
 	if (((t_hm_node *)(m->data + kv->hash * m->type_size))->next == NONE)
 		hm_memcpy(m->data + kv->hash * m->type_size, kv, sizeof(*kv));
 	else
 	{
-		cur = (t_hm_node *)hm_memdup(kv, sizeof(*kv));
+		if (!(cur = (t_hm_node *)hm_memdup(kv, sizeof(*kv))))
+			return (1);
 		cur->next = ((t_hm_node *)(m->data + kv->hash * m->type_size))->next;
 		((t_hm_node *)(m->data + kv->hash * m->type_size))->next = cur;
 	}
+	return (0);
 }
 
-int		hm_get()
+int		hm_get(t_hmap *m, t_hm_node *kv)
 {
-
+	kv->hash = m->hash(kv) % m->capacity;
+	return (0);
 }

@@ -6,14 +6,16 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:16:19 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/23 21:23:14 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 00:30:26 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		main(int ac, char **av)
+#include "hotrace.h"
+
+int		main(void)
 {
 	t_hmap	data;
 
-	data = NEW_HMAP(sizeof(t_hr_kv), );
+	data = NEW_HMAP(sizeof(t_hr_kv), &hr_strequ, &hr_djb2);
 	return (0);
 }
