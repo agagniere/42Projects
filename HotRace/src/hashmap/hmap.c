@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:44:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 23:11:46 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 23:34:36 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ int		hm_add(t_hmap *m, t_hm_node *kv)
 		init(m);
 	kv->hash = m->hash(kv) % m->capacity;
 	if (((t_hm_node *)(m->data + kv->hash * m->type_size))->next == HM_NONE)
+	{
 		hm_memcpy(m->data + kv->hash * m->type_size, kv, sizeof(*kv));
+		((t_hm_node *)(m->data + kv->hash * m->type_size))->next = NULL;
+	}
 	else
 	{
 		if (!(cur = (t_hm_node *)hm_memdup(kv, sizeof(*kv))))

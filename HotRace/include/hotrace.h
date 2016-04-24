@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:17:05 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 23:04:16 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 23:41:12 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int				hr_strequ(const t_hm_node *a, const t_hm_node *b);
 ** -----=====	Hash Functions	=====-----
 */
 
-size_t			hr_djb2(char *str);
-size_t			hr_djb2a(char *str);
-size_t			hr_sdbm(char *str);
-size_t			hr_fnv1a(char *str);
+size_t			hr_djb2(t_hr_kv *n);
+size_t			hr_djb2a(t_hr_kv *n);
+size_t			hr_sdbm(t_hr_kv *n);
+size_t			hr_fnv1a(t_hr_kv *n);
 
 /*
 ** -----=====  Useful functions  =====-----

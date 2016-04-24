@@ -6,13 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:16:19 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 23:16:43 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 23:25:10 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hotrace.h"
-
-#include <stdio.h> //<--
 
 #define HR_PUTSTR(STR) write(1, STR, hr_strlen(STR))
 
@@ -28,7 +26,6 @@ static void		hr_find(char *str, t_hmap *data)
 	}
 	else
 	{
-
 	}
 }
 
@@ -41,10 +38,9 @@ static int		hr_act(t_reader_data *w, t_hmap *data, char *ptr)
 		w->key_val = 2;
 		return (0);
 	}
-	if (!(str = hm_memdup(w->start, ptr - w->start)))
+	if (!(str = hm_memdup(w->start, ptr - w->start + 1)))
 		return (1);
-	str[ptr - w->start - 1] = '\0';
-	printf("I read %s as a %s\n", str, w->key_val ? "value" : "key"); // <--
+	str[ptr - w->start] = '\0';
 	if (w->key_val == 0)
 		w->elem.key = str;
 	else if (w->key_val == 1)
@@ -81,9 +77,8 @@ static int		hr_read(t_hmap *data)
 				w->offset = ptr - w->start;
 				break ;
 			}
-			if (hr_act(w, data, ptr))
+			if (hr_act(w, data, ptr) || !(w->start = ++ptr))
 				return (1);
-			w->start = ++ptr;
 		}
 	}
 	return (0);
