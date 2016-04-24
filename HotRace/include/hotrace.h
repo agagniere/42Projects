@@ -6,14 +6,17 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:17:05 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 22:08:57 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 22:45:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HOTRACE_H
 # define HOTRACE_H
 
+# include <unistd.h>
 # include "hashmap.h"
+
+# define BUFF_SIZE 4096
 
 typedef struct	s_hr_kv
 {
