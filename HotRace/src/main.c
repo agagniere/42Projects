@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:16:19 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 22:47:24 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 23:16:43 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,22 @@
 
 #include <stdio.h> //<--
 
-static void		hr_find(char *str)
-{
+#define HR_PUTSTR(STR) write(1, STR, hr_strlen(STR))
 
+static void		hr_find(char *str, t_hmap *data)
+{
+	t_hr_kv		tmp;
+
+	tmp.key = str;
+	if (hm_get(data, (t_hm_node *)&tmp))
+	{
+		HR_PUTSTR(str);
+		HR_PUTSTR(": Not found.\n");
+	}
+	else
+	{
+
+	}
 }
 
 static int		hr_act(t_reader_data *w, t_hmap *data, char *ptr)
@@ -31,7 +44,7 @@ static int		hr_act(t_reader_data *w, t_hmap *data, char *ptr)
 	if (!(str = hm_memdup(w->start, ptr - w->start)))
 		return (1);
 	str[ptr - w->start - 1] = '\0';
-	printf("I read %s as a %s\n", str, w->key_val ? "value" : "key");
+	printf("I read %s as a %s\n", str, w->key_val ? "value" : "key"); // <--
 	if (w->key_val == 0)
 		w->elem.key = str;
 	else if (w->key_val == 1)
@@ -40,14 +53,13 @@ static int		hr_act(t_reader_data *w, t_hmap *data, char *ptr)
 		hm_add(data, (t_hm_node *)&(w->elem));
 	}
 	else
-		hr_find(str);
+		hr_find(str, data);
 	if (w->key_val < 2)
 		w->key_val = !w->key_val;
-	w->start = ptr + 1;
 	return (0);
 }
 
-static int				hr_read(t_hmap *data)
+static int		hr_read(t_hmap *data)
 {
 	t_reader_data	w[1];
 	char			*ptr;
@@ -59,15 +71,20 @@ static int				hr_read(t_hmap *data)
 		ptr = w->buffer;
 		w->start = ptr;
 		w->end = w->buffer + (w->ret + w->offset) * sizeof(char);
-		while (ptr < w->end && *ptr != '\n')
-			ptr++;
-		if (ptr == w->end)
+		while (1)
 		{
-			hm_memmove(w->start, w->buffer, ptr - w->start);
-			w->offset = ptr - w->start;
+			while (ptr < w->end && *ptr != '\n')
+				ptr++;
+			if (ptr == w->end)
+			{
+				hm_memmove(w->start, w->buffer, ptr - w->start);
+				w->offset = ptr - w->start;
+				break ;
+			}
+			if (hr_act(w, data, ptr))
+				return (1);
+			w->start = ++ptr;
 		}
-		else if (hr_act(w, data, ptr))
-			return (1);
 	}
 	return (0);
 }

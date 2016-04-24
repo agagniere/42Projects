@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/07 17:38:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/04/24 01:59:32 by angagnie         ###   ########.fr        #
+#    Updated: 2016/04/24 23:02:52 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -16,7 +16,7 @@ NAME:=hotrace
 HASH_PATH:=hashmap/
 HASH_FILES:=hmap hm_memcpy
 
-FILES:=main functions
+FILES:=main functions str_utils
 # ==================
 
 # ==== Standard ====
