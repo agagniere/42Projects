@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:21:18 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 01:55:27 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/24 22:05:40 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int				hm_get(t_hmap *m, t_hm_node *kv);
 */
 
 void			*hm_memcpy(void *dst, const void *src, size_t len);
+void			*hm_memmove(void *dst, const void *src, size_t len);
 void			*hm_memdup(const void *src, size_t len);
 
 #endif
