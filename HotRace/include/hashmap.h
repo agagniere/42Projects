@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:21:18 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 22:05:40 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/26 13:16:42 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_hm_node
 	size_t				hash;
 }				t_hm_node;
 
-# define HM_INITIAL_SIZE 5000000
+# define HM_INITIAL_SIZE 2000000
 
 /*
 ** -----=====  Constructor  =====-----

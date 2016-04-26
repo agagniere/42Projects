@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:44:22 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 23:34:36 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/26 13:50:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,30 @@ int		init(t_hmap *m)
 int		hm_add(t_hmap *m, t_hm_node *kv)
 {
 	t_hm_node	*cur;
+	t_hm_node	*tmp;
 
 	if (m->capacity == 0)
 		init(m);
 	kv->hash = m->hash(kv) % m->capacity;
-	if (((t_hm_node *)(m->data + kv->hash * m->type_size))->next == HM_NONE)
+	tmp = ((t_hm_node *)(m->data + kv->hash * m->type_size));
+	if (tmp->next == HM_NONE)
 	{
-		hm_memcpy(m->data + kv->hash * m->type_size, kv, sizeof(*kv));
-		((t_hm_node *)(m->data + kv->hash * m->type_size))->next = NULL;
+		hm_memcpy(tmp, kv, m->type_size);
+		tmp->next = NULL;
 	}
 	else
 	{
-		if (!(cur = (t_hm_node *)hm_memdup(kv, sizeof(*kv))))
+		if (!(cur = (t_hm_node *)hm_memdup(kv, m->type_size)))
 			return (1);
-		cur->next = ((t_hm_node *)(m->data + kv->hash * m->type_size))->next;
-		((t_hm_node *)(m->data + kv->hash * m->type_size))->next = cur;
+		cur->next = tmp->next;
+		tmp->next = cur;
 	}
 	return (0);
 }
+
+/*
+** Wrong behavior but... Ok for now
+*/
 
 int		hm_get(t_hmap *m, t_hm_node *kv)
 {

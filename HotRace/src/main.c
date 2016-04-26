@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 13:16:19 by angagnie          #+#    #+#             */
-/*   Updated: 2016/04/24 23:25:10 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/04/26 13:00:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void		hr_find(char *str, t_hmap *data)
 	}
 	else
 	{
+		HR_PUTSTR(tmp.value);
+		write(1, "\n", 1);
 	}
 }
 
