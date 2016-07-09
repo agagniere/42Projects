@@ -4,3 +4,6 @@
 [submodule "FunctionChecker"]
 	path = FunctionChecker
 	url = https://github.com/Xxdzs/FunctionChecker.git
+[submodule "PoolPHP"]
+	path = PoolPHP
+	url = https://github.com/Xxdzs/PoolPHP
