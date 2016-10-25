@@ -5,3 +5,4 @@ libft_tester
 */#*#
 *.bck
 **/*.cache_exists
+**/a.out

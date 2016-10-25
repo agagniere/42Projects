@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 18:58:46 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/25 22:38:30 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/25 22:45:21 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ int		ft_diophantine(int a, int b, int c, int *o)
 	{
 		o[0] = c * d[0];
 		o[1] = c * d[1];
+		o[2] = b;
+		o[3] = a;
 	}
 	else
 	{
@@ -92,7 +94,7 @@ int		ft_diophantine(int a, int b, int c, int *o)
 int		main(int ac, char **av)
 {
 	int a, b, c;
-	int	d[2];
+	int	d[4];
 
 	if (ac > 2)
 	{
@@ -105,8 +107,8 @@ int		main(int ac, char **av)
 		printf("Solve :\t%ix + %iy = %i\n", a, b, c);
 		if (!ft_diophantine(a, b, c, d))
 		{
-			printf("{ x = %i - %ik\n", d[0], b);
-			printf("{ y = %i - %ik\n", d[1], a);
+			printf("{ x = %i + %i.k\n", d[0], d[2]);
+			printf("{ y = %i + %i.k\n", d[1], d[3]);
 		}
 		else
 			ft_putstr("No solutions\n");
