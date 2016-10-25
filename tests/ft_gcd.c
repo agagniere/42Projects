@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 18:58:46 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/25 22:10:13 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/25 22:25:08 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,35 +69,55 @@ int		ft_bezout(int a, int b, int *o)
 	return (r[2]);
 }
 
-int		ft_diophantine(int a, int b, int c)
+int		ft_diophantine(int a, int b, int c, int *o)
 {
 	int		p;
 	int		d[2];
 
-	printf("Solve %ix + %ib = %i\n", a, b, c);
+//	printf(" ---== Solve %ix + %ib = %i ==---\n", a, b, c);
 	p = ft_bezout(a, b, d);
 	if (p == 1)
 	{
-		printf("x = %i - %ik\n", c * d[0], b);
-		printf("y = %i - %ik\n", c * d[1], a);
+		o[o] = c * d[0];
+		o[1] = c * d[1];
+//		printf(" x = %i - %ik\n", c * d[0], b);
+//		printf(" y = %i - %ik\n", c * d[1], a);
 	}
 	else
 	{
 		if (c % p == 0)
 		{
-			printf("Multiply by %i the solutions of :\n", p);
-			ft_diophantine(a / p, b / p, c / p);
+//			printf("Multiply by %i the solutions of :\n", p);
+			ft_diophantine(a / p, b / p, c / p, o);
+			o[0] *= p;
+			o[1] *= p;
 		}
 		else
-			ft_putstr("No solution\n");
+		{
+//			ft_putstr("No solution\n");
+			return (1);
+		}
 	}
 	return (0);
 }
 
 int		main(int ac, char **av)
 {
-	if (ac > 3)
-		ft_diophantine(ft_atoi(av[1]), ft_atoi(av[2]), ft_atoi(av[3]));
-	ft_putchar('\n');
+	int a, b, c;
+	int	d[2];
+
+	if (ac > 2)
+	{
+		a = ft_atoi(av[1]);
+		b = ft_atoi(av[2]);
+		if (ac > 3)
+			c = ft_atoi(av[3]);
+		else
+			c = 1;
+		printf("Solve :\t%ix + %iy = %i\n", a, b, c);
+		ft_diophantine(a, b, c, d);
+		printf("{ x = %i - %ik\n", d[0], b);
+		printf("{ y = %i - %ik\n", d[1], a);
+	}
 	return (0);
 }
