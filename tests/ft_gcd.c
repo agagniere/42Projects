@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 18:58:46 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/25 22:45:21 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/25 22:52:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		ft_bezout(int a, int b, int *o)
 	}
 	o[0] = v[2];
 	o[1] = u[2];
+	printf("%i.%i + %i.%i = %i\n", o[0], a, o[1], b, r[2]);
 	return (r[2]);
 }
 
@@ -107,7 +108,7 @@ int		main(int ac, char **av)
 		printf("Solve :\t%ix + %iy = %i\n", a, b, c);
 		if (!ft_diophantine(a, b, c, d))
 		{
-			printf("{ x = %i + %i.k\n", d[0], d[2]);
+			printf("{ x = %i - %i.k\n", d[0], d[2]);
 			printf("{ y = %i + %i.k\n", d[1], d[3]);
 		}
 		else
