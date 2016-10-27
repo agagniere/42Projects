@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/25 18:58:46 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/25 22:52:31 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/27 16:16:08 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 int		ft_gcd(int a, int b)
 {
-	int r[3];
-	char bool;
+	int		r[3];
+	char	bool;
 
 	r[2] = a;
 	r[1] = b;
@@ -48,13 +48,10 @@ int		ft_bezout(int a, int b, int *o)
 	bool = 1;
 	while (bool)
 	{
-		// s = r u v
-		// s[n+1] = s[n-1] - q * s[n]
 		q = r[2] / r[1];
 		r[0] = r[2] % r[1];
 		u[0] = u[2] - q * u[1];
 		v[0] = v[2] - q * v[1];
-		// n++
 		r[2] = r[1];
 		r[1] = r[0];
 		u[2] = u[1];
@@ -65,7 +62,6 @@ int		ft_bezout(int a, int b, int *o)
 	}
 	o[0] = v[2];
 	o[1] = u[2];
-	printf("%i.%i + %i.%i = %i\n", o[0], a, o[1], b, r[2]);
 	return (r[2]);
 }
 
@@ -94,7 +90,9 @@ int		ft_diophantine(int a, int b, int c, int *o)
 
 int		main(int ac, char **av)
 {
-	int a, b, c;
+	int a;
+	int	b;
+	int	c;
 	int	d[4];
 
 	if (ac > 2)
