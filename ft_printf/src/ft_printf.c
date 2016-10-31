@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/31 12:31:03 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/31 20:19:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	pf_parse(char const *s, va_list *ap)
 		{
 			if (pf_match(&s, &m))
 			{
+				db_print_modifier(&m);
 				pf_convert(&m, ap, &d);
 				p = 0;
 				m = NEW_MODIFIER;
@@ -73,7 +74,6 @@ void	pf_parse(char const *s, va_list *ap)
 		}
 		else
 			ft_dyna_append(&d, (void *)s, 1);
-		//db_print_modifier(&m);
 	}
 	write(1, d.data, d.chunck_count);
 }
@@ -90,11 +90,11 @@ int		ft_printf(char const *format, ...)
 
 int		main(int ac, char **av)
 {
-	char		*s = "(% 15 - + 0 . 5 .3 10 20 i)\n";
+	char		*s = "(%z 15 h- + 0 . 5 .3 10  20 i)\n";
 
 	(void)ac;
 	(void)av;
-	printf(s, 1, -2, 3);
+	printf(s, -2147000123, -2, 3);
 	ft_printf(s, 2, -2, 3);
 	return (0);
 }
