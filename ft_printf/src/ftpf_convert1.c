@@ -6,12 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/31 10:44:16 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/31 11:44:13 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/31 12:18:54 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "libft.h"
 
 void	pfcv_di(t_modifier *m, va_list *ap, t_dyna *d)
 {

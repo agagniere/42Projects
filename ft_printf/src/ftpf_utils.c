@@ -6,9 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/31 11:25:39 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/31 11:34:54 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/31 12:23:06 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 void	db_print_bool(char c)
 {

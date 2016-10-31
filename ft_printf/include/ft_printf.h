@@ -6,20 +6,25 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/31 10:45:13 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/31 11:37:31 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/31 12:28:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define FTPF_CV_FLAGS "diouxXDOUeEfFgGaAcCsSpn"
+# include <stdarg.h>
+
+# include "libft.h"
+
+# define FTPF_CV "diouxXDOUeEfFgGaAcCsSpn"
+# define FTPF_LM {"hh", "h", "ll", "l", "j", "t"}
 
 typedef struct		s_modifier
 {
 	union
 	{
-		char		t[6];
+		char		t[5];
 		struct
 		{
 			char	zero;
@@ -27,7 +32,6 @@ typedef struct		s_modifier
 			char	minus;
 			char	space;
 			char	alternate;
-			char	period;
 		}			n;
 	}				booleans;
 	char			conversion;
@@ -35,6 +39,9 @@ typedef struct		s_modifier
 	int				precision;
 }					t_modifier;
 
-# define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0, 0}}, '~', 0, 0};
+# define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0}}, '~', 0, 0};
 
+void	pfcv_di(t_modifier *m, va_list *ap, t_dyna *d);
+int		is_in(char i, char const *str);
+void	db_print_modifier(t_modifier *m);
 #endif

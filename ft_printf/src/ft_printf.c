@@ -6,23 +6,21 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/31 11:38:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/31 12:31:03 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdarg.h>
 
 #include "ft_printf.h"
-#include "libft.h"
 
 void	pf_convert(t_modifier *m, va_list *ap, t_dyna *d)
 {
 	int		n;
-	void	*f[] = {pfcv_di, pfcv_di}
+	void	*f[] = {pfcv_di, pfcv_di};
 
-	n = ft_is_in(m->conversion, FTPF_CV_FLAGS);
-	(void (*)())f[n](m, ap, d);
+	n = is_in(m->conversion, FTPF_CV);
+	((void (*)())f[n])(m, ap, d);
 }
 
 int		pf_match(char const **s, t_modifier *m)
@@ -30,22 +28,25 @@ int		pf_match(char const **s, t_modifier *m)
 	int			n;
 	char const	c = **s;
 
-	if ((n = is_in(c, "0+- #.")) >= 0)
+	if ((n = is_in(c, "0+- #")) >= 0)
 		m->booleans.t[n] = 1;
-	else if ((n = is_in(c, FTPF_CV_FLAGS)) >= 0)
+	else if ((n = is_in(c, FTPF_CV)) >= 0)
 	{
 		m->conversion = c;
 		return (1);
 	}
 	else if ('1' <= c && c <= '9')
+	{
+		n = (*s)[-1] == '.';
 		while ('0' <= **s && **s <= '9')
 		{
-			if (m->booleans.n.period)
+			if (n)
 				m->precision = 10 * m->precision + **s - '0';
 			else
 				m->size = 10 * m->size + **s - '0';
 			(*s)++;
 		}
+	}
 	return (0);
 }
 
@@ -72,7 +73,7 @@ void	pf_parse(char const *s, va_list *ap)
 		}
 		else
 			ft_dyna_append(&d, (void *)s, 1);
-		db_print_modifier(&m);
+		//db_print_modifier(&m);
 	}
 	write(1, d.data, d.chunck_count);
 }
@@ -89,7 +90,7 @@ int		ft_printf(char const *format, ...)
 
 int		main(int ac, char **av)
 {
-	char		*s = "(% 15 - + 0 . 15 i)\n";
+	char		*s = "(% 15 - + 0 . 5 .3 10 20 i)\n";
 
 	(void)ac;
 	(void)av;
