@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/31 11:21:23 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/31 11:38:59 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,47 +16,13 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-int		is_in(char i, char const *str)
-{
-	char const	*p = str;
-
-	while (*p != '\0' && *p != i)
-		p++;
-	return (*p == '\0' ? -1 : p - str);
-}
-
-void	pf_convert(t_modifier *m, va_list *ap)
+void	pf_convert(t_modifier *m, va_list *ap, t_dyna *d)
 {
 	int		n;
 	void	*f[] = {pfcv_di, pfcv_di}
 
 	n = ft_is_in(m->conversion, FTPF_CV_FLAGS);
-	(void (*)())f[n]();
-}
-
-void	db_print_bool(char c)
-{
-	ft_putstr(c ? "true" : "false");
-}
-
-void	db_print_modifier(t_modifier *m)
-{
-	size_t		n;
-
-	ft_putstr("(t_modifier){\n\t{");
-	n = 6;
-	while (n-- > 0)
-	{
-		ft_putstr("\n\t\t");
-		db_print_bool(m->booleans.t[5 - n]);
-	}
-	ft_putstr("\n\t}\n\t'");
-	ft_putchar(m->conversion);
-	ft_putstr("'\n\t");
-	ft_putnbr(m->size);
-	ft_putstr("\n\t");
-	ft_putnbr(m->precision);
-	ft_putstr("\n}\n");
+	(void (*)())f[n](m, ap, d);
 }
 
 int		pf_match(char const **s, t_modifier *m)
@@ -99,7 +65,7 @@ void	pf_parse(char const *s, va_list *ap)
 		{
 			if (pf_match(&s, &m))
 			{
-				pf_convert(&m, ap);
+				pf_convert(&m, ap, &d);
 				p = 0;
 				m = NEW_MODIFIER;
 			}

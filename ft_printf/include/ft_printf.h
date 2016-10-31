@@ -6,17 +6,20 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/31 10:45:13 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/31 10:46:05 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/10/31 11:37:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define FTPF_CV_FLAGS "diouxXDOUeEfFgGaAcCsSpn"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-typedef struct	s_modifier
+# define FTPF_CV_FLAGS "diouxXDOUeEfFgGaAcCsSpn"
+
+typedef struct		s_modifier
 {
 	union
 	{
-		char	t[6];
+		char		t[6];
 		struct
 		{
 			char	zero;
@@ -25,11 +28,13 @@ typedef struct	s_modifier
 			char	space;
 			char	alternate;
 			char	period;
-		}		n;
-	}		booleans;
-	char	conversion;
-	int		size;
-	int		precision;
-}				t_modifier;
+		}			n;
+	}				booleans;
+	char			conversion;
+	int				size;
+	int				precision;
+}					t_modifier;
 
-#define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0, 0}}, '~', 0, 0};
+# define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0, 0}}, '~', 0, 0};
+
+#endif
