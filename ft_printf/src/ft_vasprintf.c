@@ -6,24 +6,22 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/01 19:24:22 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/01 19:59:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdio.h> // <==
 
 #include "ft_printf.h"
 
 void
-	pf_convert(t_modifier *m, t_dyna *d, va_list *ap)
+	pf_convert(t_modifier *m, t_dyna *d, va_list ap)
 {
 	db_print_modifier(m); // <==
 	if (m->conversion == 0)
 		return ;
 	else if (m->conversion == '%')
 		ft_dyna_append(d, "%", 1);
-	else
-
 }
 
 const char
@@ -71,8 +69,8 @@ const char
 	return (s);
 }
 
-char
-	*ft_vprintf(char const *s, va_list ap)
+int
+	ft_vasprintf(char **ret, char const *s, va_list ap)
 {
 	t_dyna		d;
 	t_modifier	m;
@@ -85,14 +83,15 @@ char
 		if (*s == '%')
 		{
 			s = pf_match(s + 1, &m);
-			pf_convert(&m, &d, &ap);
+			pf_convert(&m, &d, ap);
 		}
 		p = s;
 		while (*p != '\0' && *p != '%')
 			p++;
-		ft_dyna_append(&d, s, p - s);
+		ft_dyna_append(&d, (void *)s, p - s);
 		s = p;
 	}
 	ft_dyna_append(&d, "\0", 1);
-	return ((char *)d.data);
+	*ret = d.data;
+	return (d.chunck_count);
 }

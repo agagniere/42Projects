@@ -5,45 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/10/31 10:45:13 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/01 18:15:08 by angagnie         ###   ########.fr       */
+/*   Created: 2016/11/01 19:38:57 by angagnie          #+#    #+#             */
+/*   Updated: 2016/11/01 19:57:46 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdarg.h>
+# include "ft_printf_private.h"
 
-# include "libft.h"
+int		ft_printf(char const *format, ...);
+int		ft_dprintf(int fd, char const *format, ...);
+int		ft_asprintf(char **ret, char const *format, ...);
+int		ft_sprintf(char *s, char const *format, ...);
+int		ft_snprintf(char *s, size_t size, char const *format, ...);
 
-# define FTPF_CV "diouxXDOUeEfFgGaAcCsSpn%"
-# define FTPF_LM "hljz"
-
-typedef struct		s_modifier
-{
-	union
-	{
-		char		t[5];
-		struct
-		{
-			char	zero;
-			char	plus;
-			char	minus;
-			char	space;
-			char	alternate;
-		}			n;
-	}				booleans;
-	char			conversion;
-	char			length;
-	int				size;
-	int				precision;
-}					t_modifier;
-
-# define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0}}, 0, 0, 0, 0};
-
-void	pfcv_di(t_modifier *m, va_list *ap, t_dyna *d);
-int		is_in(char i, char const *str);
-void	db_print_modifier(t_modifier *m);
+int		ft_vprintf(char const *format, va_list ap);
+int		ft_vdprintf(int fd, char const *format, va_list ap);
+int		ft_vasprintf(char **ret, char const *s, va_list ap);
+int		ft_vsprintf(char *s, char const *format, va_list ap);
+int		ft_vsnprintf(char *s, size_t size, char const *format, va_list ap);
 
 #endif

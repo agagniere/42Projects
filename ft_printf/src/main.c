@@ -6,15 +6,17 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/01 19:15:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/01 19:59:34 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h> // <==
+
 #include "ft_printf.h"
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
-	char		*s = "(%h 0hu,%30-20.3.010i,%lllhlhlhhh#x,% zhzhzhzh+- # %)\n";
+	char const	*s = "(%h 0hu,%30-20.3.010i,%lllhlhlhhh#x,% zhzhzhzh+- # %)\n";
 
 	(void)ac;
 	(void)av;
