@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/10/31 20:19:39 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/01 08:52:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,20 @@
 
 void	pf_convert(t_modifier *m, va_list *ap, t_dyna *d)
 {
-	int		n;
-	void	*f[] = {pfcv_di, pfcv_di};
+	db_print_modifier(m);
+//	if (m->plus)
+/* 	int		n; */
+/* 	void	*f[] = {pfcv_di, pfcv_di}; */
 
-	n = is_in(m->conversion, FTPF_CV);
-	((void (*)())f[n])(m, ap, d);
+/* 	n = is_in(m->conversion, FTPF_CV); */
+/* 	((void (*)())f[n])(m, ap, d); */
+}
+
+void	pf_update_value(char const **s, int *v)
+{
+	*v = 0;
+	while ('0' <= **s && **s <= '9')
+		*v = 10 * (*v) + *(*s)++ - '0';
 }
 
 int		pf_match(char const **s, t_modifier *m)
@@ -35,18 +44,10 @@ int		pf_match(char const **s, t_modifier *m)
 		m->conversion = c;
 		return (1);
 	}
+	else if (c == '.' && *++*s)
+		pf_update_value(s, &(m->precision));
 	else if ('1' <= c && c <= '9')
-	{
-		n = (*s)[-1] == '.';
-		while ('0' <= **s && **s <= '9')
-		{
-			if (n)
-				m->precision = 10 * m->precision + **s - '0';
-			else
-				m->size = 10 * m->size + **s - '0';
-			(*s)++;
-		}
-	}
+		pf_update_value(s, &(m->size));
 	return (0);
 }
 
@@ -54,27 +55,19 @@ void	pf_parse(char const *s, va_list *ap)
 {
 	t_dyna		d;
 	t_modifier	m;
-	char		p;
+	char		*p;
 
 	d = ft_dyna_new(sizeof(char));
 	m = NEW_MODIFIER;
-	p = 0;
-	s--;
-	while (*++s != '\0')
+	while (*s != '\0')
 	{
-		if ((p ^= (*s == '%')))
-		{
-			if (pf_match(&s, &m))
-			{
-				db_print_modifier(&m);
-				pf_convert(&m, ap, &d);
-				p = 0;
-				m = NEW_MODIFIER;
-			}
-		}
-		else
-			ft_dyna_append(&d, (void *)s, 1);
+		p = s;
+		while (*p != '\0' && *p != '%')
+			p++;
+		ft_dyna_append(&d, s, p - s);
+		s = p;
 	}
+	ft_dyna_append(&d, "\0", 1);
 	write(1, d.data, d.chunck_count);
 }
 
@@ -90,11 +83,11 @@ int		ft_printf(char const *format, ...)
 
 int		main(int ac, char **av)
 {
-	char		*s = "(%z 15 h- + 0 . 5 .3 10  20 i)\n";
+	char		*s = "(%0+- #u,%i)\n";
 
 	(void)ac;
 	(void)av;
-	printf(s, -2147000123, -2, 3);
-	ft_printf(s, 2, -2, 3);
+	printf(s, -2147000123, 2, 3);
+	ft_printf(s, -2147000123, 2, 3);
 	return (0);
 }
