@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/01 18:37:26 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/01 19:24:22 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,14 @@
 #include "ft_printf.h"
 
 void
-pf_convert(t_modifier *m, t_dyna *d, va_list *ap)
+	pf_convert(t_modifier *m, t_dyna *d, va_list *ap)
 {
 	db_print_modifier(m); // <==
+	if (m->conversion == 0)
+		return ;
+	else if (m->conversion == '%')
+		ft_dyna_append(d, "%", 1);
+	else
 
 }
 
@@ -67,7 +72,7 @@ const char
 }
 
 char
-	*pf_parse(char const *s, va_list *ap)
+	*ft_vprintf(char const *s, va_list ap)
 {
 	t_dyna		d;
 	t_modifier	m;
@@ -80,7 +85,7 @@ char
 		if (*s == '%')
 		{
 			s = pf_match(s + 1, &m);
-			pf_convert(&m, &d, ap);
+			pf_convert(&m, &d, &ap);
 		}
 		p = s;
 		while (*p != '\0' && *p != '%')
@@ -90,36 +95,4 @@ char
 	}
 	ft_dyna_append(&d, "\0", 1);
 	return ((char *)d.data);
-}
-
-int
-	ft_printf(char const *format, ...)
-{
-	va_list		ap;
-
-	va_start(ap, format);
-	ft_putstr(pf_parse(format, &ap));
-	va_end(ap);
-	return (0);
-}
-
-
-
-int	main(int ac, char **av)
-{
-	char		*s = "(%h 0hu,%30-20.3.010i,%lllhlhlhhh#x,% zhzhzhzh+- # %)\n";
-
-	(void)ac;
-	(void)av;
-	printf(s, -2147000123, 2, 987, 13);
-	ft_printf(s, -2147000123, 2, 987, 13);
-	printf("hh\t%zu\n", sizeof(char));
-	printf("h\t%zu\n", sizeof(short));
-	printf("\t%zu\n", sizeof(int));
-	printf("l\t%zu\n", sizeof(long));
-	printf("ll\t%zu\n", sizeof(long long));
-	printf("j\t%zu\n", sizeof(intmax_t));
-	printf("z\t%zu\n", sizeof(size_t));
-	printf("...\t%zu\n", sizeof(__int128));
-	return (0);
 }
