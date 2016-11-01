@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/01 08:52:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/01 12:51:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,37 +25,46 @@ void	pf_convert(t_modifier *m, va_list *ap, t_dyna *d)
 /* 	((void (*)())f[n])(m, ap, d); */
 }
 
-void	pf_update_value(char const **s, int *v)
+char	*pf_update_value(char const *s, int *v)
 {
 	*v = 0;
-	while ('0' <= **s && **s <= '9')
-		*v = 10 * (*v) + *(*s)++ - '0';
+	while ('0' <= *s && *s <= '9')
+		*v = 10 * (*v) + *s++ - '0';
+	return (s);
 }
 
-int		pf_match(char const **s, t_modifier *m)
+char	*pf_match(char const *s, t_modifier *m)
 {
 	int			n;
-	char const	c = **s;
 
-	if ((n = is_in(c, "0+- #")) >= 0)
-		m->booleans.t[n] = 1;
-	else if ((n = is_in(c, FTPF_CV)) >= 0)
+	while (*s != '\0')
 	{
-		m->conversion = c;
-		return (1);
+		if (*s == '.')
+			s = pf_update_value(s, &(m->precision)) - 1;
+		else if ('1' <= *s && *s <= '9')
+			s = pf_update_value(s, &(m->size)) - 1;
+		else if ((n = is_in(*s, "0+- #")) >= 0)
+			m->booleans.t[n] = 1;
+		else if ((n = is_in(*s, FTPF_LM)) >= 0)
+		{
+			if (m->length == 0)
+				m->length = FTPF_LM[n];
+		}
+		else if (is_in(*s, FTPF_CV) >= 0)
+		{
+			pf_convert(m);
+			return (s + 1);
+		}
+		s++;
 	}
-	else if (c == '.' && *++*s)
-		pf_update_value(s, &(m->precision));
-	else if ('1' <= c && c <= '9')
-		pf_update_value(s, &(m->size));
-	return (0);
+	return (s);
 }
 
 void	pf_parse(char const *s, va_list *ap)
 {
 	t_dyna		d;
 	t_modifier	m;
-	char		*p;
+	char const	*p;
 
 	d = ft_dyna_new(sizeof(char));
 	m = NEW_MODIFIER;
@@ -65,7 +74,7 @@ void	pf_parse(char const *s, va_list *ap)
 		while (*p != '\0' && *p != '%')
 			p++;
 		ft_dyna_append(&d, s, p - s);
-		s = p;
+		s = pf_match(p, &m, &d);
 	}
 	ft_dyna_append(&d, "\0", 1);
 	write(1, d.data, d.chunck_count);
