@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/01 19:59:17 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/02 14:10:52 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,20 @@
 void
 	pf_convert(t_modifier *m, t_dyna *d, va_list ap)
 {
+	void	*t[] = {&pfcv_di, &pfcv_di};
+	int		n;
+
 	db_print_modifier(m); // <==
 	if (m->conversion == 0)
 		return ;
 	else if (m->conversion == '%')
+	{
 		ft_dyna_append(d, "%", 1);
+		return ;
+	}
+	n = is_in(m->conversion, FTPF_CV);
+	if (m->booleans.n.plus && is_in(m->conversion, "dinaAeEfFgG"))
+		ft_dyna_append(d, "+", 1);
 }
 
 const char
@@ -55,7 +64,7 @@ const char
 			s = pf_update_value(s, &(m->size)) - 1;
 		else if ((n = is_in(*s, "0+- #")) >= 0)
 			m->booleans.t[n] = 1;
-		else if ((n = is_in(*s, FTPF_LM)) >= 0)
+		else if (is_in(*s, FTPF_LM) >= 0)
 			pf_set_length(*s, &(m->length));
 		else if (is_in(*s, FTPF_CV) >= 0 && (m->conversion = *s))
 			return (s + 1);
