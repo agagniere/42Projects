@@ -6,34 +6,13 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/02 14:10:52 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/04 02:09:14 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h> // <==
-
 #include "ft_printf.h"
 
-void
-	pf_convert(t_modifier *m, t_dyna *d, va_list ap)
-{
-	void	*t[] = {&pfcv_di, &pfcv_di};
-	int		n;
-
-	db_print_modifier(m); // <==
-	if (m->conversion == 0)
-		return ;
-	else if (m->conversion == '%')
-	{
-		ft_dyna_append(d, "%", 1);
-		return ;
-	}
-	n = is_in(m->conversion, FTPF_CV);
-	if (m->booleans.n.plus && is_in(m->conversion, "dinaAeEfFgG"))
-		ft_dyna_append(d, "+", 1);
-}
-
-const char
+static inline const char
 	*pf_update_value(char const *s, int *v)
 {
 	*v = 0;
@@ -42,7 +21,7 @@ const char
 	return (s);
 }
 
-void
+static inline void
 	pf_set_length(char c, char *lm)
 {
 	if ((c == 'h' || c == 'l') && *lm == c)
@@ -51,7 +30,7 @@ void
 		*lm = c;
 }
 
-const char
+static inline const char
 	*pf_match(char const *s, t_modifier *m)
 {
 	int			n;
@@ -69,10 +48,7 @@ const char
 		else if (is_in(*s, FTPF_CV) >= 0 && (m->conversion = *s))
 			return (s + 1);
 		else
-		{ // <--
-			printf("/!\\ STOP : %c\n", *s); // <==
 			break ;
-		} // <--
 		s++;
 	}
 	return (s);

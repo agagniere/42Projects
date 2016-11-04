@@ -6,22 +6,20 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/02 17:52:11 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/04 02:13:18 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h> // <==
 
 #include "ft_printf.h"
 
 int		main(int ac, char **av)
 {
-	char const	*s = "(%5- i,%i,%i,%%)\n";
+	char const	*s = "(%c)\n";
 
 	(void)ac;
 	(void)av;
-	printf(s, 42, 2, 3, 4);
-	ft_printf(s, 1, 2, 3, 4);
+	printf(s, 'a');
+	ft_printf(s, 'a');
 	printf("hh\t%zu\n", sizeof(char));
 	printf("h\t%zu\n", sizeof(short));
 	printf("\t%zu\n", sizeof(int));

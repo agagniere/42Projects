@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/31 11:25:39 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/01 08:30:56 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/04 01:53:27 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,4 @@ void	db_print_modifier(t_modifier *m)
 	ft_putstr("\n\t");
 	ft_putnbr(m->precision);
 	ft_putstr("\n}\n");
-}
-
-int		is_in(char i, char const *str)
-{
-	char const	*p = str;
-
-	while (*p != '\0' && *p != i)
-		p++;
-	return (*p == '\0' ? -1 : p - str);
 }
