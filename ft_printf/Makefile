@@ -6,12 +6,13 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/11/04 03:10:35 by angagnie         ###   ########.fr        #
+#    Updated: 2016/11/06 01:09:34 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME:=libftprintf.a
-FILES:=ft_vasprintf ft_printf ft_vprintf db_printf ft_convert
+FILES:=ft_vasprintf ft_printf ft_vprintf db_printf ft_convert \
+	ft_convert_1
 
 # ----- Libft ------
 LFTDIR:=../Libft

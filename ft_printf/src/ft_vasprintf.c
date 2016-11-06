@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/04 02:09:14 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/05 14:36:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,28 @@ int
 		p = s;
 		while (*p != '\0' && *p != '%')
 			p++;
-		ft_dyna_append(&d, (void *)s, p - s);
+		if (p != s)
+			ft_dyna_append(&d, (void *)s, p - s);
 		s = p;
 	}
 	ft_dyna_append(&d, "\0", 1);
 	*ret = d.data;
 	return (d.chunck_count);
 }
+
+/*
+** -------------------
+**		m = NEW_MODIFIER;
+**		p = s;
+**		while (*p != '\0' && *p != '%')
+**			p++;
+**		if (p != s)
+**			ft_dyna_append(&d, (void *)s, p - s);
+**		s = p;
+**		if (*p == '%')
+**		{
+**			s = pf_match(p + 1, &m);
+**			pf_convert(m, d, ap);
+**		}
+** ===============
+*/
