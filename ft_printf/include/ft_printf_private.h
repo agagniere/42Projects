@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:16 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/04 01:57:13 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/07 18:03:45 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,9 @@ typedef struct		s_modifier
 # define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0}}, 0, 0, 0, 0};
 
 void				db_print_modifier(t_modifier *m);
+void				pf_convert(t_modifier *m, t_dyna *d, va_list ap);
+
+int					pf_cv_di(t_modifier *m, t_dyna *d, va_list ap);
+int					pf_cv_sS(t_modifier *m, t_dyna *d, va_list ap);
 
 #endif

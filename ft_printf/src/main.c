@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/05 15:45:42 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/07 19:32:14 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		main(int ac, char **av)
 
 	(void)ac;
 	(void)av;
-	printf(s, 'a', "Hello World !");
-	ft_printf(s, 'a', "Hello World !");
+	printf(s, '*', "Hello World !");
+	ft_printf(s, '*', "Hello World !");
 /*	printf("hh\t%zu\n", sizeof(char));
 	printf("h\t%zu\n", sizeof(short));
 	printf("\t%zu\n", sizeof(int));

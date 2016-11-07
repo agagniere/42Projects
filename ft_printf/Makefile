@@ -6,7 +6,7 @@
 #    By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/01 20:07:00 by angagnie          #+#    #+#              #
-#    Updated: 2016/11/06 01:09:34 by angagnie         ###   ########.fr        #
+#    Updated: 2016/11/07 21:22:13 by angagnie         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -70,13 +70,15 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f test_me
+	@rm -rf test_me.dSYM/
 
 re: fclean
 	@$(MAKE) all
 
 test: $(NAME)
 	@echo "Files :" $(FILES)
-	@$(COMPILER) $(CFLAGS) src/main.c -L ./ $(LFLAGS) -lftprintf
+	@$(COMPILER) -g $(CFLAGS) src/main.c $(SRC) $(LFLAGS) -o test_me
 
 norm:
 	@echo $(RED)
