@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/07 21:14:50 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/10 17:53:47 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static inline int
 	int		ans;
 
 	ans = pf_print(m, d, ap);
+	while (ans < m->precision && ++ans)
+		ft_dyna_append(d, "0", 1);
 	return (ans);
 }
 
@@ -42,7 +44,11 @@ static inline int
 
 	s = (char *)d->data;
 	ans = pf_precision(m, d, ap);
-//	while (m->size >)
+	if (m->precision == 0 && 0 <= is_in(m->conversion, "diuoxX"))
+		while (ans < m->size && ++ans)
+			ft_dyna_append(d, "0", 1);
+	while (ans < m->size && ++ans)
+		ft_dyna_append(d, " ", 1);
 	return (ans);
 }
 

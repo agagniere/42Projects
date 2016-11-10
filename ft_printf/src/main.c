@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/07 19:32:14 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/10 17:56:27 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 int		main(int ac, char **av)
 {
-	char const	*s = "(%020.10i,%0-20.5s)\n";
+	char const	*s = "(%020.5i,%20-s)\n";
 
 	(void)ac;
 	(void)av;
-	printf(s, '*', "Hello World !");
-	ft_printf(s, '*', "Hello World !");
+	printf(s, '*', "HelloWorld!");
+	ft_printf(s, '*', "HelloWorld!");
 /*	printf("hh\t%zu\n", sizeof(char));
 	printf("h\t%zu\n", sizeof(short));
 	printf("\t%zu\n", sizeof(int));

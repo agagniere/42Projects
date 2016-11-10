@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:37:36 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/07 19:08:39 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/10 17:56:38 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int		pf_cv_sS(t_modifier *m, t_dyna *d, va_list ap)
 	int		ans;
 
 	arg = va_arg(ap, char *);
-	ans = (m->precision == 0 ? MIN(ft_strlen(arg),
-		(unsigned)m->precision) : m->precision);
-	ft_dyna_append(d, (void *)arg, ans-- + 1);
+	ans = (m->precision != 0 ? MIN(ft_strlen(arg),
+		(size_t)m->precision) : ft_strlen(arg));
+	ft_dyna_append(d, (void *)arg, ans);
 	return (ans);
 }
