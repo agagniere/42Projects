@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   wc_widechar.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/27 23:34:18 by angagnie         ###   ########.fr       */
+/*   Created: 2016/11/27 18:59:18 by angagnie          #+#    #+#             */
+/*   Updated: 2016/11/27 19:31:42 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stddef.h>
 
-#include <stdio.h>
-
-int		main(int ac, char **av)
+size_t	wc_strlen(const wchar_t *str)
 {
-	char const	*s = "(%020i,%20s)\n";
+	const wchar_t	*ptr = str;
 
-	(void)ac;
-	(void)av;
-	printf(s, '*', "HelloWorld!");
-	ft_printf(s, '*', "HelloWorld!");
-	return (0);
+	while (*ptr != '\0')
+		ptr++;
+	return (ptr - str);
 }
