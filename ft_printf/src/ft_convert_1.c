@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:37:36 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/27 23:49:27 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/30 12:39:13 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 #define MIN(A,B) (A < B ? A : B)
 
-int		pf_itoa_base(t_dyna *d, long int n, int b)
+static int	pf_itoa_base(t_dyna *d, long int n, int b)
 {
-	const char	*base = "0123456789ABCDEF";
-	int			ans;
+	const char		*base = "0123456789ABCDEF";
+	int				ans;
 
 	ans = 1;
 	if (n <= -b || b <= n)
@@ -26,7 +26,7 @@ int		pf_itoa_base(t_dyna *d, long int n, int b)
 	return (ans);
 }
 
-int		pf_cv_di(t_modifier *m, t_dyna *d, va_list ap)
+int			pf_cv_di(t_modifier *m, t_dyna *d, va_list ap)
 {
 	long int	arg;
 	int			ans;
@@ -35,13 +35,13 @@ int		pf_cv_di(t_modifier *m, t_dyna *d, va_list ap)
 	ans = 0;
 	if (arg < 0 && ++ans)
 		ft_dyna_append(d, "-", 1);
-	ans += ft_itoa_base(d, arg, 10);
+	ans += pf_itoa_base(d, arg, 10);
 	if (arg == 0 && m->precision == 0 && ++ans)
 		ft_dyna_append(d, "0", 1);
 	return (ans);
 }
 
-int		pf_cv_X(t_modifier *m, t_dyna *d, va_list ap)
+int			pf_cv_X(t_modifier *m, t_dyna *d, va_list ap)
 {
 	long int	arg;
 	int			ans;
@@ -50,32 +50,23 @@ int		pf_cv_X(t_modifier *m, t_dyna *d, va_list ap)
 	ans = 0;
 	if (m->booleans.n.alternate && (ans += 2) >= 0)
 		ft_dyna_append(d, "0X", 2);
-	ans += pf_itoa_base(d, arg, 10);
+	ans += pf_itoa_base(d, arg, 16);
 	if (arg == 0 && m->precision == 0 && ++ans)
 		ft_dyna_append(d, "0", 1);
 	return (ans);
 }
 
-int		pf_cv_s(t_modifier *m, t_dyna *d, va_list ap)
+int			pf_cv_x(t_modifier *m, t_dyna *d, va_list ap)
 {
-	char	*arg;
-	int		ans;
+	long int	arg;
+	int			ans;
 
-	arg = va_arg(ap, char *);
-	ans = (m->precision != 0 ? MIN(ft_strlen(arg),
-		(size_t)m->precision) : ft_strlen(arg));
-	ft_dyna_append(d, (void *)arg, ans);
-	return (ans);
-}
-
-int		pf_cv_S(t_modifier *m, t_dyna *d, va_list ap)
-{
-	wchar_t	*arg;
-	int		ans;
-
-	arg = va_arg(ap, wchar_t *);
-	ans = (m->precision != 0 ? MIN(wc_strlen(arg),
-		(size_t)m->precision) : wc_strlen(arg));
-	ft_dyna_append(d, (void *)arg, 2 * ans);
+	arg = va_arg(ap, long int);
+	ans = 0;
+	if (m->booleans.n.alternate && (ans += 2) >= 0)
+		ft_dyna_append(d, "0x", 2);
+	ans += pf_itoa_base(d, arg, 16);
+	if (arg == 0 && m->precision != 0 && ++ans)
+		ft_dyna_append(d, "0", 1);
 	return (ans);
 }

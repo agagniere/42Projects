@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/27 23:39:48 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/30 12:40:11 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,27 @@ static inline int
 //	void	*t[] = {pf_cv_di, pf_cv_di, pf_cv_o, pf_cv_u, pf_cv_x, pf_cv_X};
 
 	ans = 0;
-	if (m->conversion == 's')
+	if (m->length == 'l')
+	{
+		if (m->conversion == 's')
+			ans = pf_cv_S(m, d, ap);
+		else if (m->conversion == 'c')
+			ans = pf_cv_C(m, d, ap);
+	}
+	else if (m->conversion == 'S')
+		ans = pf_cv_S(m, d, ap);
+	else if (m->conversion == 's')
 		ans = pf_cv_s(m, d, ap);
-	if (m->conversion == 'i')
+	else if (m->conversion == 'C')
+		ans = pf_cv_C(m, d, ap);
+	else if (m->conversion == 'c')
+		ans = pf_cv_c(m, d, ap);
+	else if (m->conversion == 'i')
 		ans = pf_cv_di(m, d, ap);
+	else if (m->conversion == 'x')
+		ans = pf_cv_x(m, d, ap);
+	else if (m->conversion == 'X')
+		ans = pf_cv_X(m, d, ap);
 	return (ans);
 }
 
@@ -43,7 +60,8 @@ static inline int
 	int		ans;
 
 	ans = pf_precision(m, d, ap);
-	if (m->precision == 0 && 0 <= is_in(m->conversion, "diuoxX"))
+	if (m->booleans.n.zero && m->precision == 0
+		&& 0 <= is_in(m->conversion, "diuoxX"))
 		while (ans < m->size && ++ans)
 			ft_dyna_append(d, "0", 1);
 	while (ans < m->size && ++ans)
