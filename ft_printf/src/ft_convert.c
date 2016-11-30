@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 15:07:01 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/30 18:21:03 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,24 @@
 static inline int
 	pf_print(t_modifier *m, t_dyna *d, va_list ap)
 {
-	int		ans;
-//	void	*t[] = {pf_cv_di, pf_cv_di, pf_cv_o, pf_cv_u, pf_cv_x, pf_cv_X};
+	int			ans;
+	int			i;
+	char const	*c = "diouxX";
+	void *const	t[] = {pf_cv_di, pf_cv_di, pf_cv_o, pf_cv_u, pf_cv_x, pf_cv_cx};
 
 	ans = 0;
-	if (m->length == 'l')
+	if (m->length == 'l' && is_in(m->conversion, "cs") >= 0)
+		m->conversion -= 32;
+	if (is_in(m->conversion, "DOU") >= 0)
 	{
-		if (m->conversion == 's')
-			ans = pf_cv_ws(m, d, ap);
-		else if (m->conversion == 'c')
-			ans = pf_cv_wc(m, d, ap);
+		m->conversion += 32;
+		m->length = 'l';
 	}
-	else if (m->conversion == 'S')
-		ans = pf_cv_ws(m, d, ap);
-	else if (m->conversion == 's')
-		ans = pf_cv_s(m, d, ap);
-	else if (m->conversion == 'C')
-		ans = pf_cv_wc(m, d, ap);
-	else if (m->conversion == 'c')
-		ans = pf_cv_c(m, d, ap);
-	else if (m->conversion == 'i')
-		ans = pf_cv_di(m, d, ap);
-	else if (m->conversion == 'x')
-		ans = pf_cv_x(m, d, ap);
-	else if (m->conversion == 'X')
-		ans = pf_cv_cx(m, d, ap);
+	i = 6;
+	while (--i >= 0 && m->conversion != c[i])
+		;
+	if (i > 0)
+		((int (*)())t)(m, d, ap);
 	return (ans);
 }
 
