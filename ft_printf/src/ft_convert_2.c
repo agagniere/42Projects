@@ -6,9 +6,12 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:37:44 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 14:07:11 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/30 14:11:55 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
+#include <wchar.h>
 
 int		pf_cv_s(t_modifier *m, t_dyna *d, va_list ap)
 {
@@ -50,7 +53,8 @@ int		pf_cv_c(t_modifier *m, t_dyna *d, va_list ap)
 {
 	unsigned char	arg;
 
-	arg = va_arg(ap, char);
+	(void)m;
+	arg = (char)va_arg(ap, int);
 	ft_dyna_append(d, (void *)&arg, 1);
 	return (1);
 }
@@ -59,6 +63,7 @@ int		pf_cv_C(t_modifier *m, t_dyna *d, va_list ap)
 {
 	wint_t	arg;
 
+	(void)m;
 	arg = va_arg(ap, wint_t);
 	if (arg < 1 << 7)
 	{

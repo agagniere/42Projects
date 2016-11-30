@@ -6,13 +6,11 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:37:36 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 12:39:13 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/30 14:14:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-#define MIN(A,B) (A < B ? A : B)
 
 static int	pf_itoa_base(t_dyna *d, long int n, int b)
 {
