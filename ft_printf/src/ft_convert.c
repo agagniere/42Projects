@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 12:40:11 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/30 15:07:01 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ static inline int
 	if (m->length == 'l')
 	{
 		if (m->conversion == 's')
-			ans = pf_cv_S(m, d, ap);
+			ans = pf_cv_ws(m, d, ap);
 		else if (m->conversion == 'c')
-			ans = pf_cv_C(m, d, ap);
+			ans = pf_cv_wc(m, d, ap);
 	}
 	else if (m->conversion == 'S')
-		ans = pf_cv_S(m, d, ap);
+		ans = pf_cv_ws(m, d, ap);
 	else if (m->conversion == 's')
 		ans = pf_cv_s(m, d, ap);
 	else if (m->conversion == 'C')
-		ans = pf_cv_C(m, d, ap);
+		ans = pf_cv_wc(m, d, ap);
 	else if (m->conversion == 'c')
 		ans = pf_cv_c(m, d, ap);
 	else if (m->conversion == 'i')
@@ -39,7 +39,7 @@ static inline int
 	else if (m->conversion == 'x')
 		ans = pf_cv_x(m, d, ap);
 	else if (m->conversion == 'X')
-		ans = pf_cv_X(m, d, ap);
+		ans = pf_cv_cx(m, d, ap);
 	return (ans);
 }
 

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:16 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 14:07:39 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/30 15:05:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ size_t				wc_strlen(const wchar_t *str);
 
 int					pf_cv_di(t_modifier *m, t_dyna *d, va_list ap);
 int					pf_cv_s(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_S(t_modifier *m, t_dyna *d, va_list ap);
+int					pf_cv_ws(t_modifier *m, t_dyna *d, va_list ap);
 int					pf_cv_c(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_C(t_modifier *m, t_dyna *d, va_list ap);
+int					pf_cv_wc(t_modifier *m, t_dyna *d, va_list ap);
 int					pf_cv_x(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_X(t_modifier *m, t_dyna *d, va_list ap);
+int					pf_cv_cx(t_modifier *m, t_dyna *d, va_list ap);
 
 #endif

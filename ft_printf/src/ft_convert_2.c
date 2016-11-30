@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:37:44 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 14:11:55 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/11/30 14:42:18 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		pf_cv_s(t_modifier *m, t_dyna *d, va_list ap)
 	return (ans);
 }
 
-int		pf_cv_S(t_modifier *m, t_dyna *d, va_list ap)
+int		pf_cv_ws(t_modifier *m, t_dyna *d, va_list ap)
 {
 	wchar_t	*arg;
 	int		ans;
@@ -59,7 +59,7 @@ int		pf_cv_c(t_modifier *m, t_dyna *d, va_list ap)
 	return (1);
 }
 
-int		pf_cv_C(t_modifier *m, t_dyna *d, va_list ap)
+int		pf_cv_wc(t_modifier *m, t_dyna *d, va_list ap)
 {
 	wint_t	arg;
 
