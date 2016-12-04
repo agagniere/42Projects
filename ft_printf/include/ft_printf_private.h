@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:16 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 17:11:32 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/04 19:47:56 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ typedef struct		s_modifier
 
 void				db_print_modifier(t_modifier *m);
 void				pf_convert(t_modifier *m, t_dyna *d, va_list ap);
-size_t				wc_strlen(const wchar_t *str);
+int					pf_signed_integer(t_modifier *m,
+	t_dyna *d, va_list ap, int b);
+int					pf_unsigned_integer(t_modifier *m,
+	t_dyna *d, va_list ap, int b);
 
 int					pf_cv_di(t_modifier *m, t_dyna *d, va_list ap);
 int					pf_cv_s(t_modifier *m, t_dyna *d, va_list ap);

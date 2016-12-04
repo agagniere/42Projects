@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 18:21:03 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/04 15:57:46 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ static inline int
 {
 	int			ans;
 	int			i;
-	char const	*c = "diouxX";
-	void *const	t[] = {pf_cv_di, pf_cv_di, pf_cv_o, pf_cv_u, pf_cv_x, pf_cv_cx};
+	char const	*c = "diouxXcCsS";
+	void *const	t[] = {&pf_cv_di, &pf_cv_di, &pf_cv_o, &pf_cv_u, &pf_cv_x,
+					   &pf_cv_cx, &pf_cv_c, &pf_cv_wc, &pf_cv_s, &pf_cv_ws};
 
 	ans = 0;
 	if (m->length == 'l' && is_in(m->conversion, "cs") >= 0)
@@ -28,11 +29,11 @@ static inline int
 		m->conversion += 32;
 		m->length = 'l';
 	}
-	i = 6;
-	while (--i >= 0 && m->conversion != c[i])
-		;
-	if (i > 0)
-		((int (*)())t)(m, d, ap);
+	i = 0;
+	while (c[i] != '\0' && m->conversion != c[i])
+		i++;
+	if (c[i] != '\0')
+		ans += ((int (*)())t[i])(m, d, ap);
 	return (ans);
 }
 
@@ -54,7 +55,7 @@ static inline int
 
 	ans = pf_precision(m, d, ap);
 	if (m->booleans.n.zero && m->precision == 0
-		&& 0 <= is_in(m->conversion, "diuoxX"))
+		&& is_in(m->conversion, "diuoxX") >= 0)
 		while (ans < m->size && ++ans)
 			ft_dyna_append(d, "0", 1);
 	while (ans < m->size && ++ans)

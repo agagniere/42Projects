@@ -6,21 +6,23 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:37:36 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 21:24:26 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/04 20:26:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	pf_itoa_base(t_dyna *d, long long n, int b, int shift)
+int			pf_itoa_base(t_dyna *d, long long n, int b, char info)
 {
-	const char		*base = (shift ? "0123456789ABCDEF" : "0123456789abcdef");
-	int				ans;
+	int							ans;
+	const unsigned long long	un = (unsigned long long)n;
+	const char *const			base =
 
+	(info & 1 ? "0123456789ABCDEF" : "0123456789abcdef");
 	ans = 1;
-	if (n <= -b || b <= n)
-		ans += pf_itoa_base(d, n / b, b, shift);
-	ft_dyna_append(d, (void *)(base + ABS(n % b)), 1);
+	if (b <= (info & 2 ? un : n) || (!(info & 2) && n <= -b))
+		ans += pf_itoa_base(d, (info & 2 ? un : n) / b, b, info);
+	ft_dyna_append(d, (void *)(base + ABS((info & 2 ? un : n) % b)), 1);
 	return (ans);
 }
 
@@ -38,7 +40,7 @@ int			pf_signed_integer(t_modifier *m, t_dyna *d, va_list ap, int b)
 		arg = va_arg(ap, long long);
 	else
 		arg = va_arg(ap, int);
-	if (b == 10 && arg < 0)
+	if (arg < 0)
 	{
 		ft_dyna_append(d, "-", 1);
 		return (1 + pf_itoa_base(d, arg, ABS(b), b < 0));
@@ -46,45 +48,9 @@ int			pf_signed_integer(t_modifier *m, t_dyna *d, va_list ap, int b)
 	return (pf_itoa_base(d, arg, ABS(b), b < 0));
 }
 
-int			pf_cv_di(t_modifier *m, t_dyna *d, va_list ap)
-{
-	return (pf_signed_integer(m, d, ap, 10));
-}
-
-int			pf_cv_cx(t_modifier *m, t_dyna *d, va_list ap)
-{
-	if (m->booleans.n.alternate)
-	{
-		ft_dyna_append(d, "0X", 2);
-		return (2 + pf_signed_integer(m, d, ap, -16));
-	}
-	return (pf_signed_integer(m, d, ap, -16));
-}
-
-int			pf_cv_x(t_modifier *m, t_dyna *d, va_list ap)
-{
-	if (m->booleans.n.alternate)
-	{
-		ft_dyna_append(d, "0x", 2);
-		return (2 + pf_signed_integer(m, d, ap, 16));
-	}
-	return (pf_signed_integer(m, d, ap, 16));
-}
-
-int			pf_cv_o(t_modifier *m, t_dyna *d, va_list ap)
-{
-	if (m->booleans.n.alternate)
-	{
-		ft_dyna_append(d, "0", 1);
-		return (1 + pf_signed_integer(m, d, ap, 8));
-	}
-	return (pf_signed_integer(m, d, ap, 16));
-}
-
-int			pf_cv_u(t_modifier *m, t_dyna *d, va_list ap)
+int			pf_unsigned_integer(t_modifier *m, t_dyna *d, va_list ap, int b)
 {
 	long long unsigned	arg;
-	int					ans;
 
 	if (m->length == 'H')
 		arg = (unsigned char)va_arg(ap, unsigned);
@@ -95,10 +61,6 @@ int			pf_cv_u(t_modifier *m, t_dyna *d, va_list ap)
 	else if (m->length == 'L')
 		arg = va_arg(ap, unsigned long long);
 	else
-		arg = va_arg();
-	ans = 0;
-	if (m->booleans.n.alternate && (ans += 2) >= 0)
-		ft_dyna_append(d, "0", 2);
-	ans += pf_itoa_base(d, arg, 10, 0);
-	return (ans);
+		arg = va_arg(ap, unsigned);
+	return (pf_itoa_base(d, arg, ABS(b), 2 | (b < 0)));
 }
