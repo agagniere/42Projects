@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/05 14:36:33 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/04 20:42:37 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int
 		s = p;
 	}
 	ft_dyna_append(&d, "\0", 1);
+	ft_dyna_trim(&d);
 	*ret = d.data;
 	return (d.chunck_count);
 }
