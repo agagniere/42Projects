@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:16 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/04 19:47:56 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/07 22:28:05 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include "libft.h"
 
-# define FTPF_CV "diouxXDOUeEfFgGaAcCsSpn%"
+# define FTPF_CV "diouxXDOUeEfFgGaAcCsSpnb%"
 # define FTPF_LM "hljzL"
 
 typedef struct		s_modifier
@@ -48,6 +48,7 @@ int					pf_signed_integer(t_modifier *m,
 	t_dyna *d, va_list ap, int b);
 int					pf_unsigned_integer(t_modifier *m,
 	t_dyna *d, va_list ap, int b);
+int					pf_itoa_base(t_dyna *d, long long n, int b, char info);
 
 int					pf_cv_di(t_modifier *m, t_dyna *d, va_list ap);
 int					pf_cv_s(t_modifier *m, t_dyna *d, va_list ap);
@@ -58,5 +59,7 @@ int					pf_cv_o(t_modifier *m, t_dyna *d, va_list ap);
 int					pf_cv_x(t_modifier *m, t_dyna *d, va_list ap);
 int					pf_cv_cx(t_modifier *m, t_dyna *d, va_list ap);
 int					pf_cv_u(t_modifier *m, t_dyna *d, va_list ap);
+int					pf_cv_b(t_modifier *m, t_dyna *d, va_list ap);
+int					pf_cv_p(t_modifier *m, t_dyna *d, va_list ap);
 
 #endif

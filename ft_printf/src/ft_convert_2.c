@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:37:44 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/30 14:42:18 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/07 11:38:43 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,17 @@ int		pf_cv_wc(t_modifier *m, t_dyna *d, va_list ap)
 
 	(void)m;
 	arg = va_arg(ap, wint_t);
-	if (arg < 1 << 7)
+	if (ABS(arg) < 1 << 7)
 	{
 		ft_dyna_append(d, (void *)&arg, 1);
 		return (1);
 	}
-	else if (arg < 1 << 15)
+	else if (ABS(arg) < 1 << 15)
 	{
 		ft_dyna_append(d, (void *)&arg, 2);
 		return (2);
 	}
-	else if (arg < 1 << 24)
+	else if (ABS(arg) < 1 << 24)
 	{
 		ft_dyna_append(d, (void *)&arg, 3);
 		return (3);
