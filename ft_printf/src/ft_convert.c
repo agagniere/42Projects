@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/08 01:12:31 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/08 03:19:42 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,37 @@ static inline int
 	return (ans);
 }
 
+void
+	tmp_dyna_swap(t_dyna *d, size_t before, size_t after)
+{
+	char			*tmp;
+	const size_t	len = after - before;
+	const size_t	m = d->chunck_size;
+
+	tmp = ft_safe_calloc(len, m);
+	ft_memcpy(tmp, d->data + before * m, m * len);
+	ft_memmove(d->data + before * m, d->data + after * m,
+		(d->chunck_count - after) * m);
+	ft_memcpy(d->data + (d->chunck_count - len) * m, tmp, len * m);
+}
+
 static inline int
 	pf_precision(t_modifier *m, t_dyna *d, va_list ap)
 {
 	int		ans;
+	size_t	before;
+	size_t	after;
 
+	before = d->chunck_count;
 	ans = pf_print(m, d, ap);
-	while (ans - m->booleans.n.minus < m->precision && ++ans)
+	after = d->chunck_count;
+	if (*(char *)ft_dyna_get(d, before) == '-'
+		&& ++before
+		&& m->precision >= 0)
+		m->precision++;
+	while (ans < m->precision && ++ans)
 		ft_dyna_append(d, "0", 1);
+	tmp_dyna_swap(d, before, after);
 	return (ans);
 }
 
@@ -54,18 +77,25 @@ static inline int
 {
 	int		ans;
 	size_t	before;
+	size_t	after;
 
 	before = d->chunck_count;
 	ans = pf_precision(m, d, ap);
+	after = d->chunck_count;
 	if (m->booleans.n.zero
 		&& m->precision == -1
-		&& ((!m->booleans.n.minus && is_in(m->conversion, "diuoxX") >= 0)
-			|| is_in(m->conversion, "fFgGeE") >= 0))
+		&& !m->booleans.n.minus
+		&& is_in(m->conversion, "diuoxX") >= 0)
 		while (ans < m->size && ++ans)
 			ft_dyna_append(d, "0", 1);
 	else
 		while (ans < m->size && ++ans)
 			ft_dyna_append(d, " ", 1);
+	if (m->precision == -1
+		&& *(char *)ft_dyna_get(d, before) == '-')
+		before++;
+	if (!m->booleans.n.minus)
+		tmp_dyna_swap(d, before, after);
 	return (ans);
 }
 

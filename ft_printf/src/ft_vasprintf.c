@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/04 20:42:37 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/08 01:21:33 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int
 	char const	*p;
 
 	d = ft_dyna_new(sizeof(char));
+	ft_dyna_reserve(&d, ft_strlen(s));
 	while (*s != '\0')
 	{
 		m = NEW_MODIFIER;
