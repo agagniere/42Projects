@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/08 00:00:49 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/08 01:02:09 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int		main(int ac, char **av)
 {
-	char const	*s = "(%hhi,%X,%s,%-20s)\n";
+	char const	*s = "(%020hhi,%X,%3.2s,%-20s)\n";
 
 	(void)ac;
 	(void)av;

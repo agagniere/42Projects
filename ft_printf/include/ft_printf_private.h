@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:16 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/08 00:04:19 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/08 00:55:07 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct		s_modifier
 	int				precision;
 }					t_modifier;
 
-# define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0}}, 0, 0, 0, -1};
+# define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0}}, 0, 0, -1, -1};
 
 void				db_print_modifier(t_modifier *m);
 void				pf_convert(t_modifier *m, t_dyna *d, va_list ap);

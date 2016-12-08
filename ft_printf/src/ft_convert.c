@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/07 23:42:57 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/08 01:12:31 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static inline int
 	int		ans;
 
 	ans = pf_print(m, d, ap);
-	while (ans < m->precision && ++ans)
+	while (ans - m->booleans.n.minus < m->precision && ++ans)
 		ft_dyna_append(d, "0", 1);
 	return (ans);
 }
@@ -53,14 +53,19 @@ static inline int
 	pf_size(t_modifier *m, t_dyna *d, va_list ap)
 {
 	int		ans;
+	size_t	before;
 
+	before = d->chunck_count;
 	ans = pf_precision(m, d, ap);
-	if (m->booleans.n.zero && m->precision == -1
-		&& is_in(m->conversion, "diuoxX") >= 0)
+	if (m->booleans.n.zero
+		&& m->precision == -1
+		&& ((!m->booleans.n.minus && is_in(m->conversion, "diuoxX") >= 0)
+			|| is_in(m->conversion, "fFgGeE") >= 0))
 		while (ans < m->size && ++ans)
 			ft_dyna_append(d, "0", 1);
-	while (ans < m->size && ++ans)
-		ft_dyna_append(d, " ", 1);
+	else
+		while (ans < m->size && ++ans)
+			ft_dyna_append(d, " ", 1);
 	return (ans);
 }
 
