@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/08 03:19:42 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/08 16:55:51 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static inline int
 	int			i;
 	char const	*c = "diouxXcCsSpbn";
 	void *const	t[] = {&pf_cv_di, &pf_cv_di, &pf_cv_o, &pf_cv_u, &pf_cv_x,
-					   &pf_cv_cx, &pf_cv_c, &pf_cv_wc, &pf_cv_s, &pf_cv_ws,
-					   &pf_cv_p, &pf_cv_b, &pf_cv_n};
+			&pf_cv_cx, &pf_cv_c, &pf_cv_wc, &pf_cv_s, &pf_cv_ws,
+			&pf_cv_p, &pf_cv_b, &pf_cv_n};
 
 	ans = 0;
 	if (m->length == 'l' && is_in(m->conversion, "cs") >= 0)
@@ -62,13 +62,16 @@ static inline int
 	before = d->chunck_count;
 	ans = pf_print(m, d, ap);
 	after = d->chunck_count;
-	if (*(char *)ft_dyna_get(d, before) == '-'
-		&& ++before
-		&& m->precision >= 0)
-		m->precision++;
-	while (ans < m->precision && ++ans)
-		ft_dyna_append(d, "0", 1);
-	tmp_dyna_swap(d, before, after);
+	if (ans < m->precision && is_in(m->conversion, "diouDOUxX") >= 0)
+	{
+		if (*(char *)ft_dyna_get(d, before) == '-'
+			&& ++before
+			&& m->precision >= 0)
+			m->precision++;
+		while (ans < m->precision && ++ans)
+			ft_dyna_append(d, "0", 1);
+		tmp_dyna_swap(d, before, after);
+	}
 	return (ans);
 }
 
@@ -82,20 +85,24 @@ static inline int
 	before = d->chunck_count;
 	ans = pf_precision(m, d, ap);
 	after = d->chunck_count;
-	if (m->booleans.n.zero
-		&& m->precision == -1
-		&& !m->booleans.n.minus
-		&& is_in(m->conversion, "diuoxX") >= 0)
-		while (ans < m->size && ++ans)
-			ft_dyna_append(d, "0", 1);
-	else
-		while (ans < m->size && ++ans)
-			ft_dyna_append(d, " ", 1);
-	if (m->precision == -1
-		&& *(char *)ft_dyna_get(d, before) == '-')
-		before++;
-	if (!m->booleans.n.minus)
-		tmp_dyna_swap(d, before, after);
+	if (ans < m->size)
+	{
+		if (m->booleans.n.zero && m->precision == -1
+			&& !m->booleans.n.minus
+//			&& is_in(m->conversion, "diuoxXbpDOU") >= 0
+			)
+			while (ans < m->size && ++ans)
+				ft_dyna_append(d, "0", 1);
+		else
+			while (ans < m->size && ++ans)
+				ft_dyna_append(d, " ", 1);
+		if (m->precision == -1
+			&& m->booleans.n.zero
+			&& *(char *)ft_dyna_get(d, before) == '-')
+			before++;
+		if (!m->booleans.n.minus)
+			tmp_dyna_swap(d, before, after);
+	}
 	return (ans);
 }
 

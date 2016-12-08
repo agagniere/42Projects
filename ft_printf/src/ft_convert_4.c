@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/04 20:30:10 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/08 00:32:29 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/08 03:56:35 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		pf_rtoa(t_dyna *d, long double x, int b)
 	return (ans);
 }
 
-int		pf_cv_f()
+int		pf_cv_f(void)
 {
 	return (0);
 }
