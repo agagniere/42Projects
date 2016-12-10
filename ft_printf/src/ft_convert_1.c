@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:37:36 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/08 00:56:58 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/10 19:42:34 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@
 ** if the second weakest bit of _info_ is on, _n_ is considered unsigned.
 */
 
-int			pf_itoa_base(t_dyna *d, long long n, int b, char info)
+int			pf_itoa_base(t_dyna *d, intmax_t n, int b, char info)
 {
-	int							ans;
-	const unsigned long long	un = (unsigned long long)n;
-	const char *const			base =
+	int					ans;
+	const uintmax_t		un = (uintmax_t)n;
+	const char *const	base =
 
 	(info & 1 ? "0123456789ABCDEF" : "0123456789abcdef");
 	ans = 1;
-	if ((info & 2 ? un >= (unsigned long long)b : n >= b)
+	if ((info & 2 ? un >= (uintmax_t)b : n >= b)
 		|| ((!(info & 2)) && n <= -b))
 		ans += pf_itoa_base(d, (info & 2 ?
-			(long long)(un / b) : n / b), b, info);
+			(intmax_t)(un / b) : n / b), b, info);
 	ft_dyna_append(d, (void *)(base +
 		(info & 2 ? (size_t)(un % b) : ABS(n % b))), 1);
 	return (ans);
@@ -38,7 +38,7 @@ int			pf_itoa_base(t_dyna *d, long long n, int b, char info)
 
 int			pf_signed_integer(t_modifier *m, t_dyna *d, va_list ap, int b)
 {
-	long long	arg;
+	intmax_t	arg;
 
 	if (m->length == 'H')
 		arg = (signed char)va_arg(ap, int);
@@ -62,7 +62,7 @@ int			pf_signed_integer(t_modifier *m, t_dyna *d, va_list ap, int b)
 
 int			pf_unsigned_integer(t_modifier *m, t_dyna *d, va_list ap, int b)
 {
-	long long unsigned	arg;
+	uintmax_t	arg;
 
 	if (m->length == 'H')
 		arg = (unsigned char)va_arg(ap, unsigned);

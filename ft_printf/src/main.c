@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/08 16:57:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/10 16:19:10 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 	ft = ft_asprintf(&ft_dst,FMT,ARGS);									\
 	if (ft != pf)														\
 		dprintf(2, "Fail : return value (%i vs %i)\n", pf, ft);			\
-	else if (strcmp(ft_dst, pf_dst))									\
+	if (strcmp(ft_dst, pf_dst))									\
 		dprintf(2, "%sFail : strings differ\n|%s| (Real) vs\n|%s|.\n%s", \
 				"\e[1;31m", pf_dst, ft_dst, "\e[0m");					\
 	else																\
@@ -67,6 +67,7 @@ int		main(int ac, char **av)
 	TEST("W-Combo _%-.10i_", -'*');
 	TEST("X-Combo _%-020i_", -'*');
 	TEST("Y-Combo _%-#20.10x_", '*');
+	TEST("Z-Combo _%S_", L"Helloλ\0\0\0");
 	(void)ac;
 	(void)av;
 	return (0);

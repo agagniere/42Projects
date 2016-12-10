@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/08 16:55:51 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/08 17:07:37 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,6 @@ static inline int
 	after = d->chunck_count;
 	if (ans < m->precision && is_in(m->conversion, "diouDOUxX") >= 0)
 	{
-		if (*(char *)ft_dyna_get(d, before) == '-'
-			&& ++before
-			&& m->precision >= 0)
-			m->precision++;
 		while (ans < m->precision && ++ans)
 			ft_dyna_append(d, "0", 1);
 		tmp_dyna_swap(d, before, after);
@@ -89,17 +85,12 @@ static inline int
 	{
 		if (m->booleans.n.zero && m->precision == -1
 			&& !m->booleans.n.minus
-//			&& is_in(m->conversion, "diuoxXbpDOU") >= 0
 			)
 			while (ans < m->size && ++ans)
 				ft_dyna_append(d, "0", 1);
 		else
 			while (ans < m->size && ++ans)
 				ft_dyna_append(d, " ", 1);
-		if (m->precision == -1
-			&& m->booleans.n.zero
-			&& *(char *)ft_dyna_get(d, before) == '-')
-			before++;
 		if (!m->booleans.n.minus)
 			tmp_dyna_swap(d, before, after);
 	}
