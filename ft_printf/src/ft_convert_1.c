@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:37:36 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/10 19:42:34 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/13 19:31:56 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 ** if the second weakest bit of _info_ is on, _n_ is considered unsigned.
 */
 
-int			pf_itoa_base(t_dyna *d, intmax_t n, int b, char info)
+int			pf_itoa_base(t_array *d, intmax_t n, int b, char info)
 {
 	int					ans;
 	const uintmax_t		un = (uintmax_t)n;
@@ -31,12 +31,12 @@ int			pf_itoa_base(t_dyna *d, intmax_t n, int b, char info)
 		|| ((!(info & 2)) && n <= -b))
 		ans += pf_itoa_base(d, (info & 2 ?
 			(intmax_t)(un / b) : n / b), b, info);
-	ft_dyna_append(d, (void *)(base +
+	fta_append(d, (void *)(base +
 		(info & 2 ? (size_t)(un % b) : ABS(n % b))), 1);
 	return (ans);
 }
 
-int			pf_signed_integer(t_modifier *m, t_dyna *d, va_list ap, int b)
+int			pf_signed_integer(t_modifier *m, t_array *d, va_list ap, int b)
 {
 	intmax_t	arg;
 
@@ -54,13 +54,13 @@ int			pf_signed_integer(t_modifier *m, t_dyna *d, va_list ap, int b)
 		arg = va_arg(ap, int);
 	if (arg < 0)
 	{
-		ft_dyna_append(d, "-", 1);
+		fta_append(d, "-", 1);
 		return (1 + pf_itoa_base(d, arg, ABS(b), b < 0));
 	}
 	return (pf_itoa_base(d, arg, ABS(b), b < 0));
 }
 
-int			pf_unsigned_integer(t_modifier *m, t_dyna *d, va_list ap, int b)
+int			pf_unsigned_integer(t_modifier *m, t_array *d, va_list ap, int b)
 {
 	uintmax_t	arg;
 

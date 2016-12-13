@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:16 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/08 00:55:07 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/13 19:32:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,24 @@ typedef struct		s_modifier
 # define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0}}, 0, 0, -1, -1};
 
 void				db_print_modifier(t_modifier *m);
-void				pf_convert(t_modifier *m, t_dyna *d, va_list ap);
+void				pf_convert(t_modifier *m, t_array *d, va_list ap);
 int					pf_signed_integer(t_modifier *m,
-	t_dyna *d, va_list ap, int b);
+	t_array *d, va_list ap, int b);
 int					pf_unsigned_integer(t_modifier *m,
-	t_dyna *d, va_list ap, int b);
-int					pf_itoa_base(t_dyna *d, long long n, int b, char info);
+	t_array *d, va_list ap, int b);
+int					pf_itoa_base(t_array *d, intmax_t n, int b, char info);
 
-int					pf_cv_di(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_s(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_ws(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_c(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_wc(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_o(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_x(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_cx(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_u(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_b(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_p(t_modifier *m, t_dyna *d, va_list ap);
-int					pf_cv_n(t_modifier *m, t_dyna *d, va_list ap);
+int					pf_cv_di(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_s(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_ws(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_c(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_wc(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_o(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_x(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_cx(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_u(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_b(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_p(t_modifier *m, t_array *d, va_list ap);
+int					pf_cv_n(t_modifier *m, t_array *d, va_list ap);
 
 #endif

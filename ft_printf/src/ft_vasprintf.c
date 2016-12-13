@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/08 14:08:54 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/13 19:26:40 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ static inline const char
 int
 	ft_vasprintf(char **ret, char const *s, va_list ap)
 {
-	t_dyna		d;
+	t_array		d;
 	t_modifier	m;
 	char const	*p;
 
-	d = ft_dyna_new(sizeof(char));
-	ft_dyna_reserve(&d, ft_strlen(s));
+	d = NEW_ARRAY(char);
+	fta_reserve(&d, ft_strlen(s));
 	while (*s != '\0')
 	{
 		m = NEW_MODIFIER;
@@ -75,13 +75,13 @@ int
 		while (*p != '\0' && *p != '%')
 			p++;
 		if (p != s)
-			ft_dyna_append(&d, (void *)s, p - s);
+			fta_append(&d, (void *)s, p - s);
 		s = p;
 	}
-	ft_dyna_append(&d, "\0", 1);
-	ft_dyna_trim(&d);
+	fta_append(&d, "\0", 1);
+	fta_trim(&d);
 	*ret = d.data;
-	return (d.chunck_count - 1);
+	return (d.size - 1);
 }
 
 /*
@@ -91,7 +91,7 @@ int
 **		while (*p != '\0' && *p != '%')
 **			p++;
 **		if (p != s)
-**			ft_dyna_append(&d, (void *)s, p - s);
+**			fta_append(&d, (void *)s, p - s);
 **		s = p;
 **		if (*p == '%')
 **		{
