@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/10 16:19:10 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/18 21:56:36 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		main(int ac, char **av)
 	TEST("G-Integer _%hhhu_", -61234);
 	TEST("H-Integer _%hhhhi_", -61234);
 	TEST("I-Integer _%hhhhu_", -61234);
-	TEST("J-Integer _%hhhx_", -61234);
+	TEST("J-Integer _%#.10hhhx_", -61234);
 	TEST("K-Integer _%lX_", 0xDEADBEEF);
 	TEST("L-Pointer _%p_", &pf);
 	TEST("M-Pointer _%hhp_", &pf);
@@ -67,7 +67,7 @@ int		main(int ac, char **av)
 	TEST("W-Combo _%-.10i_", -'*');
 	TEST("X-Combo _%-020i_", -'*');
 	TEST("Y-Combo _%-#20.10x_", '*');
-	TEST("Z-Combo _%S_", L"Helloλ\0\0\0");
+	TEST("Z-Combo _%20s_", "Helloλ");
 	(void)ac;
 	(void)av;
 	return (0);

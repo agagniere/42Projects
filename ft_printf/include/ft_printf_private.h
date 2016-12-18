@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:16 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/13 19:32:16 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/18 22:01:29 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "libft.h"
 
 # define FTPF_CV "diouxXDOUeEfFgGaAcCsSpnb%"
+# define FTPF_NUMERIC "diouDOUxXp"
 # define FTPF_LM "hljzL"
 
 typedef struct		s_modifier

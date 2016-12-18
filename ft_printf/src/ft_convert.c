@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/13 19:37:39 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/18 22:24:57 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ static inline int
 	before = d->size;
 	ans = pf_print(m, d, ap);
 	after = d->size;
-	if (ans < m->precision && is_in(m->conversion, "diouDOUxX") >= 0)
+	if (ans < m->precision && is_in(m->conversion, "diouDOUxXp") >= 0)
 	{
 		while (ans < m->precision && ++ans)
 			fta_append(d, "0", 1);
-		tmp_dyna_swap(d, before, after);
+		tmp_dyna_swap(d, before + 1, after);
 	}
 	return (ans);
 }
