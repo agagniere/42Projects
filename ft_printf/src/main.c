@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/18 21:56:36 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/22 09:47:57 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 	ft = ft_asprintf(&ft_dst,FMT,ARGS);									\
 	if (ft != pf)														\
 		dprintf(2, "Fail : return value (%i vs %i)\n", pf, ft);			\
-	if (strcmp(ft_dst, pf_dst))									\
-		dprintf(2, "%sFail : strings differ\n|%s| (Real) vs\n|%s|.\n%s", \
-				"\e[1;31m", pf_dst, ft_dst, "\e[0m");					\
-	else																\
-		dprintf(1, "\e[1;32m|%s|\e[0m\n", ft_dst);
+	if (pf >= 0) {														\
+		if (strcmp(ft_dst, pf_dst))										\
+			dprintf(2, "%sFail : strings differ\n|%s| (Real) vs\n|%s|\n%s", \
+					"\e[1;31m", pf_dst, ft_dst, "\e[0m");				\
+		else															\
+			dprintf(1, "\e[1;32m|%s|\e[0m\n", ft_dst);					\
+	}
 
 int		main(int ac, char **av)
 {
@@ -51,23 +53,37 @@ int		main(int ac, char **av)
 	TEST("G-Integer _%hhhu_", -61234);
 	TEST("H-Integer _%hhhhi_", -61234);
 	TEST("I-Integer _%hhhhu_", -61234);
-	TEST("J-Integer _%#.10hhhx_", -61234);
+	TEST("J-Integer [p] _%#.10hhhx_", -61234);
 	TEST("K-Integer _%lX_", 0xDEADBEEF);
 	TEST("L-Pointer _%p_", &pf);
 	TEST("M-Pointer _%hhp_", &pf);
 	TEST("N-Pointer _%p_", &pf);
 	TEST("O-Pointer _%hhp_", &pf);
 	TEST("P-Combo _%20i_", -'*');
-	TEST("Q-Combo _%20.10i_", -'*');
-	TEST("R-Combo _%.10i_", -'*');
-	TEST("S-Combo _%020i_", -'*');
-	TEST("T-Combo _%#20.10x_", '*');
+	TEST("Q-Combo [lp]_%20.10i_", -'*');
+	TEST("R-Combo [p]_%.10i_", -'*');
+	TEST("S-Combo [l]_%020i_", -'*');
+	TEST("T-Combo [lp]_%#20.10x_", '*');
 	TEST("U-Combo _%-20i_", -'*');
 	TEST("V-Combo _%-20.10i_", -'*');
 	TEST("W-Combo _%-.10i_", -'*');
 	TEST("X-Combo _%-020i_", -'*');
 	TEST("Y-Combo _%-#20.10x_", '*');
-	TEST("Z-Combo _%20s_", "Helloλ");
+	TEST("Z-Combo _%s_", "Helloλ");
+	TEST("10-NULL string _%s_", NULL);
+	TEST("11-NULL string _%4s_", NULL);
+	TEST("12-NULL string _%.4s_", NULL);
+	TEST("13-NULL string _%S_", NULL);
+	TEST("14-NULL string _%4S_", NULL);
+	TEST("15-NULL string _%l.4s_", NULL);
+	TEST("16-Bonus _%-2147483648.99h+08h#.04i_", '*');
+	TEST("17-Nothing _%20.10", '*');
+	TEST("18-Nothing _%20.10_", '*');
+	TEST("19-Nothing _%20.10&_", '*');
+	TEST("1A-Nothing _%20.10@_", '*');
+	TEST("1B-Nothing _%20.10`_", '*');
+	TEST("1C-Nothing _%20.10%_", '*');
+	TEST("%s", "The End");
 	(void)ac;
 	(void)av;
 	return (0);

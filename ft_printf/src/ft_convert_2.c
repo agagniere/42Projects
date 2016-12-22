@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:37:44 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/13 19:33:19 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/20 10:48:37 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		pf_cv_s(t_modifier *m, t_array *d, va_list ap)
 	int		ans;
 
 	arg = va_arg(ap, char *);
+	if (arg == NULL)
+		arg = "(null)";
 	ans = (m->precision >= 0 ? MIN(ft_strlen(arg),
 		(size_t)m->precision) : ft_strlen(arg));
 	fta_append(d, (void *)arg, ans);
@@ -30,10 +32,11 @@ int		pf_cv_ws(t_modifier *m, t_array *d, va_list ap)
 	wchar_t	*arg;
 	int		ans;
 
-	(void)m;
 	ans = d->size;
 	arg = va_arg(ap, wchar_t *);
-	while (*arg != L'\0')
+	if (arg == NULL)
+		arg = L"(null)";
+	while (*arg != L'\0' && (d->size - ans) < (size_t)m->precision)
 	{
 		if (*arg < 1 << 7)
 			fta_append(d, (void *)arg, 1);

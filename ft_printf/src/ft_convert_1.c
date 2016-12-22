@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:37:36 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/13 19:31:56 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/22 10:05:06 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ int			pf_signed_integer(t_modifier *m, t_array *d, va_list ap, int b)
 	else
 		arg = va_arg(ap, int);
 	if (arg < 0)
-	{
 		fta_append(d, "-", 1);
-		return (1 + pf_itoa_base(d, arg, ABS(b), b < 0));
-	}
 	return (pf_itoa_base(d, arg, ABS(b), b < 0));
 }
 

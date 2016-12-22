@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/27 17:04:01 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/13 19:26:40 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/22 07:43:05 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ static inline const char
 			m->booleans.t[n] = 1;
 		else if (is_in(*s, FTPF_LM) >= 0)
 			pf_set_length(*s, &(m->length));
-		else if (is_in(*s, FTPF_CV) >= 0 && (m->conversion = *s))
+		else if ((m->conversion = *s))
 			return (s + 1);
-		else
-			break ;
 		s++;
 	}
 	return (s);
