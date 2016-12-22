@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/22 10:22:50 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/22 12:39:22 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,44 +56,45 @@ static inline int
 	pf_precision(t_modifier *m, t_array *d, va_list ap)
 {
 	size_t	before;
-	size_t	start;
 	size_t	after;
 	int		width;
-	int		ans;
-	int		extra;
+	int		len;
 
 	before = d->size;
 	width = pf_print(m, d, ap);
 	after = d->size;
-	start = after - width;
-	ans = after - before;
-	extra = start - before;
-	if (width < m->precision && is_in(m->conversion, FTPF_NUMERIC) >= 0)
+	len = width;
+	if (len < m->precision && is_in(m->conversion, FTPF_NUMERIC) >= 0)
 	{
-		while (ans - extra < m->precision && ++ans)
+		while (len < m->precision && ++len)
 			fta_append(d, "0", 1);
-		tmp_dyna_swap(d, start, after);
+		tmp_dyna_swap(d, after - width, after);
 	}
-	return (ans);
+	return (len);
 }
 
 void
 	pf_convert(t_modifier *m, t_array *d, va_list ap)
 {
-	int		len;
 	size_t	before;
 	size_t	after;
+	int		width;
+	int		len;
 
 	before = d->size;
-	len = pf_precision(m, d, ap);
+	width = pf_precision(m, d, ap);
 	after = d->size;
+	len = after - before;
 	if (len < m->size)
 	{
 		if (m->booleans.n.zero
 			&& m->precision == -1
 			&& !m->booleans.n.minus)
+		{
 			while (len < m->size && ++len)
 				fta_append(d, "0", 1);
+			before = after - width;
+		}
 		else
 			while (len < m->size && ++len)
 				fta_append(d, " ", 1);
@@ -101,4 +102,3 @@ void
 			tmp_dyna_swap(d, before, after);
 	}
 }
-

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/22 09:47:57 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/22 12:53:28 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#define TEST(FMT, ARGS)													\
-	pf = asprintf(&pf_dst,FMT,ARGS);									\
-	ft = ft_asprintf(&ft_dst,FMT,ARGS);									\
+#define TEST(FMT,...)													\
+	pf = asprintf(&pf_dst,FMT,__VA_ARGS__);								\
+	ft = ft_asprintf(&ft_dst,FMT,__VA_ARGS__);							\
 	if (ft != pf)														\
 		dprintf(2, "Fail : return value (%i vs %i)\n", pf, ft);			\
 	if (pf >= 0) {														\
@@ -77,12 +77,25 @@ int		main(int ac, char **av)
 	TEST("14-NULL string _%4S_", NULL);
 	TEST("15-NULL string _%l.4s_", NULL);
 	TEST("16-Bonus _%-2147483648.99h+08h#.04i_", '*');
-	TEST("17-Nothing _%20.10", '*');
-	TEST("18-Nothing _%20.10_", '*');
-	TEST("19-Nothing _%20.10&_", '*');
-	TEST("1A-Nothing _%20.10@_", '*');
-	TEST("1B-Nothing _%20.10`_", '*');
-	TEST("1C-Nothing _%20.10%_", '*');
+	TEST("17-Nothing _%20.10",0);
+	TEST("18-Nothing _%20.10_",0);
+	TEST("19-Nothing _%20.10&_",0);
+	TEST("1A-Nothing _%20.10@_",0);
+	TEST("1B-Nothing _%20.10`_",0);
+	TEST("1C-Nothing _%20.10%_",0);
+	TEST("1D-Number _%015#X_", 0xDEADBEEF);
+	TEST("1E-Zero _%+i_", 0);
+	TEST("1F-Zero _%0+i_", 0);
+	TEST("1G-Zero _%.0+i_", 0);
+	TEST("1H-Zero _%.0+u_", 0);
+	TEST("1I-Zero _%10.0i_", 0);
+	TEST("1J-Zero _%10.0+u_", 0);
+	TEST("1K-Zero _%-10.0+i_", 0);
+	TEST("1L-Advanced _%i_%10i_%.5i_%10.5i_%010i_",-42,-42,-42,-42,-42);
+	TEST("1M-Advanced _%u_%10u_%.5u_%10.5u_%010u_",-42,-42,-42,-42,-42);
+	TEST("1N-Advanced _%#x_%10#x_%.5#x_%10.5#x_%010#x_",-42,-42,-42,-42,-42);
+	TEST("1O-Advanced _%#X_%10#X_%.5#X_%10.5#X_%010#X_",-42,-42,-42,-42,-42);
+	TEST("1P-Advanced _%#o_%10#o_%.5#o_%10.5#o_%010#o_",-42,-42,-42,-42,-42);
 	TEST("%s", "The End");
 	(void)ac;
 	(void)av;
