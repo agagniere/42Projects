@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/22 12:53:28 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/22 18:27:09 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	pf = asprintf(&pf_dst,FMT,__VA_ARGS__);								\
 	ft = ft_asprintf(&ft_dst,FMT,__VA_ARGS__);							\
 	if (ft != pf)														\
-		dprintf(2, "Fail : return value (%i vs %i)\n", pf, ft);			\
+		dprintf(2, "Fail : return value Real(%i vs %i)Yours\n", pf, ft); \
 	if (pf >= 0) {														\
 		if (strcmp(ft_dst, pf_dst))										\
 			dprintf(2, "%sFail : strings differ\n|%s| (Real) vs\n|%s|\n%s", \
@@ -96,6 +96,11 @@ int		main(int ac, char **av)
 	TEST("1N-Advanced _%#x_%10#x_%.5#x_%10.5#x_%010#x_",-42,-42,-42,-42,-42);
 	TEST("1O-Advanced _%#X_%10#X_%.5#X_%10.5#X_%010#X_",-42,-42,-42,-42,-42);
 	TEST("1P-Advanced _%#o_%10#o_%.5#o_%10.5#o_%010#o_",-42,-42,-42,-42,-42);
+	TEST("1Q-%", 0);
+	TEST("1R-%.0z", 0);
+	int a,b,c,d,e,f;
+	ft_printf("1S-%n[% 20.010-5n]%n", &a, &b, &c);
+	printf("1S-%n[% 20.010-5n]%n", &d, &e, &f);
 	TEST("%s", "The End");
 	(void)ac;
 	(void)av;
