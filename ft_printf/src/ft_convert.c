@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/22 16:39:12 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/24 01:40:35 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static inline int
 		i++;
 	if (c[i] != '\0')
 		return (((int (*)())t[i])(m, d, ap));
-	fta_append(d, &m->conversion, 1);
+	if (m->conversion)
+		fta_append(d, &m->conversion, 1);
 	return (1);
 }
 

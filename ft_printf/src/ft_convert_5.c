@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 11:41:29 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/22 10:13:19 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/24 01:35:18 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ int		pf_cv_n(t_modifier *m, t_array *d, va_list ap)
 {
 	int		*arg;
 
-	arg = va_arg(ap, int *);
+	arg = va_arg(ap, void *);
+	m->size = 0;
+	m->precision = -1;
 	if (m->length == 'H')
 		*(char *)arg = (char)d->size;
 	else if (m->length == 'h')
@@ -44,5 +46,7 @@ int		pf_cv_n(t_modifier *m, t_array *d, va_list ap)
 		*(long long *)arg = (long long)d->size;
 	else if (m->length == 'j')
 		*(intmax_t *)arg = (intmax_t)d->size;
+	else
+		*(int *)arg = (int)d->size;
 	return (0);
 }

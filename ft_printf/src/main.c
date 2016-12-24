@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/22 18:27:09 by angagnie         ###   ########.fr       */
+/*   Updated: 2016/12/24 01:38:16 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,10 @@ int		main(int ac, char **av)
 	TEST("1Q-%", 0);
 	TEST("1R-%.0z", 0);
 	int a,b,c,d,e,f;
-	ft_printf("1S-%n[% 20.010-5n]%n", &a, &b, &c);
-	printf("1S-%n[% 20.010-5n]%n", &d, &e, &f);
+	ft_printf("Nflag%nWooWo% %[% 20.010-5n]%n\n", &a, &b, &c);
+	printf("NFlag%nWooWo% %[% 20.010-5n]%n\n", &d, &e, &f);
+	if (a != d || b != e || c != f)
+		ft_printf("FAIL : (Real,FT) (%i,%i) (%i,%i) (%i,%i)\n", d,a,e,b,f,c);
 	TEST("%s", "The End");
 	(void)ac;
 	(void)av;
