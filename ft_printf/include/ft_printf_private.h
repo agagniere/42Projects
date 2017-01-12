@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:16 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/22 09:22:22 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:57:43 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define FTPF_CV "diouxXDOUeEfFgGaAcCsSpnb"
 # define FTPF_NUMERIC "diouDOUxXpb"
 # define FTPF_LM "hljzL"
+# define FTPF_SWITCHES "0+- #_"
 
 typedef struct		s_modifier
 {
@@ -33,6 +34,7 @@ typedef struct		s_modifier
 			char	minus;
 			char	space;
 			char	alternate;
+			char	underscore;
 		}			n;
 	}				booleans;
 	char			conversion;

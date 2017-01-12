@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/24 01:38:16 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/01/12 12:48:46 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 		dprintf(2, "Fail : return value Real(%i vs %i)Yours\n", pf, ft); \
 	if (pf >= 0) {														\
 		if (strcmp(ft_dst, pf_dst))										\
-			dprintf(2, "%sFail : strings differ\n|%s| (Real) vs\n|%s|\n%s", \
+			dprintf(2, "%sFail : strings differ\n|%s| (Real) vs\n|%s| (Yours)\n%s", \
 					"\e[1;31m", pf_dst, ft_dst, "\e[0m");				\
 		else															\
 			dprintf(1, "\e[1;32m|%s|\e[0m\n", ft_dst);					\
@@ -78,7 +78,7 @@ int		main(int ac, char **av)
 	TEST("15-NULL string _%l.4s_", NULL);
 	TEST("16-Bonus _%-2147483648.99h+08h#.04i_", '*');
 	TEST("17-Nothing _%20.10",0);
-	TEST("18-Nothing _%20.10_",0);
+	TEST("18-Nothing _%20.10__%i",0,42);
 	TEST("19-Nothing _%20.10&_",0);
 	TEST("1A-Nothing _%20.10@_",0);
 	TEST("1B-Nothing _%20.10`_",0);
@@ -98,9 +98,10 @@ int		main(int ac, char **av)
 	TEST("1P-Advanced _%#o_%10#o_%.5#o_%10.5#o_%010#o_",-42,-42,-42,-42,-42);
 	TEST("1Q-%", 0);
 	TEST("1R-%.0z", 0);
+	TEST("1S-Zero _%010.0+#o_", 0);
 	int a,b,c,d,e,f;
-	ft_printf("Nflag%nWooWo% %[% 20.010-5n]%n\n", &a, &b, &c);
-	printf("NFlag%nWooWo% %[% 20.010-5n]%n\n", &d, &e, &f);
+	ft_printf("N Flag%nWooWo% %[% 20.010-5n]%n\n", &a, &b, &c);
+	printf("N Flag%nWooWo% %[% 20.010-5n]%n\n", &d, &e, &f);
 	if (a != d || b != e || c != f)
 		ft_printf("FAIL : (Real,FT) (%i,%i) (%i,%i) (%i,%i)\n", d,a,e,b,f,c);
 	TEST("%s", "The End");
