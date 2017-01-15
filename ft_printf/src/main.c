@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/12 12:48:46 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/01/14 21:04:52 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 		dprintf(2, "Fail : return value Real(%i vs %i)Yours\n", pf, ft); \
 	if (pf >= 0) {														\
 		if (strcmp(ft_dst, pf_dst))										\
-			dprintf(2, "%sFail : strings differ\n|%s| (Real) vs\n|%s| (Yours)\n%s", \
+			dprintf(2,													\
+					"%sFail : strings differ\n|%s| (Real) vs\n|%s| (Yours)\n%s", \
 					"\e[1;31m", pf_dst, ft_dst, "\e[0m");				\
 		else															\
 			dprintf(1, "\e[1;32m|%s|\e[0m\n", ft_dst);					\
@@ -91,19 +92,24 @@ int		main(int ac, char **av)
 	TEST("1I-Zero _%10.0i_", 0);
 	TEST("1J-Zero _%10.0+u_", 0);
 	TEST("1K-Zero _%-10.0+i_", 0);
-	TEST("1L-Advanced _%i_%10i_%.5i_%10.5i_%010i_",-42,-42,-42,-42,-42);
-	TEST("1M-Advanced _%u_%10u_%.5u_%10.5u_%010u_",-42,-42,-42,-42,-42);
-	TEST("1N-Advanced _%#x_%10#x_%.5#x_%10.5#x_%010#x_",-42,-42,-42,-42,-42);
-	TEST("1O-Advanced _%#X_%10#X_%.5#X_%10.5#X_%010#X_",-42,-42,-42,-42,-42);
-	TEST("1P-Advanced _%#o_%10#o_%.5#o_%10.5#o_%010#o_",-42,-42,-42,-42,-42);
+	TEST("1L-Advanced _%i_%10i_%.5i_%10.5i_%010i_%.0i_",-42,-42,-42,-42,-42,0);
+	TEST("1M-Advanced _%u_%10u_%.5u_%10.5u_%010u_%.0u_",-42,-42,-42,-42,-42,0);
+	TEST("1N-Advanced _%#x_%10#x_%.5#x_%10.5#x_%010#x_%.0#x_",-42,-42,-42,-42,-42,0);
+	TEST("1O-Advanced _%#X_%10#X_%.5#X_%10.5#X_%010#X_%.0#X_",-42,-42,-42,-42,-42,0);
+	TEST("1P-Advanced _%#o_%10#o_%.5#o_%10.5#o_%010#o_%.0#o_",-42,-42,-42,-42,-42,0);
 	TEST("1Q-%", 0);
 	TEST("1R-%.0z", 0);
 	TEST("1S-Zero _%010.0+#o_", 0);
+	TEST("1T-Advanced _%#p_%10#p_%.5#p_%10.5#p_%010#p_",-42,-42,-42,-42,-42);
+	TEST("1U-Zero %#x", 0);
+	TEST("1V-Zero %#.x %#.0x", 0, 0);
+
 	int a,b,c,d,e,f;
 	ft_printf("N Flag%nWooWo% %[% 20.010-5n]%n\n", &a, &b, &c);
 	printf("N Flag%nWooWo% %[% 20.010-5n]%n\n", &d, &e, &f);
 	if (a != d || b != e || c != f)
 		ft_printf("FAIL : (Real,FT) (%i,%i) (%i,%i) (%i,%i)\n", d,a,e,b,f,c);
+
 	TEST("%s", "The End");
 	(void)ac;
 	(void)av;

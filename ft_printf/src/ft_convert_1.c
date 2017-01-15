@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:37:36 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/22 16:01:20 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/01/15 02:25:06 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int			pf_unsigned_integer(t_modifier *m, t_array *d, va_list ap, int b)
 		arg = va_arg(ap, uintmax_t);
 	else
 		arg = va_arg(ap, unsigned);
+	if (arg == 0 && (m->conversion == 'x' || m->conversion == 'X'))
+		d->size -= 2;
 	if (arg == 0 && m->precision == 0)
 		return (0);
 	return (pf_itoa_base(d, arg, ABS(b), 2 | (b < 0)));
