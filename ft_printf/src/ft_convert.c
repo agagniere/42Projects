@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 02:02:14 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/12 12:55:35 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/01/31 18:07:49 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,6 @@ static inline int
 	return (1);
 }
 
-void
-	tmp_dyna_swap(t_array *d, size_t before, size_t after)
-{
-	char			*tmp;
-	const size_t	len = after - before;
-	const size_t	m = d->type_size;
-
-	tmp = ft_safe_calloc(len, m);
-	ft_memcpy(tmp, d->data + before * m, m * len);
-	ft_memmove(d->data + before * m, d->data + after * m,
-		(d->size - after) * m);
-	ft_memcpy(d->data + (d->size - len) * m, tmp, len * m);
-	free(tmp);
-}
-
 static inline int
 	pf_precision(t_modifier *m, t_array *d, va_list ap)
 {
@@ -68,7 +53,7 @@ static inline int
 	{
 		while (len < m->precision && ++len)
 			fta_append(d, "0", 1);
-		tmp_dyna_swap(d, after - width, after);
+		fta_swap(d, after - width, after);
 	}
 	return (len);
 }
@@ -99,6 +84,6 @@ void
 			while (len < m->size && ++len)
 				fta_append(d, " ", 1);
 		if (!m->booleans.n.minus)
-			tmp_dyna_swap(d, before, after);
+			fta_swap(d, before, after);
 	}
 }
