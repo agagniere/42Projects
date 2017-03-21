@@ -1,7 +1,7 @@
 # No Licence (public domain)
 #### Cooperations credits :
- - **AlCU**/ `mwang`
- - **Carnifex**/ `yaitalla`
+ - **AlCU**/ `yaitalla`
+ - **Carnifex**/ `pba`
  - **Domino**/ `tbeauman` [tbeauman](https://github.com/tbeauman)
  - **Fillit**/ `ngoguey` [ngoguey42](https://github.com/ngoguey42)
  - **FunctionChecker**/ `ngoguey` [ngoguey42](https://github.com/ngoguey42)
