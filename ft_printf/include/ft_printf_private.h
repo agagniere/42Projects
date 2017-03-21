@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:38:16 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/12 12:57:43 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/21 13:33:02 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct		s_modifier
 {
 	union
 	{
-		char		t[5];
+		char		t[6];
 		struct
 		{
 			char	zero;
@@ -43,7 +43,7 @@ typedef struct		s_modifier
 	int				precision;
 }					t_modifier;
 
-# define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0}}, 0, 0, -1, -1};
+# define NEW_MODIFIER (t_modifier){{{0, 0, 0, 0, 0, 0}}, 0, 0, -1, -1};
 
 void				db_print_modifier(t_modifier *m);
 void				pf_convert(t_modifier *m, t_array *d, va_list ap);

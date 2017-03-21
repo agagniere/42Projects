@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/14 21:04:52 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/21 10:25:53 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 #include <string.h>
 
 #define TEST(FMT,...)													\
-	pf = asprintf(&pf_dst,FMT,__VA_ARGS__);								\
-	ft = ft_asprintf(&ft_dst,FMT,__VA_ARGS__);							\
+	pf = asprintf(&pf_dst,FMT,##__VA_ARGS__);							\
+	ft = ft_asprintf(&ft_dst,FMT,##__VA_ARGS__);						\
 	if (ft != pf)														\
 		dprintf(2, "Fail : return value Real(%i vs %i)Yours\n", pf, ft); \
-	if (pf >= 0) {														\
+	if (pf >= 0) {													\
 		if (strcmp(ft_dst, pf_dst))										\
 			dprintf(2,													\
 					"%sFail : strings differ\n|%s| (Real) vs\n|%s| (Yours)\n%s", \
@@ -103,6 +103,7 @@ int		main(int ac, char **av)
 	TEST("1T-Advanced _%#p_%10#p_%.5#p_%10.5#p_%010#p_",-42,-42,-42,-42,-42);
 	TEST("1U-Zero %#x", 0);
 	TEST("1V-Zero %#.x %#.0x", 0, 0);
+	TEST("1W-Wide char %C", 0xe79a84);
 
 	int a,b,c,d,e,f;
 	ft_printf("N Flag%nWooWo% %[% 20.010-5n]%n\n", &a, &b, &c);

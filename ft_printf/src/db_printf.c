@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/10/31 11:25:39 by angagnie          #+#    #+#             */
-/*   Updated: 2016/11/04 01:53:27 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/03/21 13:34:41 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	db_print_bool(char c)
 {
 	ft_putstr(c ? "true" : "false");
+	return ;
 }
 
 void	db_print_modifier(t_modifier *m)
@@ -22,11 +23,11 @@ void	db_print_modifier(t_modifier *m)
 	size_t		n;
 
 	ft_putstr("(t_modifier){\n\t{");
-	n = 5;
+	n = 6;
 	while (n-- > 0)
 	{
 		ft_putstr("\n\t\t");
-		db_print_bool(m->booleans.t[4 - n]);
+		db_print_bool(m->booleans.t[5 - n]);
 	}
 	ft_putstr("\n\t}\n\t'");
 	ft_putchar(m->conversion);
@@ -37,4 +38,5 @@ void	db_print_modifier(t_modifier *m)
 	ft_putstr("\n\t");
 	ft_putnbr(m->precision);
 	ft_putstr("\n}\n");
+	return ;
 }
