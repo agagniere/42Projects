@@ -3,10 +3,10 @@
 
 Provide a personnal implementations of printf and its variants, namely :
 
-  - printf		*stdout*
-  - dprintf		*in a file descriptor*
-  - sprintf		*in a provided string*
-  - asprintf	*in an allocated string*
+  - **printf**		*in stdout*
+  - **dprintf**		*in a file descriptor*
+  - **sprintf**		*in a provided string*
+  - **asprintf**	*in an allocated string*
 
 and their underlying (non-variadic) true identities :
 
@@ -14,3 +14,6 @@ and their underlying (non-variadic) true identities :
   - vdprintf
   - vsprintf
   - vasprintf
+
+---
+Copyright 2016,2017 Antoine GAGNIERE
