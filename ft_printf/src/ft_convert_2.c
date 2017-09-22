@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:37:44 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/21 16:35:59 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/09/22 21:02:32 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,18 @@ int		pf_cv_s(t_modifier *m, t_array *d, va_list ap)
 int		pf_cv_ws(t_modifier *m, t_array *d, va_list ap)
 {
 	wchar_t	*arg;
+	size_t	len;
 
 	arg = va_arg(ap, wchar_t *);
 	if (arg == NULL)
 		arg = L"(null)";
 	fta_reserve(d, 4 * ft_wstrlen(arg));
 	if (m->precision >= 0)
-		return (ft_wstrnconv((char *)ARRAY_END(d), arg, m->precision));
+		len = ft_wstrnconv((char *)ARRAY_END(d), arg, m->precision);
 	else
-		return (ft_wstrconv((char *)ARRAY_END(d), arg));
+		len = ft_wstrconv((char *)ARRAY_END(d), arg);
+	d->size += len;
+	return (len);
 }
 
 int		pf_cv_c(t_modifier *m, t_array *d, va_list ap)

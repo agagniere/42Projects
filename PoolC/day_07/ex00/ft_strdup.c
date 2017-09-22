@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/07/16 09:03:06 by angagnie          #+#    #+#             */
-/*   Updated: 2015/07/16 15:02:08 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/08/09 20:26:17 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ char	*ft_strdup(char *src)
 	char	*ans;
 	char	*tmp;
 
-	cpy = src - 1;
-	while (*(++cpy))
+	cpy = src;
+	while (*cpy++)
 		;
-	ans = (char *)malloc(sizeof(char) * (cpy - src + 1));
+	ans = (char *)malloc(sizeof(char) * (cpy - src));
 	if (ans == NULL)
 		return (NULL);
 	cpy = src;

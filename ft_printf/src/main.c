@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 19:15:32 by angagnie          #+#    #+#             */
-/*   Updated: 2017/03/21 10:25:53 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/09/22 22:23:39 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 	ft = ft_asprintf(&ft_dst,FMT,##__VA_ARGS__);						\
 	if (ft != pf)														\
 		dprintf(2, "Fail : return value Real(%i vs %i)Yours\n", pf, ft); \
-	if (pf >= 0) {													\
+	if (pf >= 0 && ft >= 0) {											\
 		if (strcmp(ft_dst, pf_dst))										\
 			dprintf(2,													\
 					"%sFail : strings differ\n|%s| (Real) vs\n|%s| (Yours)\n%s", \
@@ -103,11 +103,23 @@ int		main(int ac, char **av)
 	TEST("1T-Advanced _%#p_%10#p_%.5#p_%10.5#p_%010#p_",-42,-42,-42,-42,-42);
 	TEST("1U-Zero %#x", 0);
 	TEST("1V-Zero %#.x %#.0x", 0, 0);
-	TEST("1W-Wide char %C", 0xe79a84);
+	TEST("1W-Wide char %C", 0x0065);
+	TEST("1X-Hexa a%xb%xc%xd", 0, 55555, 1000000);
+	TEST("1Y-Hexa a%Xb%Xc%Xd", 0, 55555, 1000000);
+	TEST("1Z-Octal a%ob%oc%od", 0, 55555, 1000000);
+	TEST("20-Octal _%o_%#o_%0o_%0#o_%.0o_%.0#o_%0.0o_%0.0#o_", 0, 0, 0, 0, 0, 0, 0, 0);
+	TEST("21-Pointers _%p_%#p_%0p_%0#p_%.0p_%.0#p_%0.0p_%0.0#p_", 0, 0, 0, 0, 0, 0, 0, 0);
+	TEST("22-Pointers _%p_%#p_%0p_%0#p_%.0p_%.0#p_%0.0p_%0.0#p_", -42, -42, -42, -42, -42, -42, -42, -42);
+	TEST("23-Wildcard _%*s_%*s_", 5, "Hello world", 50, "Hello world");
+	TEST("24-Wildcard _%.*s_%.*s_", 5, "Hello world", 50, "Hello world");
+	TEST("25-Wildcard _%*.*s_%*.*s_", 5, 5, "Hello world", 50, 50, "Hello world");
+	TEST("26-Wildcard _%*.*s_%*.*s_", 50, 5, "Hello world", 5, 50, "Hello world");
+	TEST("27-Wildcard _%*.*s_%*.*s_", 50, -5, "Hello world", -5, 50, "Hello world");
+	TEST("28-Char {%05.c}", 0);
 
 	int a,b,c,d,e,f;
-	ft_printf("N Flag%nWooWo% %[% 20.010-5n]%n\n", &a, &b, &c);
-	printf("N Flag%nWooWo% %[% 20.010-5n]%n\n", &d, &e, &f);
+	ft_printf("~ Flag%nWooWo% %[% 20.010-5n]%n\n", &a, &b, &c);
+	printf("~ Flag%nWooWo% %[% 20.010-5n]%n\n", &d, &e, &f);
 	if (a != d || b != e || c != f)
 		ft_printf("FAIL : (Real,FT) (%i,%i) (%i,%i) (%i,%i)\n", d,a,e,b,f,c);
 

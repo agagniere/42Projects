@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 11:41:29 by angagnie          #+#    #+#             */
-/*   Updated: 2016/12/24 01:35:18 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/09/22 21:56:47 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int		pf_cv_p(t_modifier *m, t_array *d, va_list ap)
 	void	*arg;
 
 	(void)m;
-	arg = va_arg(ap, void *);
 	fta_append(d, "0x", 2);
-	return (pf_itoa_base(d, (long long)arg, 16, 2));
+	m->length = 'L';
+	return (pf_unsigned_integer(m, d, ap, 16));
 }
 
 int		pf_cv_n(t_modifier *m, t_array *d, va_list ap)

@@ -6,7 +6,7 @@
 /*   By: angagnie <angagnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 15:37:36 by angagnie          #+#    #+#             */
-/*   Updated: 2017/01/15 02:25:06 by angagnie         ###   ########.fr       */
+/*   Updated: 2017/09/22 21:50:13 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ int			pf_itoa_base(t_array *d, intmax_t n, int b, char info)
 
 	(info & 1 ? "0123456789ABCDEF" : "0123456789abcdef");
 	ans = 1;
-	if ((info & 2 ? un >= (uintmax_t)b : n >= b)
-		|| ((!(info & 2)) && n <= -b))
+	if (info & 2 ? (uintmax_t)b <= un : n <= -b || b <= n)
 		ans += pf_itoa_base(d, (info & 2 ?
 			(intmax_t)(un / b) : n / b), b, info);
 	fta_append(d, (void *)(base +
@@ -81,9 +80,12 @@ int			pf_unsigned_integer(t_modifier *m, t_array *d, va_list ap, int b)
 		arg = va_arg(ap, uintmax_t);
 	else
 		arg = va_arg(ap, unsigned);
-	if (arg == 0 && (m->conversion == 'x' || m->conversion == 'X'))
+	if (arg == 0 && m->booleans.n.alternate
+		&& (m->conversion == 'x' || m->conversion == 'X'))
 		d->size -= 2;
 	if (arg == 0 && m->precision == 0)
 		return (0);
+	if (arg == 0 && m->booleans.n.alternate && m->conversion == 'o')
+		d->size -= 1;
 	return (pf_itoa_base(d, arg, ABS(b), 2 | (b < 0)));
 }
