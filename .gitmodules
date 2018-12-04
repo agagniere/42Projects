@@ -1,6 +1,3 @@
-[submodule "Libft"]
-	path = Libft
-	url = https://github.com/Xxdzs/Libft.git
 [submodule "FunctionChecker"]
 	path = FunctionChecker
 	url = https://github.com/Xxdzs/FunctionChecker.git
