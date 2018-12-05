@@ -6,32 +6,35 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 12:55:59 by angagnie          #+#    #+#             */
-/*   Updated: 2018/11/28 18:12:30 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/05 19:04:09 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_stack.h"
 #include "ft_deque_private.h"
-#include <limits.h>
+#include "libft.h"
+#include "ft_bitset.h"
 
-int		check_for_duplicates(int *storage, unsigned length, long min, long max)
+#include <limits.h>
+#include <stdbool.h>
+
+bool	check_for_duplicates(int *storage, unsigned length, long min, long max)
 {
-	uint64_t		set[(max - min) / 64];
+	t_bitset		set[(max - min) / sizeof(t_bitset)];
 	long unsigned	elem;
 
 	ft_bzero(set, sizeof(set));
 	while (length-- > 0)
 	{
 		elem = (long)storage[length] - min;
-		if (set[elem / 64] & (1UL << (elem % 64)))
-			return (1);
-		set[elem / 64] |= (1UL << (elem % 64));
+		if (BITSET_GET(set, elem))
+			return (false);
+		BITSET_SET(set, elem);
 	}
-	return (0);
+	return (true);
 }
 
-int		read_args(unsigned ac, char **av, int *storage)
+bool	read_args(unsigned ac, char **av, int *storage)
 {
 	int					max;
 	int					min;
@@ -43,7 +46,7 @@ int		read_args(unsigned ac, char **av, int *storage)
 	{
 		storage[n] = ft_atoi(*av);
 		if (storage[n] == 0 && **av != '0')
-			return (1);
+			return (false);
 		if (max < storage[n])
 			max = storage[n];
 		if (storage[n] < min)
@@ -55,16 +58,16 @@ int		read_args(unsigned ac, char **av, int *storage)
 
 int		main(int ac, char **av)
 {
-	int		storage[ac - 1];
+	int		storage[ac];
 	t_stack	stack[1];
 
 	if (ac == 1)
 		return (0);
-	if (read_args(ac - 1, av + 1, storage))
+	if (!read_args(ac - 1, av + 1, storage))
 	{
 		FD_PUT(2, "Error");
 		return (0);
 	}
-	stack[0] = STACK_NEW(storage);
-	stack->back = ftq_end(stack);
+	*stack = STACK_NEW(storage);
+	stack->back = ftq_end(stack) - ftq_offset(stack, 1);
 }
