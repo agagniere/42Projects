@@ -1,3 +1,6 @@
 [submodule "PoolPHP"]
 	path = PoolPHP
 	url = https://github.com/Xxdzs/PoolPHP
+[submodule "libunit"]
+	path = libunit
+	url = https://github.com/Xxdzs/libunit_42.git
