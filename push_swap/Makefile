@@ -1,7 +1,7 @@
 CHECKER:=checker
 PUSH_SWAP:=push_swap
 
-FILES=read_args
+FILES=read_args instructions
 SOURCES_FOLDER=src
 OBJECTS_FOLDER=cache
 HEADERS_FOLDER=include
