@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 16:18:41 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/07 17:37:29 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/10 19:06:11 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	cmd_pa(t_stack *a, t_stack *b)
 {
 	int		tmp[1];
 
-	stack_pop(b, tmp);
-	stack_push(a, tmp);
+	if (stack_pop(b, tmp))
+		stack_push(a, tmp);
 }
 
 void	cmd_pb(t_stack *a, t_stack *b)
