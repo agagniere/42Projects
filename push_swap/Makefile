@@ -1,7 +1,7 @@
 CHECKER:=checker
 PUSH_SWAP:=push_swap
 
-FILES=read_args instructions
+FILES=read_args instructions execute_instruction
 SOURCES_FOLDER=src
 OBJECTS_FOLDER=cache
 HEADERS_FOLDER=include
@@ -28,7 +28,7 @@ $(CHECKER): $(OBJECTS_FOLDER)/checker.o $(OBJECTS) | $(LIBFT)
 	$(COMPILER) $(L_FLAGS) -o $@ $^
 
 $(PUSH_SWAP): $(OBJECTS_FOLDER)/push_swap.o $(OBJECTS)
-	$(COMPILER) $(L_FLAGS) -o $@
+	$(COMPILER) $(L_FLAGS) -o $@ $^
 
 $(OBJECTS_FOLDER)/%.o: $(SOURCES_FOLDER)/%.c | $(OBJECTS_FOLDER)
 	$(COMPILER) $(C_FLAGS) -o $@ -c $<

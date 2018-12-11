@@ -6,7 +6,7 @@
 /*   By: angagnie <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 17:09:18 by angagnie          #+#    #+#             */
-/*   Updated: 2018/12/07 17:21:05 by angagnie         ###   ########.fr       */
+/*   Updated: 2018/12/11 21:11:53 by angagnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ void			cmd_rr(t_stack *a, t_stack *b);
 void			cmd_rra(t_stack *a, t_stack *b);
 void			cmd_rrb(t_stack *a, t_stack *b);
 void			cmd_rrr(t_stack *a, t_stack *b);
+
+bool			execute_instruction(const char *instruction,
+									t_stack *a, t_stack *b);
 
 #endif
