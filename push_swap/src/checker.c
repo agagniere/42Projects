@@ -31,7 +31,7 @@ char	*tmp_iatoa(int *i)
 
 int		tmp_comp(int *a, int *b)
 {
-	return (*b - *a);
+	return (*a - *b);
 }
 
 void	read_instructions(int fd, t_stack *a, t_stack *b)
