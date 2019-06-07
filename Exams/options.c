@@ -33,7 +33,7 @@ void   BITSET_print(bitset set)
 {
     unsigned i = 32;
 
-    if (i == 0 || GET(set, 'h' - 'a'))
+    if (set == 0 || GET(set, 'h' - 'a'))
         write(1, "options: abcdefghijklmnopqrstuvwxyz", 35);
     else if (GET(set, INVALID))
         write(1, "Invalid Option", 14);
