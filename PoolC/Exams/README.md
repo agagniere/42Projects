@@ -1,3 +1,3 @@
 # C Pool Exams
 
-For more solutions see [Exams](../Exams)
+For more solutions see [Exams](../../Exams)
