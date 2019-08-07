@@ -1,5 +1,5 @@
 /*
-** Array to int
+** Ascii to int
 */
 
 #include <ctype.h>
