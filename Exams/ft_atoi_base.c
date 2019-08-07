@@ -1,5 +1,5 @@
 /*
-** Array to int with a base between 2 and 16
+** Ascii to int with a base between 2 and 16
 */
 
 #include <ctype.h>
